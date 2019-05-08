@@ -4,6 +4,7 @@ const state = {
   accountFormType: 'register',
   accountFormText: '成為讀者',
 
+  isLoggedIn: false,
   accessToken: '',
   user: {
     name: {
@@ -23,11 +24,17 @@ const actions = {
   checkLoginStatus ({ commit }) {
     let accessToken = this.$storage.getLocalStorage('accessToken') || ''
     let user = this.$storage.getLocalStorage('user') || ''
-    commit('setUserAccessToken', accessToken)
-    commit('setUserData', user)
+    if (accessToken && user) {
+      commit('setUserAccessToken', accessToken)
+      commit('setUserData', user)
+      commit('setLoginStatus', true)
+    } else {
+      commit('setLoginStatus', false)
+    }
   },
   userSignout ({ commit }) {
     commit('removeUserAccessToken')
+    commit('setLoginStatus', false)
   },
   userSignin ({ commit }, payload) {
     this.$axios.post('/auth/signin', { data: payload })
@@ -36,6 +43,7 @@ const actions = {
         commit('setUserAccessToken', userData.accessToken)
         delete userData.accessToken
         commit('setUserData', userData)
+        commit('setLoginStatus', true)
       })
   },
   userRegister ({ commit }, payload) {
@@ -45,6 +53,7 @@ const actions = {
         commit('setUserAccessToken', userData.accessToken)
         delete userData.accessToken
         commit('setUserData', userData)
+        commit('setLoginStatus', true)
       })
   }
 }
@@ -69,6 +78,9 @@ const mutations = {
   setUserData (state, payload) {
     this.$storage.setLocalStorage('user', payload)
     state.user = payload
+  },
+  setLoginStatus (state, payload) {
+    state.isLoggedIn = payload
   },
   removeUserAccessToken (state) {
     this.$storage.removeLocalStorage('accessToken')
