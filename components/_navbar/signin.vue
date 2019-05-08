@@ -1,26 +1,56 @@
 <template>
   <div>
-    <b-form>
-      <b-form-group label="Email" label-for="input-2">
-        <b-form-input
+    <b-form @submit="userSignin">
+      <b-form-group label="電子郵件" label-for="input-2">
+        <b-input
           required
           placeholder="Email"
-        ></b-form-input>
+          type="email"
+          v-model="userSigninForm.email"
+        ></b-input>
       </b-form-group>
 
-      <b-form-group label="Password" label-for="input-3">
-        <b-form-input
+      <b-form-group label="密碼" label-for="input-3">
+        <b-input
           required
           placeholder="Password"
-        ></b-form-input>
+          type="password"
+          v-model="userSigninForm.password"
+        ></b-input>
       </b-form-group>
+      <d-button block-level theme="primary" type="submit">
+        登入
+      </d-button>
+
     </b-form>
+
+    <br />
+    <div class="notMember text-center" v-on:click="notMember()">
+      還沒有 TheChanger 帳號？按此註冊。
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: '_navbarSignin'
+  name: 'navbarSignin',
+  data () {
+    return {
+      userSigninForm: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    notMember () {
+      this.$store.commit('navbar/setAccountFormType', 'register')
+      this.$store.commit('navbar/setAccountFormText', 'register')
+    },
+    userSignin () {
+      this.$store.dispatch('navbar/userSignin', this.userSigninForm)
+    }
+  }
 }
 </script>
 
