@@ -1,25 +1,13 @@
 <template>
   <section class="container">
-    <div>
-      <h1 class="title">
-        theChanger-frontend-v1
-      </h1>
-      <h2 class="subtitle">
-        theChanger-frontend-v1
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
-    </div>
+    <h1 class="text-center" style="padding-top: 50px;">
+       TheChanger 改變者
+    </h1>
+
+    <p>
+      Dear friends, We are still building our platform.
+    </p>
+
   </section>
 </template>
 
