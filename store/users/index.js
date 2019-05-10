@@ -2,9 +2,7 @@
 // initial state
 const state = () => {
   return {
-    accountFormType: 'register',
-    accountFormText: '成為讀者',
-
+    isAuthFailed: false,
     isLoggedIn: null,
     accessToken: '',
     user: {
@@ -49,6 +47,8 @@ const actions = {
         delete userData.accessToken
         commit('setUserData', userData)
         commit('setLoginStatus', true)
+      }).catch(error => {
+        commit('userAuthFailed')
       })
   },
   userRegister ({ commit }, payload) {
@@ -65,17 +65,6 @@ const actions = {
 
 // mutations
 const mutations = {
-  setAccountFormType (state, payload) {
-    state.accountFormType = payload
-  },
-  setAccountFormText (state, payload) {
-    if (payload === 'signin') {
-      state.accountFormText = '登入 TheChanger 改變者'
-    }
-    if (payload === 'register') {
-      state.accountFormText = '成為讀者'
-    }
-  },
   setUserAccessToken (state, payload) {
     this.$storage.setUniversal('accessToken', payload)
     state.accessToken = payload
@@ -91,6 +80,9 @@ const mutations = {
     this.$storage.removeUniversal('accessToken')
     this.$storage.removeUniversal('user')
     state.accessToken = ''
+  },
+  userAuthFailed (state) {
+    state.isAuthFailed = true
   }
 }
 
