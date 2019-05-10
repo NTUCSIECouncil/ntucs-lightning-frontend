@@ -2,7 +2,7 @@
   <div>
     <navbar />
     <nuxt />
-    <smNavbar />
+    <smNavbar class="smNavbar" />
   </div>
 </template>
 
@@ -20,5 +20,10 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
+  @media only screen and (min-width: 576px) {
+    .smNavbar {
+      display: none;
+    }
+  }
 </style>
