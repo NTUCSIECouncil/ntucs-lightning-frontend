@@ -1,16 +1,18 @@
 
 // initial state
-const state = {
-  accountFormType: 'register',
-  accountFormText: '成為讀者',
+const state = () => {
+  return {
+    accountFormType: 'register',
+    accountFormText: '成為讀者',
 
-  isLoggedIn: false,
-  accessToken: '',
-  user: {
-    name: {
-      preferred: '',
-      last: '',
-      first: ''
+    isLoggedIn: false,
+    accessToken: '',
+    user: {
+      name: {
+        preferred: '',
+        last: '',
+        first: ''
+      }
     }
   }
 }
@@ -21,6 +23,9 @@ const getters = {
 
 // actions
 const actions = {
+  async nuxtServerInit ({ commit, dispatch }) {
+    await dispatch('checkLoginStatus')
+  },
   checkLoginStatus ({ commit }) {
     let accessToken = this.$storage.getLocalStorage('accessToken') || ''
     let user = this.$storage.getLocalStorage('user') || ''
