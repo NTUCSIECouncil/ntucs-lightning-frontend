@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="userSignin">
+    <b-form @submit.prevent="userSignin">
       <b-form-group label="電子郵件" label-for="input-2">
         <b-input
           required
@@ -44,11 +44,11 @@ export default {
   },
   methods: {
     notMember () {
-      this.$store.commit('navbar/setAccountFormType', 'register')
-      this.$store.commit('navbar/setAccountFormText', 'register')
+      this.$store.commit('users/setAccountFormType', 'register')
+      this.$store.commit('users/setAccountFormText', 'register')
     },
     userSignin () {
-      this.$store.dispatch('navbar/userSignin', this.userSigninForm)
+      this.$store.dispatch('users/userSignin', this.userSigninForm)
     }
   }
 }

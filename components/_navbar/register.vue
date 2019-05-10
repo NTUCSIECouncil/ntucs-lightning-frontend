@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="userRegister">
+    <b-form @submit.prevent="userRegister">
       <b-form-group label="姓">
         <b-form-input
           required
@@ -77,11 +77,11 @@ export default {
   },
   methods: {
     alreadyMember () {
-      this.$store.commit('navbar/setAccountFormType', 'signin')
-      this.$store.commit('navbar/setAccountFormText', 'signin')
+      this.$store.commit('users/setAccountFormType', 'signin')
+      this.$store.commit('users/setAccountFormText', 'signin')
     },
     userRegister () {
-      this.$store.dispatch('navbar/userRegister', this.userRegisterForm)
+      this.$store.dispatch('users/userRegister', this.userRegisterForm)
     }
   }
 }
