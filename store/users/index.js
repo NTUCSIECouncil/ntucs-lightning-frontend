@@ -5,7 +5,7 @@ const state = () => {
     accountFormType: 'register',
     accountFormText: '成為讀者',
 
-    isLoggedIn: false,
+    isLoggedIn: null,
     accessToken: '',
     user: {
       name: {
@@ -23,12 +23,12 @@ const getters = {
 
 // actions
 const actions = {
-  async nuxtServerInit ({ commit, dispatch }) {
+  async nuxtServerInit ({ dispatch }) {
     await dispatch('checkLoginStatus')
   },
   checkLoginStatus ({ commit }) {
-    let accessToken = this.$storage.getLocalStorage('accessToken') || ''
-    let user = this.$storage.getLocalStorage('user') || ''
+    let accessToken = this.$storage.getUniversal('accessToken') || ''
+    let user = this.$storage.getUniversal('user') || ''
     if (accessToken && user) {
       commit('setUserAccessToken', accessToken)
       commit('setUserData', user)
@@ -77,19 +77,19 @@ const mutations = {
     }
   },
   setUserAccessToken (state, payload) {
-    this.$storage.setLocalStorage('accessToken', payload)
+    this.$storage.setUniversal('accessToken', payload)
     state.accessToken = payload
   },
   setUserData (state, payload) {
-    this.$storage.setLocalStorage('user', payload)
+    this.$storage.setUniversal('user', payload)
     state.user = payload
   },
   setLoginStatus (state, payload) {
     state.isLoggedIn = payload
   },
   removeUserAccessToken (state) {
-    this.$storage.removeLocalStorage('accessToken')
-    this.$storage.removeLocalStorage('user')
+    this.$storage.removeUniversal('accessToken')
+    this.$storage.removeUniversal('user')
     state.accessToken = ''
   }
 }
