@@ -18,6 +18,13 @@
           v-model="userSigninForm.password"
         ></b-input>
       </b-form-group>
+
+      <div class="signinFailed" v-if="usersState.isAuthFailed">
+        <d-alert theme="warning" show>
+          登入失敗。
+        </d-alert>
+      </div>
+
       <d-button block-level theme="primary" type="submit">
         登入
       </d-button>
@@ -32,6 +39,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'navbarSignin',
   data () {
@@ -42,10 +51,15 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState({
+      usersState: 'users'
+    })
+  },
   methods: {
     notMember () {
-      this.$store.commit('users/setAccountFormType', 'register')
-      this.$store.commit('users/setAccountFormText', 'register')
+      this.$store.commit('navbar/setAccountFormType', 'register')
+      this.$store.commit('navbar/setAccountFormText', 'register')
     },
     userSignin () {
       this.$store.dispatch('users/userSignin', this.userSigninForm)
