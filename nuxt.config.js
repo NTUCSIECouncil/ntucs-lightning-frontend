@@ -3,7 +3,7 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
   server: {
-    port: 8000,
+    port: 3002,
     host: '0.0.0.0'
   },
 
@@ -18,7 +18,6 @@ module.exports = {
       { hid: 'description', name: 'description', content: pkg.description }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css' },
       { rel: 'stylesheet', href: 'https://unpkg.com/shards-ui@latest/dist/css/shards.min.css' }
     ]
@@ -27,7 +26,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#007CFF' },
 
   /*
   ** Global CSS
@@ -36,8 +35,8 @@ module.exports = {
   ],
 
   plugins: [
-    { src: '~/plugins/shardsVue', ssr: false },
-    { src: '~/plugins/bootstrap', ssr: false }
+    { src: '~/plugins/shardsVue', ssr: true },
+    { src: '~/plugins/bootstrap', ssr: true }
   ],
 
   /*
@@ -59,6 +58,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    extractCSS: true,
     extend (config, ctx) {
     }
   }
