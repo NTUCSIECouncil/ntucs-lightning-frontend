@@ -60,7 +60,7 @@
     <div>
       <b-modal 
         id="modalAccountForm"
-        v-bind:title="usersState.accountFormText"
+        v-bind:title="navbarState.accountFormText"
         hide-footer 
         hide-header-close
         v-if="!usersState.isLoggedIn"
@@ -69,14 +69,14 @@
             <d-button
               outline
               v-on:click="switchAccountFormType('register')"
-              v-bind:class="{ 'active':  usersState.accountFormType  === 'register' }"
+              v-bind:class="{ 'active': navbarState.accountFormType  === 'register' }"
             >
               成為讀者
             </d-button>
             <d-button 
               outline
               v-on:click="switchAccountFormType('signin')"
-              v-bind:class="{ 'active':  usersState.accountFormType  === 'signin' }"
+              v-bind:class="{ 'active': navbarState.accountFormType  === 'signin' }"
             >
               登入 TheChanger
             </d-button>
@@ -85,8 +85,8 @@
         <p></p>
 
         <div>
-          <signinForm v-if="usersState.accountFormType === 'signin'" />
-          <registerForm v-if="usersState.accountFormType === 'register'" />
+          <signinForm v-if="navbarState.accountFormType === 'signin'" />
+          <registerForm v-if="navbarState.accountFormType === 'register'" />
         </div>
       </b-modal>
     </div>
@@ -107,15 +107,16 @@ export default {
   },
   computed: {
     ...mapState({
-      usersState: 'users'
+      usersState: 'users',
+      navbarState: 'navbar'
     })
   },
   mounted () {
   },
   methods: {
     switchAccountFormType (type) {
-      this.$store.commit('users/setAccountFormType', type)
-      this.$store.commit('users/setAccountFormText', type)
+      this.$store.commit('navbar/setAccountFormType', type)
+      this.$store.commit('navbar/setAccountFormText', type)
     },
     userSignout () {
       this.$store.dispatch('users/userSignout')

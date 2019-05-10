@@ -77,8 +77,8 @@ export default {
   },
   methods: {
     alreadyMember () {
-      this.$store.commit('users/setAccountFormType', 'signin')
-      this.$store.commit('users/setAccountFormText', 'signin')
+      this.$store.commit('navbar/setAccountFormType', 'signin')
+      this.$store.commit('navbar/setAccountFormText', 'signin')
     },
     userRegister () {
       this.$store.dispatch('users/userRegister', this.userRegisterForm)
