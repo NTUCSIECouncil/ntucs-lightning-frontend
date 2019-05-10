@@ -9,6 +9,9 @@
         <div class="name">
           <b>{{userData.lastName}} {{userData.firstName}}</b>
         </div>
+        <div class="born">
+          Joined on: {{userData.createdAt || moment("YYYY")}}
+        </div>
       </d-card-body>
     </d-card>
   </div>
