@@ -1,6 +1,7 @@
 <template>
   <div>
     <navbar />
+    <notifications />
     <nuxt />
     <smNavbar class="smNavbar" />
   </div>
