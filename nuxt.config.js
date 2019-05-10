@@ -37,7 +37,8 @@ module.exports = {
 
   plugins: [
     { src: '~/plugins/shardsVue', ssr: true },
-    { src: '~/plugins/bootstrap', ssr: true }
+    { src: '~/plugins/bootstrap', ssr: true },
+    { src: '~/plugins/vueNotifications', ssr: true }
   ],
 
   /*
