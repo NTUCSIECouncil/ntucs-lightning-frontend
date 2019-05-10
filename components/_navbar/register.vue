@@ -5,7 +5,7 @@
         <b-form-input
           required
           placeholder="Lase Name"
-          type="lastname"
+          type="name"
           v-model="userRegisterForm.name.last"
         ></b-form-input>
       </b-form-group>
@@ -14,7 +14,7 @@
         <b-form-input
           required
           placeholder="First Name"
-          type="firstname"
+          type="name"
           v-model="userRegisterForm.name.first"
         ></b-form-input>
       </b-form-group>
@@ -23,7 +23,7 @@
         <b-form-input
           required
           placeholder="Preferred Name"
-          type="nickname"
+          type="name"
           v-model="userRegisterForm.name.preferred"
         ></b-form-input>
       </b-form-group>
