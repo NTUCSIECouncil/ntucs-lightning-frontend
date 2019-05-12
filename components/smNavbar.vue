@@ -2,13 +2,13 @@
   <div>
     <b-container fluid class="smNavbar">
       <b-row>
-        <b-col class="item">
+        <b-col class="item" v-on:click="routerGo(`/`)">
           <i class="fas fa-users"></i>
         </b-col>
-        <b-col class="item">
+        <b-col class="item" v-on:click="routerGo(`/articles/`)">
           <i class="fas fa-newspaper"></i>
         </b-col>
-        <b-col class="item">
+        <b-col class="item" v-on:click="routerGo(`/settings/`)">
           <i class="fas fa-user"></i>
         </b-col>
       </b-row>
@@ -18,7 +18,12 @@
 
 <script>
 export default {
-  name: 'smNavbar'
+  name: 'smNavbar',
+  methods: {
+    routerGo (path) {
+      this.$router.push(path)
+    }
+  }
 }
 </script>
 
