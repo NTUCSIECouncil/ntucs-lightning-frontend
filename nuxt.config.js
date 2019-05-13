@@ -3,7 +3,7 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
   server: {
-    port: 3002,
+    port: 3005,
     host: '0.0.0.0'
   },
 
@@ -14,8 +14,10 @@ module.exports = {
     title: 'The Changer 改變者',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
+      { hid: 'description', name: 'description', content: '' }
+
+      // PWA CONFIG BELOW THIS LINE
     ],
     link: [
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css' },
@@ -25,6 +27,12 @@ module.exports = {
       { rel: 'stylesheet', href: '//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css' },
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.22.1/css/themes/tim.css' }
     ]
+  },
+  manifest: {
+    mobileAppIOS: true,
+    appleStatusBarStyle: 'black-translucent',
+    name: 'The Changer 改變者',
+    author: 'Max Chou'
   },
 
   /*
@@ -59,7 +67,7 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    baseURL: 'http://localhost:3000/api/v1'
+    baseURL: 'http://172.17.0.205:3000/api/v1'
   },
 
   /*

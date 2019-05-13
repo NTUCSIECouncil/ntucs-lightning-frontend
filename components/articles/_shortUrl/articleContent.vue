@@ -20,10 +20,16 @@ export default {
 
 <style scoped>
 #title {
-    font-family: 'Noto Serif TC', serif;
-    line-height: 1.3em;
-    letter-spacing: 2px;
+  font-family: 'Noto Serif TC', serif;
+  line-height: 1.3em;
+  letter-spacing: 2px;
+}
+@media only screen and (max-width: 1140px) {
+  #title {
+    font-size: 1.8em;
+    font-weight: bold;
   }
+}
 #article {
   font-family: 'Noto Serif TC', serif;
   letter-spacing: 2px;

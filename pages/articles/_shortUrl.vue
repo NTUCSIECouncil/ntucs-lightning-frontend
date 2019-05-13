@@ -10,12 +10,14 @@
         <articleContent
           v-bind:article="article"
         />
-        <b-container>
-          <b-row>
-            <organizationCard v-bind:article="article" id="organizationCardWrap" />
-          </b-row>
-        </b-container>
       </b-row>
+    </b-container>
+    <b-container id="organizationCardWrap" fluid>
+      <b-container id="readingWrap">
+        <b-row>
+          <organizationCard v-bind:article="article" id="organizationCardComponent" />
+        </b-row>
+      </b-container>
     </b-container>
   </div>
 </template>
@@ -74,6 +76,9 @@ export default {
   }
   #readingWrap {
     max-width: 45vw;
+  }
+  #organizationCardComponent {
+    min-width: 100%;
   }
   #organizationCardWrap {
     background-color: rgba(240,240,240) !important;
