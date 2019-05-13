@@ -14,12 +14,12 @@
           <d-card v-on:click="accessFullArticle(article)">
             <d-card-img :src="article.coverPhoto" top />
             <d-card-body>
+               <p>
+                 ＃{{article.tag.name || '未分類文章'}}
+               </p>
                <h5 id="card-title">
                  {{article.title}}
                </h5>
-               <p>
-                 ＃Tag1 ＃Tag2 ＃Tag3
-               </p>
                <p></p>
                <d-btn v-on:click="accessFullArticle(article)">
                  詳細閱讀
@@ -63,6 +63,7 @@ export default {
     font-family: 'Noto Serif TC', serif;
     font-size: 1.2em;
     line-height: 1.3em;
+    letter-spacing: 2px;
   }
 </style>
 
