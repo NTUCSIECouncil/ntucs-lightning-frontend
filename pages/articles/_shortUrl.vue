@@ -34,7 +34,10 @@ export default {
           name: ''
         },
         organization: {
-          name: ''
+          name: '',
+          school: {
+            name: ''
+          }
         }
       }
     }
@@ -73,10 +76,11 @@ export default {
     max-width: 45vw;
   }
   #organizationCardWrap {
+    background-color: rgba(240,240,240) !important;
     min-width: 100%;
     min-height: 10vh;
   }
-  @media only screen and (max-width: 960px) {
+  @media only screen and (max-width: 1140px) {
     #readingWrap {
       max-width: 80vw;
     }
