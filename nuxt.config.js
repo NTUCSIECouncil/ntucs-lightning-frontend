@@ -34,6 +34,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '~/assets/stylesheets/style.css'
   ],
 
   plugins: [
