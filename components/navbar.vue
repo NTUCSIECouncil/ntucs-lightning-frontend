@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="navbar-thechanger">
-      <d-navbar toggleable="lg" type="light" class="shadow-sm">
+    <div>
+      <d-navbar toggleable="lg" type="light" class="shadow-sm" fixed="top" id="navbar-thechanger">
         <div class="container">
           <d-navbar-brand
             href="/"
@@ -14,6 +14,9 @@
           </d-navbar-brand>
 
           <d-collapse id="avoidWarn" is-nav>
+            <d-navbar-nav>
+              <d-nav-item href="/articles/">全部文章</d-nav-item>
+            </d-navbar-nav>
             <d-navbar-nav class="ml-auto">
               <d-button
                 outline
@@ -120,7 +123,12 @@ export default {
     },
     userSignout () {
       this.$store.dispatch('users/userSignout')
-      this.$router.push('/')
+        .then(i => {
+          const pathArray = this.$route.path.split('/')
+          if (pathArray[1] === 'settings') {
+            this.$router.push('/')
+          }
+        })
     }
   },
   components: {
@@ -132,8 +140,8 @@ export default {
 
 
 <style>
-.navbar-thechanger {
-  margin-bottom: 20px;
+#navbar-thechanger {
+  background: #fff;
 }
 .btn-group.special {
   display: flex;
