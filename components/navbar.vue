@@ -21,6 +21,7 @@
               <d-button
                 outline
                 squared
+                v-if="!usersState.isLoggedIn"
               >
                 成為作者
               </d-button>
@@ -30,6 +31,13 @@
               >
                 成為讀者
               </d-nav-item>
+              <d-button
+                outline
+                squared
+                v-if="usersState.isLoggedIn && usersState.user.role === 'admin'"
+              >
+                發表文章
+              </d-button>
               <d-nav-item
                 v-if="usersState.isLoggedIn && usersState.user.role === 'admin'"
               >
