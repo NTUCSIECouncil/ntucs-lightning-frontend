@@ -1,39 +1,42 @@
 <template>
   <div>
-    <b-container
-      fluid
-      id="articleCoverPhotoWrap"
-    >
-      <div
-        id="articleCoverPhoto"
-        v-bind:style="{ 'background-image': `url(${article.coverPhoto})` }"
-      >
-      </div>
+    <b-container fluid id="articleCoverPhotoWrap">
+      <articleCoverPhoto v-bind:article="article" />
     </b-container>
-    <div class="emptyArea">
-
-    </div>
-    <b-container>
+    <div class="emptyArea"></div>
+    <b-container id="readingWrap">
       <b-row>
-        <h2 id="title">
-          {{article.title}}
-        </h2>
-        <hr />
-        <div id="article">
-          <p v-html="article.content">
-          </p>
-        </div>
+        <h5>＃{{article.tag.name}}</h5>
+        <articleContent
+          v-bind:article="article"
+        />
+        <b-container>
+          <b-row>
+            <organizationCard v-bind:article="article" id="organizationCardWrap" />
+          </b-row>
+        </b-container>
       </b-row>
     </b-container>
   </div>
 </template>
 
 <script>
+import articleCoverPhoto from '@/components/articles/_shortUrl/articleCoverPhoto'
+import articleContent from '@/components/articles/_shortUrl/articleContent'
+import organizationCard from '@/components/articles/_shortUrl/organizationCard'
+
 export default {
   name: 'articleDetailPage',
   data () {
     return {
-      article: {}
+      article: {
+        tag: {
+          name: ''
+        },
+        organization: {
+          name: ''
+        }
+      }
     }
   },
   methods: {
@@ -51,27 +54,32 @@ export default {
   },
   mounted () {
     this.getArticle()
+  },
+  components: {
+    articleCoverPhoto,
+    articleContent,
+    organizationCard
   }
 }
 </script>
 
 <style scoped>
-  #title {
-    font-family: 'Noto Serif TC', serif;
-    line-height: 1.3em;
-  }
-  #article {
-    font-family: 'Noto Serif TC', serif;
-  }
-  #articleCoverPhoto {
-    min-height: 40vh;
-
-    background-position: center;
-  }
   #articleCoverPhotoWrap {
     padding: 0 !important;
     margin: 0;
-    margin-top: -20px;
+    margin-top: -10px;
+  }
+  #readingWrap {
+    max-width: 45vw;
+  }
+  #organizationCardWrap {
+    min-width: 100%;
+    min-height: 10vh;
+  }
+  @media only screen and (max-width: 960px) {
+    #readingWrap {
+      max-width: 80vw;
+    }
   }
   .emptyArea {
     min-height: 50px;
