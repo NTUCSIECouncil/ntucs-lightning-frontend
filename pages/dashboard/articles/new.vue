@@ -16,15 +16,15 @@
 </template>
 
 <script>
-import articleNewEditor from '@/components/articles/new/articleNewEditor'
-import articleNewConfig from '@/components/articles/new/articleNewConfig'
+import articleNewEditor from '@/components/dashboard/articles/new/articleNewEditor'
+import articleNewConfig from '@/components/dashboard/articles/new/articleNewConfig'
 
 export default {
   middleware: [
     'authRequired',
     'authRequiredRoleOrgUser'
   ],
-  name: 'articleNewPage',
+  name: 'dashboardArticleNewPage',
   data () {
     return {
       

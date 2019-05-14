@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import settingsInfoColumn from "@/components/settings/infoColumn";
+import settingsInfoColumn from "@/components/dashboard/settings/infoColumn"
 
 export default {
   middleware: 'authRequired',
-  name: 'settings',
+  name: 'dashboardSettings',
   data () {
     return {
       userData: {}
