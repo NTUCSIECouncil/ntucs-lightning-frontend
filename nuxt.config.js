@@ -44,7 +44,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/stylesheets/style.css'
+    '~/assets/stylesheets/style.css',
+    'swiper/dist/css/swiper.css'
   ],
 
   plugins: [
@@ -52,7 +53,8 @@ module.exports = {
     { src: '~/plugins/bootstrap', ssr: true },
     { src: '~/plugins/vueNotifications', ssr: true },
     { src: '~/plugins/sanitize', ssr: false },
-    { src: '~/plugins/mediumEditor', ssr: false }
+    { src: '~/plugins/mediumEditor', ssr: false },
+    { src: '~/plugins/nuxtSwiper', ssr: false }
   ],
 
   /*
