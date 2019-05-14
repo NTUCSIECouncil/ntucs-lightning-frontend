@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'settingsInfoColumn',
+  name: 'dashboardSettingsInfoColumn',
   props: ['userData']
 }
 </script>
