@@ -4,7 +4,7 @@
       <d-navbar toggleable="lg" type="light" class="shadow-sm" fixed="top" id="navbar-thechanger">
         <div class="container">
           <d-navbar-brand
-            href="/"
+            href="/articles/"
           >
             <img
               src="/theChangerLogov2.png"
@@ -15,7 +15,6 @@
 
           <d-collapse id="avoidWarn" is-nav>
             <d-navbar-nav>
-              <d-nav-item href="/articles/">全部文章</d-nav-item>
             </d-navbar-nav>
             <d-navbar-nav class="ml-auto">
               <d-button
@@ -56,9 +55,10 @@
                   <i class="fas fa-exclamation-triangle"></i> 
                   驗證我的帳號
                 </b-dropdown-item>
-                <b-dropdown-divider />
-                <b-dropdown-item href="#">我的組織</b-dropdown-item>
-                <b-dropdown-item href="/settings/">帳號設定</b-dropdown-item>
+                <b-dropdown-divider v-if="!usersState.user.isVerified" />
+                <b-dropdown-item href="/dashboard/articles/new">擴寫文章</b-dropdown-item>
+                <b-dropdown-item href="/dashboard/articles/">我的文章</b-dropdown-item>
+                <b-dropdown-item href="/dashboard/settings/">帳號設定</b-dropdown-item>
                 <b-dropdown-divider />
                 <b-dropdown-item v-on:click="userSignout">登出</b-dropdown-item>
               </b-nav-item-dropdown>
