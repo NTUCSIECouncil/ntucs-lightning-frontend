@@ -2,7 +2,6 @@
   <div>
     <div id="readingInfoWrap">
       {{wordCount}} 字 / {{estimatedReadingTime}} 分鐘閱讀
-      <span class="float-right">已儲存為草稿</span>
     </div>
     <p></p>
     <div>
