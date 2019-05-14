@@ -22,6 +22,7 @@
     "nuxt": "^2.4.0",
     "nuxt-universal-storage": "^0.2.0",
     "shards-vue": "^1.0.7",
+    "vue-awesome-swiper": "^3.1.3",
     "vue-notification": "^1.3.16",
     "vue-sanitize": "^0.2.0",
     "vue2-medium-editor": "^1.1.6",
