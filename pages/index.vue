@@ -1,15 +1,20 @@
 <template>
   <section class="container">
-    <p>
-      Dear friends, We are still building our platform.
-    </p>
-
   </section>
 </template>
 
 <script>
 
 export default {
+  name: 'index',
+  methods: {
+    redirectToArticlePage () {
+      this.$router.push('/articles')
+    }
+  },
+  created () {
+    this.redirectToArticlePage()
+  },
   components: {
   }
 }
