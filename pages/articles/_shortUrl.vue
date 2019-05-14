@@ -1,24 +1,26 @@
 <template>
   <div>
-    <b-container fluid id="articleCoverPhotoWrap">
-      <articleCoverPhoto v-bind:article="article" />
-    </b-container>
-    <div class="emptyArea"></div>
-    <b-container id="readingWrap">
-      <b-row>
-        <h5>＃{{article.tag.name}}</h5>
-        <articleContent
-          v-bind:article="article"
-        />
-      </b-row>
-    </b-container>
-    <b-container id="organizationCardWrap" fluid>
+    <div v-if="isReady">
+      <b-container fluid id="articleCoverPhotoWrap">
+        <articleCoverPhoto v-bind:article="article" />
+      </b-container>
+      <div class="emptyArea"></div>
       <b-container id="readingWrap">
         <b-row>
-          <organizationCard v-bind:article="article" id="organizationCardComponent" />
+          <h5 id="tag">＃{{article.tag.name}}</h5>
+          <articleContent
+            v-bind:article="article"
+          />
         </b-row>
       </b-container>
-    </b-container>
+      <b-container id="organizationCardWrap" fluid>
+        <b-container id="readingWrap">
+          <b-row>
+            <organizationCard v-bind:article="article" id="organizationCardComponent" />
+          </b-row>
+        </b-container>
+      </b-container>
+    </div>
   </div>
 </template>
 
@@ -31,6 +33,7 @@ export default {
   name: 'articleDetailPage',
   data () {
     return {
+      isReady: false,
       article: {
         tag: {
           name: ''
@@ -47,12 +50,17 @@ export default {
   methods: {
     getArticle () {
       let articleShortUrl = this.$route.params.shortUrl
-      this.$axios.get(`/articles/${articleShortUrl}`)
+      this.$axios.get(`/articles/content/${articleShortUrl}`)
         .then(i => {
           let articleData = i.data.data
           this.article = {
             ...articleData,
             content: this.$sanitize(articleData.content)
+          }
+          this.isReady = true
+        }).catch(error => {
+          let statusCode = error.response.status
+          if (statusCode === 404) {
           }
         })
     }
@@ -92,6 +100,9 @@ export default {
   }
   .emptyArea {
     min-height: 50px;
+  }
+  #tag {
+    color: blue;
   }
 </style>
 
