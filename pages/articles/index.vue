@@ -1,6 +1,10 @@
 <template>
   <div>
+    <b-container fluid id="featuredSwiperWrap">
+      <featuredSwiper v-bind:articles="articleList" />
+    </b-container>
     <b-container>
+      <h3 id="typeTitle">全部文章</h3>
       <b-row>
         <b-col
           lg="4"
@@ -38,6 +42,8 @@
 </template>
 
 <script>
+import featuredSwiper from '@/components/articles/index/featuredSwiper'
+
 export default {
   name: 'articlesPage',
   data () {
@@ -57,6 +63,9 @@ export default {
       this.$router.push(`/articles/${article.shortUrl}`)
     }
   },
+  components: {
+    featuredSwiper
+  },
   mounted () {
     this.getArticles()
   }
@@ -64,6 +73,9 @@ export default {
 </script>
 
 <style scoped>
+  #typeTitle {
+    padding-top: 50px;
+  }
   #card-title {
     font-family: 'Noto Serif TC', serif;
     font-size: 1.2em;
@@ -91,6 +103,10 @@ export default {
   }
   .card-footer {
     background-color: white;
+  }
+  #featuredSwiperWrap {
+    padding: 0;
+    margin-top: -10px;
   }
 </style>
 
