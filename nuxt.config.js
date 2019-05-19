@@ -69,7 +69,7 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    baseURL: 'http://172.17.0.205:3000/api/v1'
+    baseURL: 'http://localhost:3000/api/v1'
   },
 
   /*
