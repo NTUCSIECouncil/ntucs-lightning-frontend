@@ -5,7 +5,7 @@
         <h4>文章設定</h4>
         <hr />
         <b-form @submit.prevent="">
-          <b-form-group label="標題 (15 字為限)" label-for="input-2">
+          <b-form-group label="標題 (10 字為限)" label-for="input-2">
             <b-input
               required
               type="text"
