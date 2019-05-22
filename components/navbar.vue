@@ -30,13 +30,6 @@
               >
                 成為讀者
               </d-nav-item>
-              <d-button
-                outline
-                squared
-                v-if="usersState.isLoggedIn && usersState.user.role === 'admin'"
-              >
-                發表文章
-              </d-button>
               <d-nav-item
                 v-if="usersState.isLoggedIn && usersState.user.role === 'admin'"
               >
@@ -56,7 +49,7 @@
                   驗證我的帳號
                 </b-dropdown-item>
                 <b-dropdown-divider v-if="!usersState.user.isVerified" />
-                <b-dropdown-item href="/dashboard/articles/new">擴寫文章</b-dropdown-item>
+                <b-dropdown-item v-on:click="addArticle()">擴寫文章</b-dropdown-item>
                 <b-dropdown-item href="/dashboard/articles/">我的文章</b-dropdown-item>
                 <b-dropdown-item href="/dashboard/settings/">帳號設定</b-dropdown-item>
                 <b-dropdown-divider />
@@ -137,6 +130,9 @@ export default {
             this.$router.push('/')
           }
         })
+    },
+    addArticle () {
+      this.$store.dispatch('articles/newArticle')
     }
   },
   components: {
