@@ -46,6 +46,10 @@ import featuredSwiper from '@/components/articles/index/featuredSwiper'
 
 export default {
   name: 'articlesPage',
+  metaInfo: {
+    title: 'The Changer 改變者',
+    titleTemplate: null
+  },
   data () {
     return {
       articleList: []

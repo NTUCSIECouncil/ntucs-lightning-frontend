@@ -31,6 +31,12 @@ import organizationCard from '@/components/articles/_shortUrl/organizationCard'
 
 export default {
   name: 'articleDetailPage',
+  async asyncData ({ $axios, params }) {
+    const articleShortUrl = params.shortUrl
+    const article = await $axios.get(`/articles/content/${articleShortUrl}`)
+
+    return { articleRaw: article.data.data }
+  },
   data () {
     return {
       isReady: false,
@@ -47,22 +53,22 @@ export default {
       }
     }
   },
+  head () {
+    return {
+      title: this.articleRaw.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.articleRaw.title },
+        { hid: 'og:description', name: 'og:description', content: this.articleRaw.title }
+      ]
+    }
+  },
   methods: {
     getArticle () {
-      let articleShortUrl = this.$route.params.shortUrl
-      this.$axios.get(`/articles/content/${articleShortUrl}`)
-        .then(i => {
-          let articleData = i.data.data
-          this.article = {
-            ...articleData,
-            content: this.$sanitize(articleData.content)
-          }
-          this.isReady = true
-        }).catch(error => {
-          let statusCode = error.response.status
-          if (statusCode === 404) {
-          }
-        })
+      this.article = {
+        ...this.articleRaw,
+        content: this.$sanitize(this.articleRaw.content)
+      }
+      this.isReady = true
     }
   },
   mounted () {

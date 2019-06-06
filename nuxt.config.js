@@ -12,6 +12,7 @@ module.exports = {
   */
   head: {
     title: 'The Changer 改變者',
+    titleTemplate: '%s - The Changer 改變者',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
@@ -54,7 +55,8 @@ module.exports = {
     { src: '~/plugins/vueNotifications', ssr: true },
     { src: '~/plugins/sanitize', ssr: false },
     { src: '~/plugins/mediumEditor', ssr: false },
-    { src: '~/plugins/nuxtSwiper', ssr: false }
+    { src: '~/plugins/nuxtSwiper', ssr: false },
+    { src: '~/plugins/vueMeta', ssr: true }
   ],
 
   /*
