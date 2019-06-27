@@ -133,6 +133,10 @@ export default {
     },
     addArticle () {
       this.$store.dispatch('articles/newArticle')
+        .then(response => {
+          const data = response.data.data
+          this.$router.push(`/dashboard/articles/edit/${data.articleId}`)
+        })
     }
   },
   components: {
