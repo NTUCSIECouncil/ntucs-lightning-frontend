@@ -66,7 +66,7 @@ export default {
     getArticle () {
       this.article = {
         ...this.articleRaw,
-        content: this.$sanitize(this.articleRaw.content)
+        content: this.$sanitize(this.articleRaw.rawContent)
       }
       this.isReady = true
     }
