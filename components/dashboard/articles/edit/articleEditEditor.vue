@@ -5,16 +5,18 @@
     </div>
     <p></p>
     <div>
-      <mediumEditor :text='content' :options='options' custom-tag='h5' v-on:edit='applyTextEdit' />
+      <mediumEditor :text='article.rawContent || "" ' :options='options' custom-tag='h5' v-on:edit='applyTextEdit' />
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'articleNewEditor',
+  name: 'articleEditEditor',
+  props: ['article'],
   data () {
     return {
+      rawContent: '',
       content: '',
       wordCount: 0,
       estimatedReadingTime: 0,
@@ -39,8 +41,10 @@ export default {
       inputContent = inputContent.trim()
       this.wordCount = inputContent.length
 
+      this.content = inputContent
+
       if (ev.event.target) {
-        this.content = ev.event.target.innerHTML
+        this.rawContent = ev.event.target.innerHTML
         this.calcEstimatedReadingTime()
       }
 

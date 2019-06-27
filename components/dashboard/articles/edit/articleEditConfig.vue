@@ -1,6 +1,6 @@
 <template>
   <div>
-    <d-card id="articleNewConfigWrap">
+    <d-card id="">
       <d-card-body>
         <h4>文章設定</h4>
         <hr />
@@ -9,14 +9,16 @@
             <b-input
               required
               type="text"
+              :value="article.title || ''"
             ></b-input>
           </b-form-group>
 
           <b-form-group label="文章網址" label-for="input-3">
             <b-input
               required
-              v-bind:value="shortUrl"
+              placeholder="A Change to get better"
               type="text"
+              :value="article.shortUrl || ''"
             ></b-input>
           </b-form-group>
 
@@ -24,16 +26,18 @@
             <b-input
               required
               type="text"
+              :value="article.coverPhoto || ''"
             ></b-input>
           </b-form-group>
 
           <b-form-group label="簡介 (10 字為限)">
             <b-form-textarea
-              v-model="text"
+              v-model="intro"
               placeholder=""
               rows="2"
               max-rows="2"
-            ></b-form-textarea>
+            >
+            </b-form-textarea>
           </b-form-group>
 
           <span>Tag</span>
@@ -56,10 +60,10 @@
 
 <script>
 export default {
-  name: 'articleNewConfig',
+  name: 'articleEditConfig',
+  props: ['article'],
   data () {
     return {
-      content: '',
       shortUrl: '',
       selectedTag: '',
       tags: []
@@ -93,8 +97,6 @@ export default {
 </script>
 
 <style scoped>
-#articleNewConfigWrap {
-}
 #SearchParameters.in,
 #SearchParameters.collapsing {
   display: block !important;
