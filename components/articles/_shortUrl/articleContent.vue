@@ -5,7 +5,7 @@
     </h2>
     <hr />
     <div id="article">
-      <p v-html="article.content">
+      <p v-html="article.rawContent">
       </p>
     </div>
   </div>
