@@ -55,8 +55,7 @@ module.exports = {
     { src: '~/plugins/vueNotifications', ssr: true },
     { src: '~/plugins/sanitize', ssr: false },
     { src: '~/plugins/mediumEditor', ssr: false },
-    { src: '~/plugins/nuxtSwiper', ssr: false },
-    { src: '~/plugins/vueMeta', ssr: true }
+    { src: '~/plugins/nuxtSwiper', ssr: false }
   ],
 
   /*
