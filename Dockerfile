@@ -11,11 +11,11 @@ RUN npm install
 # Set environment variables
 ENV NODE_ENV production
 ENV NUXT_HOST 0.0.0.0
-ENV NUXT_PORT 7000
+ENV PORT 4000
 
 # Bundle app source
 COPY . /usr/src/app/THECHANGER-FRONTEND-V1
 RUN npm run build
 
-EXPOSE 7000
+EXPOSE 4000
 CMD [ "npm", "start" ]

@@ -3,7 +3,7 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
   server: {
-    port: 3005,
+    port: 4000,
     host: '0.0.0.0'
   },
 

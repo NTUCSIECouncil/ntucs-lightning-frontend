@@ -1,11 +1,9 @@
 <template>
   <div>
-    <no-ssr>
-      <navbar />
-      <notifications />
-      <nuxt />
-      <smNavbar class="smNavbar" />
-    </no-ssr>
+    <navbar />
+    <notifications />
+    <nuxt />
+    <smNavbar class="smNavbar" />
   </div>
 </template>
 
