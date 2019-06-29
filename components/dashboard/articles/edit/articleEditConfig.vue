@@ -54,24 +54,33 @@
             block-level 
             theme="primary"
             id="submitToReview"
-            v-on:click="submitToReview()"
+            v-on:click.prevent="submitToReview()"
+            v-if="!articlesState.isUpdatedError"
           >
-            發佈文章
+            {{ submitToReviewText || '發佈文章' }}
           </d-button>
 
           <d-popover
             target="submitToReview"
             :triggers="['hover']"
-            v-on:click.prevent="submitToReview()"
           >
             點擊之後將會進入我們的文章審查程序。🚀
           </d-popover>
 
           <br />
 
-          <d-button block-level theme="light" v-on:click.prevent="updateArticle('direct')">
+          <d-button 
+            block-level 
+            theme="light" 
+            v-on:click.prevent="updateArticle('direct')"
+            v-if="!articlesState.isUpdatedError"
+          >
             儲存成草稿
           </d-button>
+
+          <h3 class="text-center">
+            <d-badge theme="danger" v-if="articlesState.isUpdatedError">儲存失敗</d-badge>
+          </h3>
 
         </b-form>
       </d-card-body>
@@ -80,6 +89,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'articleEditConfig',
   props: ['article'],
@@ -90,8 +101,15 @@ export default {
       coverPhoto: this.article.coverPhoto || '',
       intro: this.article.intro || '',
       selectedTag: this.article.tagId || '',
-      tags: []
+      tags: [],
+
+      submitToReviewText: ''
     }
+  },
+  computed: {
+    ...mapState({
+      articlesState: 'articles'
+    })
   },
   methods: {
     randomShortUrl () {
@@ -111,6 +129,25 @@ export default {
         })
     },
     submitToReview () {
+      const articleId = this.$route.params.articleId
+
+      this.submitToReviewText = '處理中'
+
+      this.$axios.post(`/articles/request/review/${articleId}`, {}, {
+        headers: {
+          authorization: this.$storage.getLocalStorage('accessToken')
+        }
+      }).then(response => {
+        const data = response.data
+        if (data) {
+          console.log(data)
+          if (data.result === 'success') {
+            this.submitToReviewText = '請求成功'
+          }
+        }
+      }).catch(error => {
+        this.submitToReviewText = '請求失敗'
+      })
     },
     updateArticle (type) {
       // SET Typing Status to True, to hide saved badge.
