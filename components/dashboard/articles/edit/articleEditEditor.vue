@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div id="readingInfoWrap">
-      {{wordCount}} 字 / {{estimatedReadingTime}} 分鐘閱讀
-    </div>
-    <p></p>
     <div>
-      <mediumEditor :text='article.rawContent || "" ' :options='options' custom-tag='h5' v-on:edit='applyTextEdit' />
+      <mediumEditor 
+        :text='article.rawContent || "" ' 
+        :options='options' 
+        custom-tag='div' 
+        v-on:edit='applyTextEdit'
+        v-on:keyup.native='updateArticle'
+      />
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -20,6 +22,7 @@ export default {
       content: '',
       wordCount: 0,
       estimatedReadingTime: 0,
+      typingTimer: '',
 
       options: {
         toolbar: {
@@ -35,11 +38,14 @@ export default {
   },
   methods: {
     applyTextEdit (ev) {
+      this.$store.commit('articles/setTypingStatus', true)
+
       let inputContent = ev.event.target.innerHTML
       inputContent = inputContent.replace(/<[^>]*>/g," ")
       inputContent = inputContent.replace(/\s+/g, ' ')
       inputContent = inputContent.trim()
-      this.wordCount = inputContent.length
+
+      this.calcWordCount(inputContent.length)
 
       this.content = inputContent
 
@@ -49,18 +55,36 @@ export default {
       }
 
     },
-    calcEstimatedReadingTime () {
-      let wordCount = this.wordCount
-      let time = wordCount / 200
+    calcWordCount (length) {
+      const wordCount = length || ((this.article.content) ? this.article.content.length : 0)
+      this.wordCount = wordCount
 
-      if (time < 1) {
-        this.estimatedReadingTime = 1
-      } else {
-        this.estimatedReadingTime = Math.ceil(time)
+      this.$store.dispatch('articles/calcEstimatedReadingTime', wordCount)
+    },
+    calcEstimatedReadingTime () {
+      const wordCount = this.wordCount
+      this.$store.dispatch('articles/calcEstimatedReadingTime', wordCount)
+    },
+    updateArticle () {
+      const articleId = this.$route.params.articleId
+      const updateArticleData = {
+        rawContent: this.rawContent,
+        content: this.content,
+        articleId
       }
+      if (this.typingTimer) {
+        clearTimeout(this.typingTimer)
+          this.typingTimer = null
+      }
+      this.typingTimer = setTimeout(() => {
+        this.$store.dispatch('articles/updateArticle', updateArticleData)
+        this.$store.commit('articles/setTypingStatus', false)
+      }, 3000)
     }
   },
   mounted () {
+    this.calcWordCount()
+    this.calcEstimatedReadingTime()
   }
 }
 </script>
@@ -70,11 +94,6 @@ export default {
   outline: none;
   font-family: 'Noto Serif TC', serif;
   min-height: 50vh;
-}
-#readingInfoWrap {
-  font-family: 'Noto Serif TC', serif;
-  background-color: rgb(240,240,240);
-  padding: 15px;
 }
 </style>
 
