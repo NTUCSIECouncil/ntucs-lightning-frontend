@@ -21,8 +21,8 @@ module.exports = {
       // PWA CONFIG BELOW THIS LINE
     ],
     link: [
-      { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css' },
-      { rel: 'stylesheet', href: 'https://unpkg.com/shards-ui@latest/dist/css/shards.min.css' },
+      // { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css' },
+      // { rel: 'stylesheet', href: 'https://unpkg.com/shards-ui@latest/dist/css/shards.min.css' },
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Serif+TC' },
       { rel: 'stylesheet', href: '//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css' },
@@ -50,7 +50,7 @@ module.exports = {
   ],
 
   plugins: [
-    { src: '~/plugins/shardsVue', ssr: true },
+    { src: '~/plugins/shardsVue', ssr: false },
     { src: '~/plugins/bootstrap', ssr: true },
     { src: '~/plugins/vueNotifications', ssr: true },
     { src: '~/plugins/sanitize', ssr: false },
@@ -79,9 +79,6 @@ module.exports = {
   build: {
     extractCSS: true,
     extend (config, ctx) {
-    },
-    transpile: [
-      'shardsVue'
-    ]
+    }
   }
 }
