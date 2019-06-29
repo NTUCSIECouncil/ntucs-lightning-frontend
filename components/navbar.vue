@@ -67,9 +67,19 @@
                       讀者
                     </d-badge>
                   </b-dropdown-item>
-                  <b-dropdown-item v-on:click="addArticle()">擴寫文章</b-dropdown-item>
-                  <b-dropdown-item href="/dashboard/articles/">我的文章</b-dropdown-item>
-                  <b-dropdown-item href="/dashboard/settings/">帳號設定</b-dropdown-item>
+                  <b-dropdown-item
+                    v-if="usersState.user.role !== 'user'"
+                    v-on:click="addArticle()"
+                  >
+                    擴寫文章
+                  </b-dropdown-item>
+                  <b-dropdown-item 
+                    v-if="usersState.user.role !== 'user'"
+                    href="/dashboard/articles/"
+                  >
+                    我的文章
+                  </b-dropdown-item>
+                  <!-- <b-dropdown-item href="/dashboard/settings/">帳號設定</b-dropdown-item> -->
                   <b-dropdown-divider />
                   <b-dropdown-item v-on:click="userSignout">登出</b-dropdown-item>
                 </b-nav-item-dropdown>
