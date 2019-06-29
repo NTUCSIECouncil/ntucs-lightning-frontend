@@ -8,6 +8,8 @@
       <b-container id="readingWrap">
         <b-row>
           <h5 id="tag">＃{{article.tag.name}}</h5>
+        </b-row>
+        <b-row>
           <articleContent
             v-bind:article="article"
           />
