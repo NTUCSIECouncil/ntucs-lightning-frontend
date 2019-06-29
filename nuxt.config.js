@@ -50,9 +50,9 @@ module.exports = {
   ],
 
   plugins: [
-    { src: '~/plugins/shardsVue', ssr: true },
+    { src: '~/plugins/shardsVue', ssr: false },
     { src: '~/plugins/bootstrap', ssr: true },
-    { src: '~/plugins/vueNotifications', ssr: true },
+    { src: '~/plugins/vueNotifications', ssr: false },
     { src: '~/plugins/sanitize', ssr: false },
     { src: '~/plugins/mediumEditor', ssr: false },
     { src: '~/plugins/nuxtSwiper', ssr: false }
