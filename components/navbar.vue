@@ -14,77 +14,78 @@
               >
             </d-navbar-brand>
 
-            <d-collapse id="avoidWarn" is-nav>
-              <d-navbar-nav>
-                <d-dropdown text="分類" is-nav v-for="tag in tagData" v-bind:key="tag.tagId">
-                  <d-dropdown-item>{{tag.name}}</d-dropdown-item>
-                </d-dropdown>
-              </d-navbar-nav>
-              <d-navbar-nav class="ml-auto">
-                <d-button
-                  outline
-                  squared
-                  v-if="!usersState.isLoggedIn"
+            <d-navbar-nav class="d-none d-sm-block">
+              <d-dropdown text="分類" is-nav v-for="tag in tagData" v-bind:key="tag.tagId">
+                <d-dropdown-item>{{tag.name}}</d-dropdown-item>
+              </d-dropdown>
+            </d-navbar-nav>
+
+            <d-navbar-nav class="ml-auto">
+              <d-button
+                class="d-none d-sm-block"
+                outline
+                squared
+                v-if="!usersState.isLoggedIn"
+              >
+                成為作者
+              </d-button>
+              <d-nav-item
+                v-b-modal.modalAccountForm
+                v-if="!usersState.isLoggedIn"
+              >
+                成為讀者
+              </d-nav-item>
+              <d-nav-item
+                class="d-none d-sm-block"
+                v-if="usersState.isLoggedIn && usersState.user.role === 'admin'"
+              >
+                管理介面
+              </d-nav-item>
+              <b-nav-item-dropdown
+                right
+                v-if="usersState.isLoggedIn"
+              >
+                <template slot="button-content">
+                  {{ usersState.user.name.last }} {{ usersState.user.name.first }}
+                </template>
+                <b-dropdown-item
+                  v-if="!usersState.user.isVerified"
                 >
-                  成為作者
-                </d-button>
-                <d-nav-item
-                  v-b-modal.modalAccountForm
-                  v-if="!usersState.isLoggedIn"
+                  <i class="fas fa-exclamation-triangle"></i> 
+                  驗證我的帳號
+                </b-dropdown-item>
+                <b-dropdown-divider v-if="!usersState.user.isVerified" />
+                <b-dropdown-item class="text-center">
+                  <d-badge outline theme="primary" v-if="usersState.user.role === 'admin' ">
+                    管理員
+                  </d-badge>
+                  <d-badge outline theme="primary" v-if="usersState.user.role === 'orgAdmin' ">
+                    組織管理員
+                  </d-badge>
+                  <d-badge outline theme="primary" v-if="usersState.user.role === 'orgUser' ">
+                    作者
+                  </d-badge>
+                  <d-badge outline theme="primary" v-if="usersState.user.role === 'user' ">
+                    讀者
+                  </d-badge>
+                </b-dropdown-item>
+                <b-dropdown-item
+                  v-if="usersState.user.role !== 'user'"
+                  v-on:click="addArticle()"
                 >
-                  成為讀者
-                </d-nav-item>
-                <d-nav-item
-                  v-if="usersState.isLoggedIn && usersState.user.role === 'admin'"
+                  擴寫文章
+                </b-dropdown-item>
+                <b-dropdown-item 
+                  v-if="usersState.user.role !== 'user'"
+                  href="/dashboard/articles/"
                 >
-                  管理介面
-                </d-nav-item>
-                <b-nav-item-dropdown
-                  right
-                  v-if="usersState.isLoggedIn"
-                >
-                  <template slot="button-content">
-                    {{ usersState.user.name.last }} {{ usersState.user.name.first }}
-                  </template>
-                  <b-dropdown-item
-                    v-if="!usersState.user.isVerified"
-                  >
-                    <i class="fas fa-exclamation-triangle"></i> 
-                    驗證我的帳號
-                  </b-dropdown-item>
-                  <b-dropdown-divider v-if="!usersState.user.isVerified" />
-                  <b-dropdown-item class="text-center">
-                    <d-badge outline theme="primary" v-if="usersState.user.role === 'admin' ">
-                      管理員
-                    </d-badge>
-                    <d-badge outline theme="primary" v-if="usersState.user.role === 'orgAdmin' ">
-                      組織管理員
-                    </d-badge>
-                    <d-badge outline theme="primary" v-if="usersState.user.role === 'orgUser' ">
-                      作者
-                    </d-badge>
-                    <d-badge outline theme="primary" v-if="usersState.user.role === 'user' ">
-                      讀者
-                    </d-badge>
-                  </b-dropdown-item>
-                  <b-dropdown-item
-                    v-if="usersState.user.role !== 'user'"
-                    v-on:click="addArticle()"
-                  >
-                    擴寫文章
-                  </b-dropdown-item>
-                  <b-dropdown-item 
-                    v-if="usersState.user.role !== 'user'"
-                    href="/dashboard/articles/"
-                  >
-                    我的文章
-                  </b-dropdown-item>
-                  <!-- <b-dropdown-item href="/dashboard/settings/">帳號設定</b-dropdown-item> -->
-                  <b-dropdown-divider />
-                  <b-dropdown-item v-on:click="userSignout">登出</b-dropdown-item>
-                </b-nav-item-dropdown>
-              </d-navbar-nav>
-            </d-collapse>
+                  我的文章
+                </b-dropdown-item>
+                <!-- <b-dropdown-item href="/dashboard/settings/">帳號設定</b-dropdown-item> -->
+                <b-dropdown-divider />
+                <b-dropdown-item v-on:click="userSignout">登出</b-dropdown-item>
+              </b-nav-item-dropdown>
+            </d-navbar-nav>
           </div>
         </d-navbar>
       </div>
@@ -194,5 +195,8 @@ export default {
 
 .special .btn {
   flex: 1
+}
+.navbar-nav .dropdown-menu {
+    position: absolute !important;
 }
 </style>
