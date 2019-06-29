@@ -16,7 +16,11 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'TheChanger is a content platform that go with outstanding content which is write by student.' },
+
+      { property: 'og:title', content: 'TheChanger 改變者' },
+      { property: 'og:url', content: 'https://thechanger.me/' },
+      { property: 'og:description', content: 'TheChanger is a content platform that go with outstanding content which is write by student.' }
 
       // PWA CONFIG BELOW THIS LINE
     ],
