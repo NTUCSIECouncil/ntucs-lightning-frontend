@@ -8,7 +8,7 @@
               {{articlesState.wordCount}} 字 / {{articlesState.estimatedReadingTime}} 分鐘閱讀
               <div class="float-right">
                 <d-badge theme="success" v-if="articlesState.isUpdated && !articlesState.isTyping">已自動儲存</d-badge>
-                <d-badge theme="danger" v-if="articlesState.isUpdateError && !articlesState.isTyping">儲存失敗</d-badge>
+                <d-badge theme="danger" v-if="articlesState.isUpdatedError && !articlesState.isTyping">儲存失敗</d-badge>
               </div>
             </div>
             <p></p>
