@@ -2,7 +2,9 @@
   <div>
     <navbar />
     <notifications />
-    <nuxt />
+    <no-ssr>
+      <nuxt />
+    </no-ssr>
     <smNavbar class="smNavbar" />
   </div>
 </template>
