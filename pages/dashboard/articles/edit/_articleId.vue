@@ -1,9 +1,17 @@
 <template>
   <div>
     <no-ssr>
-      <b-container v-if="article">
+      <b-container v-if="Object.values(article).length">
         <b-row>
           <b-col lg="9">
+            <div id="readingInfoWrap">
+              {{articlesState.wordCount}} 字 / {{articlesState.estimatedReadingTime}} 分鐘閱讀
+              <div class="float-right">
+                <d-badge theme="success" v-if="articlesState.isUpdated && !articlesState.isTyping">已自動儲存</d-badge>
+                <d-badge theme="danger" v-if="articlesState.isUpdateError && !articlesState.isTyping">儲存失敗</d-badge>
+              </div>
+            </div>
+            <p></p>
             <articleEditEditor
               v-bind:article="article"
             />
@@ -20,6 +28,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import articleEditEditor from '@/components/dashboard/articles/edit/articleEditEditor'
 import articleEditConfig from '@/components/dashboard/articles/edit/articleEditConfig'
 
@@ -33,6 +43,11 @@ export default {
     return {
       article: {}
     }
+  },
+  computed: {
+    ...mapState({
+      articlesState: 'articles'
+    })
   },
   methods: {
     getArticle () {
@@ -62,5 +77,10 @@ export default {
 </script>
 
 <style scoped>
+#readingInfoWrap {
+  font-family: 'Noto Serif TC', serif;
+  background-color: rgb(240,240,240);
+  padding: 15px;
+}
 </style>
 
