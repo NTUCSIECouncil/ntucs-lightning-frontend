@@ -1,32 +1,32 @@
 <template>
   <div>
-    <d-card id="">
+    <d-card>
       <d-card-body>
         <h4>文章設定</h4>
         <hr />
-        <b-form @submit.prevent="">
+        <b-form>
           <b-form-group label="標題 (10 字為限)" label-for="input-2">
             <b-input
-              required
               type="text"
-              :value="article.title || ''"
+              v-model="title"
+              v-on:keyup.native="updateArticle()"
             ></b-input>
           </b-form-group>
 
           <b-form-group label="文章網址" label-for="input-3">
             <b-input
-              required
               placeholder="A Change to get better"
               type="text"
-              :value="article.shortUrl || ''"
+              v-model="shortUrl"
+              v-on:keyup.native="updateArticle()"
             ></b-input>
           </b-form-group>
 
           <b-form-group label="縮圖網址" label-for="">
             <b-input
-              required
               type="text"
-              :value="article.coverPhoto || ''"
+              v-model="coverPhoto"
+              v-on:keyup.native="updateArticle()"
             ></b-input>
           </b-form-group>
 
@@ -36,19 +36,40 @@
               placeholder=""
               rows="2"
               max-rows="2"
+              v-on:keyup.native="updateArticle()"
             >
             </b-form-textarea>
           </b-form-group>
 
           <span>Tag</span>
-          <b-form-select v-model="selectedTag" :options="tags"></b-form-select>
+          <b-form-select
+            v-model="selectedTag"
+            :options="tags"
+            v-on:click.native="updateArticle()"
+          ></b-form-select>
 
           <p></p>
 
-          <d-button block-level theme="primary" type="submit">
+          <d-button 
+            block-level 
+            theme="primary"
+            id="submitToReview"
+            v-on:click="submitToReview()"
+          >
             發佈文章
           </d-button>
-          <d-button block-level theme="light" type="submit">
+
+          <d-popover
+            target="submitToReview"
+            :triggers="['hover']"
+            v-on:click.prevent="submitToReview()"
+          >
+            點擊之後將會進入我們的文章審查程序。🚀
+          </d-popover>
+
+          <br />
+
+          <d-button block-level theme="light" v-on:click.prevent="updateArticle('direct')">
             儲存成草稿
           </d-button>
 
@@ -64,8 +85,11 @@ export default {
   props: ['article'],
   data () {
     return {
-      shortUrl: '',
-      selectedTag: '',
+      title: this.article.title || '',
+      shortUrl: this.article.shortUrl || '',
+      coverPhoto: this.article.coverPhoto || '',
+      intro: this.article.intro || '',
+      selectedTag: this.article.tagId || '',
       tags: []
     }
   },
@@ -85,10 +109,43 @@ export default {
             }
           })
         })
+    },
+    submitToReview () {
+    },
+    updateArticle (type) {
+      // SET Typing Status to True, to hide saved badge.
+      this.$store.commit('articles/setTypingStatus', true)
+
+      const articleId = this.$route.params.articleId
+      const updateArticleData = {
+        title: this.title,
+        shortUrl: this.shortUrl,
+        coverPhoto: this.coverPhoto,
+        tagId: this.selectedTag,
+        intro: this.intro,
+
+        articleId
+      }
+      if (this.typingTimer) {
+        clearTimeout(this.typingTimer)
+          this.typingTimer = null
+      }
+
+      const doUpdate = () => {
+        this.$store.dispatch('articles/updateArticle', updateArticleData)
+        this.$store.commit('articles/setTypingStatus', false)
+      }
+
+      this.typingTimer = setTimeout(() => {
+        doUpdate()
+      }, 3000)
+
+      if (type === 'direct') {
+        doUpdate()
+      }
     }
   },
   mounted () {
-    this.randomShortUrl()
     this.getTags()
   },
   components: {
