@@ -33,5 +33,6 @@ export default {
 #article {
   font-family: 'Noto Serif TC', serif;
   letter-spacing: 2px;
+  min-width: 100%;
 }
 </style>
