@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import ShardsVue from 'shards-vue'
 
 if (process.client) {
+  const ShardsVue = require('shards-vue')
   Vue.use(ShardsVue)
 }
