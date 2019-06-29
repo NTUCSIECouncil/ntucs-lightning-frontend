@@ -1,15 +1,24 @@
 <template>
   <div>
     <b-container>
-      <div>
-        <h3>我的文章</h3>
+      <div id="myArticle-Wrap" class="d-flex w-100">
+        <h3 class="mr-auto p-1">我的文章 ({{articleList.length}})</h3>
+        <div id="addArticle" class="p-1">
+          <d-button
+            v-on:click="addArticle()"
+          >
+            開始寫文！
+          </d-button>
+        </div>
       </div>
+
       <div id="noArticle" v-if="!articleList">
         <h3>這裡什麼都沒有ＱＱ</h3>
         <p></p>
         <d-button
           v-on:click="addArticle()"
-        >開始寫文！
+        >
+          開始寫文！
         </d-button>
       </div>
       <b-list-group>
@@ -97,5 +106,11 @@ export default {
   background-color: #F0F0F0;
   padding: 50px;
   text-align: center;
+}
+#myArticle-Wrap > h3 {
+  display: inline;
+}
+#myArticle-Wrap > #addArticle {
+  display: inline;
 }
 </style>
