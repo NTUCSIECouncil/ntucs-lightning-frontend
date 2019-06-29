@@ -1,99 +1,118 @@
 <template>
   <div>
-    <div>
-      <d-navbar toggleable="lg" type="light" class="shadow-sm" fixed="top" id="navbar-thechanger">
-        <div class="container">
-          <d-navbar-brand
-            href="/articles/"
-          >
-            <img
-              src="/theChangerLogov2.png"
-              alt="TheChanger Logo"
-              width="130px;"
+    <no-ssr>
+      <div>
+        <d-navbar toggleable="lg" type="light" class="shadow-sm" fixed="top" id="navbar-thechanger">
+          <div class="container">
+            <d-navbar-brand
+              href="/articles/"
             >
-          </d-navbar-brand>
+              <img
+                src="/theChangerLogov2.png"
+                alt="TheChanger Logo"
+                width="130px;"
+              >
+            </d-navbar-brand>
 
-          <d-collapse id="avoidWarn" is-nav>
-            <d-navbar-nav>
-            </d-navbar-nav>
-            <d-navbar-nav class="ml-auto">
+            <d-collapse id="avoidWarn" is-nav>
+              <d-navbar-nav>
+                <d-dropdown text="分類" is-nav v-for="tag in tagData" v-bind:key="tag.tagId">
+                  <d-dropdown-item>{{tag.name}}</d-dropdown-item>
+                </d-dropdown>
+              </d-navbar-nav>
+              <d-navbar-nav class="ml-auto">
+                <d-button
+                  outline
+                  squared
+                  v-if="!usersState.isLoggedIn"
+                >
+                  成為作者
+                </d-button>
+                <d-nav-item
+                  v-b-modal.modalAccountForm
+                  v-if="!usersState.isLoggedIn"
+                >
+                  成為讀者
+                </d-nav-item>
+                <d-nav-item
+                  v-if="usersState.isLoggedIn && usersState.user.role === 'admin'"
+                >
+                  管理介面
+                </d-nav-item>
+                <b-nav-item-dropdown
+                  right
+                  v-if="usersState.isLoggedIn"
+                >
+                  <template slot="button-content">
+                    {{ usersState.user.name.last }} {{ usersState.user.name.first }}
+                  </template>
+                  <b-dropdown-item
+                    v-if="!usersState.user.isVerified"
+                  >
+                    <i class="fas fa-exclamation-triangle"></i> 
+                    驗證我的帳號
+                  </b-dropdown-item>
+                  <b-dropdown-divider v-if="!usersState.user.isVerified" />
+                  <b-dropdown-item class="text-center">
+                    <d-badge outline theme="primary" v-if="usersState.user.role === 'admin' ">
+                      管理員
+                    </d-badge>
+                    <d-badge outline theme="primary" v-if="usersState.user.role === 'orgAdmin' ">
+                      組織管理員
+                    </d-badge>
+                    <d-badge outline theme="primary" v-if="usersState.user.role === 'orgUser' ">
+                      作者
+                    </d-badge>
+                    <d-badge outline theme="primary" v-if="usersState.user.role === 'user' ">
+                      讀者
+                    </d-badge>
+                  </b-dropdown-item>
+                  <b-dropdown-item v-on:click="addArticle()">擴寫文章</b-dropdown-item>
+                  <b-dropdown-item href="/dashboard/articles/">我的文章</b-dropdown-item>
+                  <b-dropdown-item href="/dashboard/settings/">帳號設定</b-dropdown-item>
+                  <b-dropdown-divider />
+                  <b-dropdown-item v-on:click="userSignout">登出</b-dropdown-item>
+                </b-nav-item-dropdown>
+              </d-navbar-nav>
+            </d-collapse>
+          </div>
+        </d-navbar>
+      </div>
+      
+      <div>
+        <b-modal 
+          id="modalAccountForm"
+          v-bind:title="navbarState.accountFormText"
+          hide-footer 
+          hide-header-close
+          v-if="!usersState.isLoggedIn"
+        >
+          <b-button-group class="btn-group special">
               <d-button
                 outline
-                squared
-                v-if="!usersState.isLoggedIn"
-              >
-                成為作者
-              </d-button>
-              <d-nav-item
-                v-b-modal.modalAccountForm
-                v-if="!usersState.isLoggedIn"
+                v-on:click="switchAccountFormType('register')"
+                v-bind:class="{ 'active': navbarState.accountFormType  === 'register' }"
               >
                 成為讀者
-              </d-nav-item>
-              <d-nav-item
-                v-if="usersState.isLoggedIn && usersState.user.role === 'admin'"
+              </d-button>
+              <d-button 
+                outline
+                v-on:click="switchAccountFormType('signin')"
+                v-bind:class="{ 'active': navbarState.accountFormType  === 'signin' }"
               >
-                管理介面
-              </d-nav-item>
-              <b-nav-item-dropdown
-                right
-                v-if="usersState.isLoggedIn"
-              >
-                <template slot="button-content">
-                  {{ usersState.user.name.last }} {{ usersState.user.name.first }}
-                </template>
-                <b-dropdown-item
-                  v-if="!usersState.user.isVerified"
-                >
-                  <i class="fas fa-exclamation-triangle"></i> 
-                  驗證我的帳號
-                </b-dropdown-item>
-                <b-dropdown-divider v-if="!usersState.user.isVerified" />
-                <b-dropdown-item v-on:click="addArticle()">擴寫文章</b-dropdown-item>
-                <b-dropdown-item href="/dashboard/articles/">我的文章</b-dropdown-item>
-                <b-dropdown-item href="/dashboard/settings/">帳號設定</b-dropdown-item>
-                <b-dropdown-divider />
-                <b-dropdown-item v-on:click="userSignout">登出</b-dropdown-item>
-              </b-nav-item-dropdown>
-            </d-navbar-nav>
-          </d-collapse>
-        </div>
-      </d-navbar>
-    </div>
+                登入 TheChanger
+              </d-button>
+          </b-button-group>
 
-    <div>
-      <b-modal 
-        id="modalAccountForm"
-        v-bind:title="navbarState.accountFormText"
-        hide-footer 
-        hide-header-close
-        v-if="!usersState.isLoggedIn"
-      >
-        <b-button-group class="btn-group special">
-            <d-button
-              outline
-              v-on:click="switchAccountFormType('register')"
-              v-bind:class="{ 'active': navbarState.accountFormType  === 'register' }"
-            >
-              成為讀者
-            </d-button>
-            <d-button 
-              outline
-              v-on:click="switchAccountFormType('signin')"
-              v-bind:class="{ 'active': navbarState.accountFormType  === 'signin' }"
-            >
-              登入 TheChanger
-            </d-button>
-        </b-button-group>
+          <p></p>
 
-        <p></p>
-
-        <div>
-          <signinForm v-if="navbarState.accountFormType === 'signin'" />
-          <registerForm v-if="navbarState.accountFormType === 'register'" />
-        </div>
-      </b-modal>
-    </div>
+          <div>
+            <signinForm v-if="navbarState.accountFormType === 'signin'" />
+            <registerForm v-if="navbarState.accountFormType === 'register'" />
+          </div>
+        </b-modal>
+      </div>
+    </no-ssr>
   </div>
 </template>
 
@@ -107,6 +126,7 @@ export default {
   name: 'navbar',
   data () {
     return {
+      tagData: []
     }
   },
   computed: {
@@ -116,6 +136,7 @@ export default {
     })
   },
   mounted () {
+    this.getTags()
   },
   methods: {
     switchAccountFormType (type) {
@@ -126,7 +147,7 @@ export default {
       this.$store.dispatch('users/userSignout')
         .then(i => {
           const pathArray = this.$route.path.split('/')
-          if (pathArray[1] === 'settings') {
+          if (pathArray[1] === 'dashboard') {
             this.$router.push('/')
           }
         })
@@ -137,6 +158,12 @@ export default {
           const data = response.data.data
           this.$router.push(`/dashboard/articles/edit/${data.articleId}`)
         })
+    },
+    getTags () {
+      this.$axios.get(`/tags/all`).then(response => {
+        const tagData = response.data.data
+        this.tagData = tagData
+      })
     }
   },
   components: {
