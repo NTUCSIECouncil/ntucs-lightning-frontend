@@ -79,6 +79,9 @@ module.exports = {
   build: {
     extractCSS: true,
     extend (config, ctx) {
-    }
+    },
+    transpile: [
+      'shardsVue'
+    ]
   }
 }
