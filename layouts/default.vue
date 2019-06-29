@@ -1,11 +1,11 @@
 <template>
   <div>
-    <navbar />
-    <notifications />
     <no-ssr>
+      <navbar />
+      <notifications />
       <nuxt />
+      <smNavbar class="smNavbar" />
     </no-ssr>
-    <smNavbar class="smNavbar" />
   </div>
 </template>
 
