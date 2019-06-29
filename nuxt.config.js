@@ -70,7 +70,7 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    baseURL: 'http://localhost:3000/api/v1'
+    baseURL: 'https://api.thechanger.me/api/v1'
   },
 
   /*
