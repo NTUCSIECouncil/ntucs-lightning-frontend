@@ -59,8 +59,11 @@ export default {
     return {
       title: this.articleRaw.title,
       meta: [
-        { hid: 'description', name: 'description', content: this.articleRaw.title },
-        { hid: 'og:description', name: 'og:description', content: this.articleRaw.title }
+        { hid: 'description', name: 'description', content: this.articleRaw.intro },
+
+        { hid: 'og:title', name: 'og:title', content: this.articleRaw.title },
+        { hid: 'og:description', name: 'og:description', content: this.articleRaw.intro },
+        { hid: 'og:image', name: 'og:image', content: this.articleRaw.coverPhoto }
       ]
     }
   },
