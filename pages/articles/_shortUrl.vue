@@ -35,6 +35,18 @@ import organizationCard from '@/components/articles/_shortUrl/organizationCard'
 
 export default {
   name: 'articleDetailPage',
+  head () {
+    return {
+      title: this.articleRaw.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.articleRaw.intro },
+
+        { hid: 'og-title', property: 'og:title', content: this.articleRaw.title },
+        { hid: 'og-description', property: 'og:description', content: this.articleRaw.intro },
+        { hid: 'og-image', property: 'og:image', content: this.articleRaw.coverPhoto }
+      ]
+    }
+  },
   async asyncData ({ $axios, params }) {
     const articleShortUrl = params.shortUrl
     const article = await $axios.get(`/articles/content/${articleShortUrl}`)
@@ -54,18 +66,6 @@ export default {
           }
         }
       }
-    }
-  },
-  head () {
-    return {
-      title: this.articleRaw.title,
-      meta: [
-        { hid: 'description', name: 'description', content: this.articleRaw.intro },
-
-        { hid: 'og-title', property: 'og:title', content: this.articleRaw.title },
-        { hid: 'og-description', property: 'og:description', content: this.articleRaw.intro },
-        { hid: 'og-image', property: 'og:image', content: this.articleRaw.coverPhoto }
-      ]
     }
   },
   methods: {
