@@ -1,28 +1,30 @@
 <template>
   <div>
-    <div v-if="isReady">
-      <b-container fluid id="articleCoverPhotoWrap">
-        <articleCoverPhoto v-bind:article="article" />
-      </b-container>
-      <div class="emptyArea"></div>
-      <b-container id="readingWrap">
-        <b-row>
-          <h5 id="tag">＃{{ article.tag ? article.tag.name : '未分類文章' }}</h5>
-        </b-row>
-        <b-row>
-          <articleContent
-            v-bind:article="article"
-          />
-        </b-row>
-      </b-container>
-      <b-container id="organizationCardWrap" fluid>
+    <no-ssr>
+      <div>
+        <b-container fluid id="articleCoverPhotoWrap">
+          <articleCoverPhoto v-bind:article="article" />
+        </b-container>
+        <div class="emptyArea"></div>
         <b-container id="readingWrap">
           <b-row>
-            <organizationCard v-bind:article="article" id="organizationCardComponent" />
+            <h5 id="tag">＃{{ article.tag ? article.tag.name : '未分類文章' }}</h5>
+          </b-row>
+          <b-row>
+            <articleContent
+              v-bind:article="article"
+            />
           </b-row>
         </b-container>
-      </b-container>
-    </div>
+        <b-container id="organizationCardWrap" fluid>
+          <b-container id="readingWrap">
+            <b-row>
+              <organizationCard v-bind:article="article" id="organizationCardComponent" />
+            </b-row>
+          </b-container>
+        </b-container>
+      </div>
+    </no-ssr>
   </div>
 </template>
 
@@ -41,7 +43,6 @@ export default {
   },
   data () {
     return {
-      isReady: false,
       article: {
         tag: {
           name: ''
@@ -73,7 +74,6 @@ export default {
         ...this.articleRaw,
         content: this.$sanitize(this.articleRaw.rawContent)
       }
-      this.isReady = true
     }
   },
   mounted () {
