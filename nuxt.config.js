@@ -87,5 +87,12 @@ module.exports = {
     extractCss: true,
     extend (config, ctx) {
     }
-  }
+  },
+
+  serverMiddleware: [{
+    handler (req, res, next) {
+      res.spa = true
+      next()
+    }
+  }]
 }
