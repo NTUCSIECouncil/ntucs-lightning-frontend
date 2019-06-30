@@ -17,8 +17,9 @@ export default {
 
 <style scoped>
 #articleCoverPhoto {
-  min-height: 40vh;
-
+  max-height: 20rem;
+  min-height: 20rem;
+  
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

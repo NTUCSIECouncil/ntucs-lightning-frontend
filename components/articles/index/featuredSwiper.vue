@@ -57,11 +57,11 @@ export default {
 
 <style scoped>
 .swiper-wrapper {
-  max-height: 40vh;
-  min-height: 40vh;
+  max-height: 20rem;
+  min-height: 20rem;
 }
 .swiper-image-wrap {
-  min-height: 40vh;
+  min-height: 20rem;
 
   filter: blur(2px);
   -webkit-filter: blur(2px);
