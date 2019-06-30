@@ -20,9 +20,10 @@ module.exports = {
 
       { hid: 'og-title', property: 'og:title', content: 'TheChanger 改變者' },
       { hid: 'og-url', property: 'og:url', content: 'https://thechanger.me/' },
+      { hid: 'og-type', property: 'og:type', content: 'website' },
+      { hid: 'og-site_name', property: 'og:site_name', content: 'TheChanger 改變者' },
       { hid: 'og-description', property: 'og:description', content: 'TheChanger is a content platform that go with outstanding content which is write by student.' }
 
-      // PWA CONFIG BELOW THIS LINE
     ],
     link: [
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css' },
