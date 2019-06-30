@@ -80,6 +80,13 @@ module.exports = {
     baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api/v1' : 'https://api.thechanger.me/api/v1'
   },
 
+  serverMiddleware: [{
+    handler (req, res, next) {
+      res.spa = false
+      next()
+    }
+  }],
+
   /*
   ** Build configuration
   */
