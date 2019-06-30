@@ -26,7 +26,7 @@ export default {
 
       options: {
         toolbar: {
-          buttons: ['bold', 'italic', 'underline', 'anchor', 'h3', 'h4', 'quote']
+          buttons: ['underline', 'anchor', 'h3', 'h4', 'h5', 'quote']
         },
         placeholder: {
           text: 'Click to start writing...',
