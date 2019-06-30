@@ -3,7 +3,7 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
   server: {
-    port: 4000,
+    port: 4001,
     host: '0.0.0.0'
   },
 
@@ -18,9 +18,9 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
       { hid: 'description', name: 'description', content: 'TheChanger is a content platform that go with outstanding content which is write by student.' },
 
-      { hid: 'og:title', property: 'og:title', content: 'TheChanger 改變者' },
-      { hid: 'og:url', property: 'og:url', content: 'https://thechanger.me/' },
-      { hid: 'og:description', property: 'og:description', content: 'TheChanger is a content platform that go with outstanding content which is write by student.' }
+      { hid: 'og-title', property: 'og:title', content: 'TheChanger 改變者' },
+      { hid: 'og-url', property: 'og:url', content: 'https://thechanger.me/' },
+      { hid: 'og-description', property: 'og:description', content: 'TheChanger is a content platform that go with outstanding content which is write by student.' }
 
       // PWA CONFIG BELOW THIS LINE
     ],
