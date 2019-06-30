@@ -41,7 +41,7 @@ export default {
       meta: [
         { hid: 'description', name: 'description', content: this.articleRaw.intro },
 
-        { hid: 'og-title', property: 'og:title', content: this.articleRaw.title },
+        { hid: 'og-title', property: 'og:title', content: `${this.articleRaw.title} - TheChanger 改變者` },
         { hid: 'og-description', property: 'og:description', content: this.articleRaw.intro },
         { hid: 'og-image', property: 'og:image', content: this.articleRaw.coverPhoto }
       ]
