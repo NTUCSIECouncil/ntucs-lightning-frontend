@@ -15,8 +15,13 @@
             </d-navbar-brand>
 
             <d-navbar-nav class="d-none d-sm-block">
-              <d-dropdown text="分類" is-nav v-for="tag in tagData" v-bind:key="tag.tagId">
-                <d-dropdown-item>{{tag.name}}</d-dropdown-item>
+              <d-dropdown text="分類" is-nav>
+                <d-dropdown-item
+                  v-for="tag in tagData" 
+                  v-bind:key="tag.tagId"
+                >
+                  {{tag.name}}
+                </d-dropdown-item>
               </d-dropdown>
             </d-navbar-nav>
 
@@ -95,7 +100,6 @@
           id="modalAccountForm"
           v-bind:title="navbarState.accountFormText"
           hide-footer 
-          hide-header-close
           v-if="!usersState.isLoggedIn"
         >
           <b-button-group class="btn-group special">
@@ -197,6 +201,9 @@ export default {
   flex: 1
 }
 .navbar-nav .dropdown-menu {
-    position: absolute !important;
+  position: absolute !important;
 }
+/* .modal-backdrop {
+  opacity: .12 !important;
+} */
 </style>
