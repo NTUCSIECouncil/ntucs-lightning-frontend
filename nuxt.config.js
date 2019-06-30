@@ -91,7 +91,7 @@ module.exports = {
 
   serverMiddleware: [{
     handler (req, res, next) {
-      res.spa = true
+      res.spa = false
       next()
     }
   }]
