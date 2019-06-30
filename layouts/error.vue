@@ -4,7 +4,7 @@
       <h1 v-if="error.statusCode === 404">
         Page Not Found.
       </h1>
-      <h1 v-if="error.statusCode === 403">
+      <h1 v-else-if="error.statusCode === 403">
         Restricted Area.
       </h1>
       <h1 v-else>
