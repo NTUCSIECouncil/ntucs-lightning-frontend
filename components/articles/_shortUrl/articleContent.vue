@@ -36,6 +36,8 @@ export default {
   min-width: 100%;
 }
 #article > p {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  line-height: 1.8em;
+  letter-spacing: 2px;
 }
 </style>
