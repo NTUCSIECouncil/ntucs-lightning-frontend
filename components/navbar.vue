@@ -203,7 +203,7 @@ export default {
 .navbar-nav .dropdown-menu {
   position: absolute !important;
 }
-/* .modal-backdrop {
+.modal-backdrop {
   opacity: .12 !important;
-} */
+}
 </style>
