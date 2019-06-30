@@ -62,9 +62,9 @@ export default {
       meta: [
         { hid: 'description', name: 'description', content: this.articleRaw.intro },
 
-        { hid: 'og-title', name: 'og:title', content: this.articleRaw.title },
-        { hid: 'og-description', name: 'og:description', content: this.articleRaw.intro },
-        { hid: 'og-image', name: 'og:image', content: this.articleRaw.coverPhoto }
+        { hid: 'og-title', property: 'og:title', content: this.articleRaw.title },
+        { hid: 'og-description', property: 'og:description', content: this.articleRaw.intro },
+        { hid: 'og-image', property: 'og:image', content: this.articleRaw.coverPhoto }
       ]
     }
   },
