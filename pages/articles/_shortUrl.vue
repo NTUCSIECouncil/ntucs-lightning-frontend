@@ -47,9 +47,15 @@ export default {
       ]
     }
   },
-  async asyncData ({ $axios, params }) {
+  async asyncData ({ $axios, params, error }) {
     const articleShortUrl = params.shortUrl
-    const article = await $axios.get(`/articles/content/${articleShortUrl}`)
+    let article = undefined
+    try {
+      article = await $axios.get(`/articles/content/${articleShortUrl}`)
+    } catch (e) {
+      error({ statusCode: 404, message: e.message })
+      return
+    }
 
     return { articleRaw: article.data.data }
   },
