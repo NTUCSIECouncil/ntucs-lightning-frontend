@@ -33,7 +33,7 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.22.1/css/themes/tim.css' }
     ]
   },
-  manifest: {
+  meta: {
     mobileAppIOS: true,
     appleStatusBarStyle: 'black-translucent',
     name: 'The Changer 改變者',
@@ -70,17 +70,21 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa'
   ],
+  // Env
+  env: {
+  },
   /*
   ** Axios module configuration
   */
   axios: {
-    baseURL: 'https://api.thechanger.me/api/v1'
+    baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api/v1' : 'https://api.thechanger.me/api/v1'
   },
 
   /*
   ** Build configuration
   */
   build: {
+    extractCss: true,
     extend (config, ctx) {
     }
   }
