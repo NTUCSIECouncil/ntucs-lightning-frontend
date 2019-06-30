@@ -35,4 +35,7 @@ export default {
   letter-spacing: 2px;
   min-width: 100%;
 }
+#article > p {
+  font-size: 1.2rem;
+}
 </style>
