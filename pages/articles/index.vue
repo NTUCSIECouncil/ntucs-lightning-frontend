@@ -20,14 +20,14 @@
           <d-card v-on:click="accessFullArticle(article)">
             <d-card-img :src="article.coverPhoto" top />
             <d-card-body>
-              <span id="tag">＃{{article.tag.name || '未分類文章'}}</span>
-               <h5 id="card-title">
-                 {{article.title}}
-               </h5>
-               <small>
-                 {{article.intro}}
-               </small>
-               <p></p>
+              <span id="tag">＃{{ article.tag ? article.tag.name : '未分類文章' }}</span>
+              <h5 id="card-title">
+                {{article.title}}
+              </h5>
+              <small>
+                {{article.intro}}
+              </small>
+              <p></p>
             </d-card-body>
               <d-card-footer>
                 <d-btn v-on:click="accessFullArticle(article)">

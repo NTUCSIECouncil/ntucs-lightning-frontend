@@ -7,7 +7,7 @@
       <div class="emptyArea"></div>
       <b-container id="readingWrap">
         <b-row>
-          <h5 id="tag">＃{{article.tag.name}}</h5>
+          <h5 id="tag">＃{{ article.tag ? article.tag.name : '未分類文章' }}</h5>
         </b-row>
         <b-row>
           <articleContent
