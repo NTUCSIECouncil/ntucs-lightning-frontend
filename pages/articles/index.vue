@@ -18,7 +18,9 @@
           v-bind:key="article.id"
         >
           <d-card v-on:click="accessFullArticle(article)">
-            <d-card-img :src="article.coverPhoto" top />
+            <div class="cardImage">
+              <d-card-img :src="article.coverPhoto" top/>
+            </div>
             <d-card-body>
               <span id="tag">＃{{ article.tag ? article.tag.name : '未分類文章' }}</span>
               <h5 id="card-title">
@@ -98,7 +100,20 @@ export default {
   }
   #cardWrap > .card {
     min-height: 350px;
+    width: 100%;
     position: relative;
+  }
+  #cardWrap > .card > .cardImage > img {
+    max-height: 12rem;
+    min-height: 12rem;
+    width: 100%;
+  }
+  @media only screen and (max-width: 576px) {
+    #cardWrap > .card > .cardImage > img {
+      max-height: 15rem;
+      min-height: 15rem;
+      width: 100%;
+    }
   }
   #accessToFullArticleButton {
     position: absolute;
