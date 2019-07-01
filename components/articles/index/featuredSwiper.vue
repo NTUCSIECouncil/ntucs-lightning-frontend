@@ -2,7 +2,7 @@
   <div>
     <div v-swiper:mySwiper="swiperOption">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="article in articleList">
+        <div class="swiper-slide" v-for="article in articleList" v-bind:key="article.articlesId">
           <div v-on:click="accessFullArticle(article)">
             <div class="swiper-image-wrap" v-bind:style="{ 'background-image': `url(${article.coverPhoto})` }">
             </div>
@@ -74,6 +74,7 @@ export default {
   text-shadow: 5px 5px 16px rgba(0,0,0,0.36);
   font-weight: bold;
   color: white;
+  letter-spacing: 0.2rem;
 }
 .swiper-image-text-wrap {
   position: absolute;
@@ -81,12 +82,15 @@ export default {
   left: 50%;
   width: 100%;
   transform: translate(-50%, -50%);
+  padding-left: 2.1875rem;
+  padding-right: 2.1875rem;
 }
 .swiper-image-intro {
   text-shadow: 5px 5px 16px rgba(0,0,0,0.36);
   font-weight: bold;
   font-size: 1.2em;
   color: white;
+  letter-spacing: 0.1rem;
 }
 </style>
 
