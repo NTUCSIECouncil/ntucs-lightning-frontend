@@ -5,10 +5,10 @@
         <b-row>
           <b-col lg="9">
             <div id="readingInfoWrap">
-              {{articlesState.wordCount}} 字 / {{articlesState.estimatedReadingTime}} 分鐘閱讀
+              {{articlesState.dashboard.edit.wordCount}} 字 / {{articlesState.dashboard.edit.estimatedReadingTime}} 分鐘閱讀
               <div class="float-right">
-                <d-badge theme="success" v-if="articlesState.isUpdated && !articlesState.isTyping">已自動儲存</d-badge>
-                <d-badge theme="danger" v-if="articlesState.isUpdatedError && !articlesState.isTyping">儲存失敗</d-badge>
+                <d-badge theme="success" v-if="articlesState.dashboard.edit.isUpdated && !articlesState.dashboard.edit.isTyping">已自動儲存</d-badge>
+                <d-badge theme="danger" v-if="articlesState.dashboard.edit.isUpdatedError && !articlesState.dashboard.edit.isTyping">儲存失敗</d-badge>
               </div>
             </div>
             <p></p>
