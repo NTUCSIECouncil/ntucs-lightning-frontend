@@ -2,7 +2,7 @@
   <div>
     <no-ssr>
       <div>
-        <d-navbar toggleable="lg" type="light" class="shadow-sm" fixed="top" id="navbar-thechanger">
+        <d-navbar type="light" class="shadow-sm navbar-expand" fixed="top" id="navbar-thechanger">
           <div class="container">
             <d-navbar-brand
               href="/articles/"
@@ -26,7 +26,7 @@
               </d-dropdown>
             </d-navbar-nav>
 
-            <d-navbar-nav class="ml-auto">
+            <d-navbar-nav class="ml-auto text-nowrap">
               <d-button
                 class="d-none d-sm-block"
                 outline
@@ -39,7 +39,7 @@
                 v-b-modal.modalAccountForm
                 v-if="!usersState.isLoggedIn"
               >
-                註冊
+                成為讀者
               </d-nav-item>
               <d-nav-item
                 class="d-none d-sm-block"
