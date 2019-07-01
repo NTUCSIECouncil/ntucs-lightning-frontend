@@ -1,45 +1,42 @@
 <template>
   <div>
-    <b-container fluid id="featuredSwiperWrap">
-      <featuredSwiper v-bind:articles="articleList" />
-    </b-container>
-    <b-container>
-      <h3 id="typeTitle">全部文章</h3>
-      <b-row>
-        <b-col
-          lg="4"
-          md="6"
-          sm="6"
-          xs="6"
-          cols="12"
-          id="cardWrap"
-          class="d-flex align-items-stretch"
-          v-for="article in articleList" 
-          v-bind:key="article.id"
-        >
-          <d-card v-on:click="accessFullArticle(article)">
-            <div class="cardImage">
-              <d-card-img :src="article.coverPhoto" top/>
-            </div>
-            <d-card-body>
-              <span id="tag">＃{{ article.tag ? article.tag.name : '未分類文章' }}</span>
-              <h5 id="card-title">
-                {{article.title}}
-              </h5>
-              <small>
-                {{article.intro}}
-              </small>
-              <p></p>
-            </d-card-body>
-              <d-card-footer>
-                <d-btn v-on:click="accessFullArticle(article)">
-                  詳細閱讀
-                </d-btn>
-              </d-card-footer>
-          </d-card>
-        </b-col>
-      </b-row>
-    </b-container>
+    <no-ssr>
+      <b-container fluid id="featuredSwiperWrap">
+        <featuredSwiper v-bind:articles="articleList" />
+      </b-container>
+      <b-container>
+        <h3 id="typeTitle">全部文章</h3>
+        <b-row>
+          <b-col
+            lg="4"
+            md="6"
+            sm="6"
+            xs="6"
+            cols="12"
+            id="cardWrap"
+            class="d-flex align-items-stretch"
+            v-for="article in articleList" 
+            v-bind:key="article.id"
+          >
+            <d-card v-on:click="accessFullArticle(article)">
+              <div class="cardImage">
+                <d-card-img :src="article.coverPhoto" top/>
+              </div>
+              <d-card-body>
+                <span id="tag">＃{{ article.tag ? article.tag.name : '未分類文章' }}</span>
+                <h5 id="card-title">
+                  {{article.title}}
+                </h5>
+                <p>
+                  {{article.intro}}
+                </p>
+                <p></p>
+              </d-card-body>
+            </d-card>
+          </b-col>
+        </b-row>
+      </b-container>
+    </no-ssr>
   </div>
 </template>
 
@@ -59,7 +56,14 @@ export default {
   },
   methods: {
     getArticles () {
-      this.$axios.get(`/articles/all`)
+      const tag = this.$route.query.tag
+      const params = {}
+      if (tag) {
+        params.tag = tag
+      }
+      this.$axios.get(`/articles/all`, {
+        params
+      })
         .then(i => {
           let articleList = i.data.data
           this.articleList = articleList
@@ -84,9 +88,9 @@ export default {
   }
   #card-title {
     font-family: 'Noto Serif TC', serif;
-    font-size: 1.2em;
-    line-height: 1.3em;
-    letter-spacing: 2px;
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+    letter-spacing: 0.2rem;
   }
   .card-body {
     margin-top: -20px;
