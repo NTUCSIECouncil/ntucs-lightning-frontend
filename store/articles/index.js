@@ -2,13 +2,17 @@
 // initial state
 const state = () => {
   return {
-    newArticleId: '',
-    addArticleFailed: false,
-    estimatedReadingTime: 0,
-    wordCount: 0,
-    isUpdated: false,
-    isUpdatedError: false,
-    isTyping: false
+    dashboard: {
+      edit: {
+        newArticleId: '',
+        addArticleFailed: false,
+        estimatedReadingTime: 0,
+        wordCount: 0,
+        isUpdated: false,
+        isUpdatedError: false,
+        isTyping: false
+      }
+    }
   }
 }
 
@@ -65,22 +69,22 @@ const actions = {
 // mutations
 const mutations = {
   setAddArticleFailed (state) {
-    state.addArticleFailed = true
+    state.dashboard.edit.addArticleFailed = true
   },
   setEstimatedReadingTime (state, payload) {
-    state.estimatedReadingTime = payload
+    state.dashboard.edit.estimatedReadingTime = payload
   },
   setWordCount (state, payload) {
-    state.wordCount = payload
+    state.dashboard.edit.wordCount = payload
   },
   setUpdateStatus (state, payload) {
-    state.isUpdated = payload
+    state.dashboard.edit.isUpdated = payload
   },
   setUpdateError (state) {
-    state.isUpdatedError = true
+    state.dashboard.edit.isUpdatedError = true
   },
   setTypingStatus (state, payload) {
-    state.isTyping = payload
+    state.dashboard.edit.isTyping = payload
   }
 }
 
