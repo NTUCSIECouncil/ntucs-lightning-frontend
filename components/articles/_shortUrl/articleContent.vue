@@ -21,8 +21,9 @@ export default {
 <style scoped>
 #title {
   font-family: 'Noto Serif TC', serif;
+  font-weight: bold;
   line-height: 1.3em;
-  letter-spacing: 2px;
+  letter-spacing: 0.2rem;
 }
 @media only screen and (max-width: 1140px) {
   #title {
