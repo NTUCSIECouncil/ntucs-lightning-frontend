@@ -19,6 +19,7 @@
                 <d-dropdown-item
                   v-for="tag in tagData" 
                   v-bind:key="tag.tagId"
+                  :href="`/articles/?tag=${tag.shortUrl}`"
                 >
                   {{tag.name}}
                 </d-dropdown-item>
@@ -38,7 +39,7 @@
                 v-b-modal.modalAccountForm
                 v-if="!usersState.isLoggedIn"
               >
-                成為讀者
+                註冊
               </d-nav-item>
               <d-nav-item
                 class="d-none d-sm-block"
@@ -192,6 +193,7 @@ export default {
 <style>
 #navbar-thechanger {
   background: #fff;
+  padding: .5rem 1rem;
 }
 .btn-group.special {
   display: flex;
