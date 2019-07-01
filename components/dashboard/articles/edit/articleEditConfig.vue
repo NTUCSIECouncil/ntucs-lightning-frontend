@@ -55,7 +55,7 @@
             theme="primary"
             id="submitToReview"
             v-on:click.prevent="submitToReview()"
-            v-if="!articlesState.isUpdatedError"
+            v-if="!articlesState.dashboard.edit.isUpdatedError"
           >
             {{ submitToReviewText || '發佈文章' }}
           </d-button>
@@ -73,13 +73,13 @@
             block-level 
             theme="light" 
             v-on:click.prevent="updateArticle('direct')"
-            v-if="!articlesState.isUpdatedError"
+            v-if="!articlesState.dashboard.edit.isUpdatedError"
           >
             儲存成草稿
           </d-button>
 
           <h3 class="text-center">
-            <d-badge theme="danger" v-if="articlesState.isUpdatedError">儲存失敗</d-badge>
+            <d-badge theme="danger" v-if="articlesState.dashboard.edit.isUpdatedError">儲存失敗</d-badge>
           </h3>
 
         </b-form>
@@ -140,7 +140,6 @@ export default {
       }).then(response => {
         const data = response.data
         if (data) {
-          console.log(data)
           if (data.result === 'success') {
             this.submitToReviewText = '請求成功'
           }
