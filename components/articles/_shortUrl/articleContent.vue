@@ -41,4 +41,11 @@ export default {
   line-height: 1.8em;
   letter-spacing: 2px;
 }
+#article >>> p > pre {
+  background: rgba(0,0,0,.05);
+  padding: 20px;
+  white-space: pre-wrap;
+  font-size: 1rem;
+}
 </style>
+

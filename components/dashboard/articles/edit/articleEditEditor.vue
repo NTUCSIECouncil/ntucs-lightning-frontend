@@ -26,7 +26,18 @@ export default {
 
       options: {
         toolbar: {
-          buttons: ['underline', 'anchor', 'h3', 'h4', 'h5', 'quote']
+          buttons: [
+            'underline', 
+            'anchor', 
+            'h3', 
+            'h4', 
+            'h5', 
+            {
+              name: 'pre',
+              tagNames: ['pre'],
+              contentDefault: '<b>文字區塊</b>'
+            }
+          ]
         },
         placeholder: {
           text: 'Click to start writing...',
@@ -94,6 +105,12 @@ export default {
   outline: none;
   font-family: 'Noto Serif TC', serif;
   min-height: 50vh;
+}
+.medium-editor-element >>> pre {
+  background: rgba(0,0,0,.05);
+  padding: 20px;
+  white-space: pre-wrap;
+  font-size: 1rem;
 }
 </style>
 
