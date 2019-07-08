@@ -8,7 +8,7 @@
         <h3 id="typeTitle">全部文章</h3>
         <b-row>
           <b-col
-            lg="4"
+            lg="3"
             md="6"
             sm="6"
             xs="6"
@@ -32,6 +32,15 @@
                 </p>
                 <p></p>
               </d-card-body>
+              <d-card-footer>
+                <img 
+                  :src="article.organization.profilePhoto" 
+                  class="img-fluid rounded-circle"
+                  width="10%"
+                />
+                &nbsp;
+                {{article.organization.name}} 
+              </d-card-footer>
             </d-card>
           </b-col>
         </b-row>
@@ -123,9 +132,6 @@ export default {
     position: absolute;
     margin-bottom: 30px;
     bottom: 0;
-  }
-  .card-footer {
-    background-color: white;
   }
   #featuredSwiperWrap {
     padding: 0;
