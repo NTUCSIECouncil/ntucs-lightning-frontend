@@ -4,7 +4,7 @@
       <b-form-group label="姓">
         <b-form-input
           required
-          placeholder="Lase Name"
+          placeholder="Last Name"
           type="name"
           v-model="userRegisterForm.name.last"
         ></b-form-input>
