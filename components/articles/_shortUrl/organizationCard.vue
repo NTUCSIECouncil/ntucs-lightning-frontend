@@ -1,38 +1,30 @@
 <template>
   <div>
     <b-row id="organizationCard">
-      <b-col
-        id="infoWrap"
-        lg="2"
-        md="2"
-        sm="3"
-        cols="4"
-      >
-        <b-img
-          id="profilePhoto"
-          v-bind:src="article.organization.profilePhoto" 
-          rounded="circle"
-          width="100%"
-          height="100%"
-        >
-        </b-img>
-      </b-col>
-      <b-col
-        id="infoWrap"
-        lg="10"
-        md="10"
-        sm="9"
-        cols="8"
-      >
-        <h4 id="organizationName">{{article.organization.name}}</h4>
-        <p>
-          <i class="fas fa-map-marker-alt"></i>
-          {{article.organization.school.name}}
-        </p>
-        <blockquote>
-          {{article.organization.intro}}
-        </blockquote>
-      </b-col>
+      <div class="d-flex">
+        <div class="p-2">
+          <b-img
+            id="profilePhoto"
+            v-bind:src="article.organization.profilePhoto" 
+            rounded="circle"
+            width="100%"
+            height="100%"
+          >
+          </b-img>
+        </div>
+
+        <div class="p-2">
+          <h4 id="organizationName">{{article.organization.name}}</h4>
+          <br />
+          <p>
+            <i class="fas fa-map-marker-alt"></i>
+            {{article.organization.school.name}}
+          </p>
+          <p>
+            {{article.organization.intro}}
+          </p>
+        </div>
+      </div>
     </b-row>
   </div>
 </template>
@@ -46,8 +38,7 @@ export default {
 
 <style scoped>
 #organizationCard {
-  margin: 15px;
-  margin-left: -20px;
+  margin-top: 1rem;
 }
 #profilePhoto {
 }
