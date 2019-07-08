@@ -43,7 +43,7 @@ export default {
 }
 #article >>> p > pre {
   background: rgba(0,0,0,.05);
-  padding: 20px;
+  padding: 1.25rem;
   white-space: pre-wrap;
   font-size: 1rem;
 }
