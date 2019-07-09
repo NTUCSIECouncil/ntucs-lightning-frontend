@@ -15,7 +15,7 @@ module.exports = {
     titleTemplate: '%s - The Changer 改變者',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover' },
       { hid: 'description', name: 'description', content: 'TheChanger is a content platform that go with outstanding content which is write by student.' },
 
       { hid: 'og-title', property: 'og:title', content: 'TheChanger 改變者' },
