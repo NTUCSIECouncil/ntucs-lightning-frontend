@@ -8,7 +8,7 @@
               href="/articles/"
             >
               <img
-                src="/theChangerLogov2.png"
+                src="/logoV3.png"
                 alt="TheChanger Logo"
                 width="130px;"
               >
@@ -195,6 +195,7 @@ export default {
   background: #fff;
   padding: .5rem 1rem;
 }
+
 .btn-group.special {
   display: flex;
 }
