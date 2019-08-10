@@ -31,7 +31,8 @@ export default {
             'anchor', 
             'h3', 
             'h4', 
-            'h5', 
+            'h5',
+            'image',
             {
               name: 'pre',
               tagNames: ['pre'],
