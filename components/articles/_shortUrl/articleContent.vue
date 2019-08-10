@@ -47,5 +47,11 @@ export default {
   white-space: pre-wrap;
   font-size: 1rem;
 }
+#article >>> p > img {
+  width: 100%;
+}
+#article >>> img {
+  width: 100%;
+}
 </style>
 
