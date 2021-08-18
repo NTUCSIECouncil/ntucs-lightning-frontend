@@ -1,6 +1,4 @@
-# theChanger-frontend-v1
-
-> theChanger-frontend-v1
+# ntucs-lightning-frontend
 
 ## Build Setup
 
@@ -18,5 +16,3 @@ $ npm start
 # generate static project
 $ npm run generate
 ```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
