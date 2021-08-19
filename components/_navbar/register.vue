@@ -54,7 +54,7 @@
     </b-form>
     <br />
     <div class="alreadyMember text-center" v-on:click="alreadyMember()">
-      已經有 TheChanger 帳號？按此登入。
+      已經有臺大資工系學會帳號？按此登入。
     </div>
   </div>
 </template>

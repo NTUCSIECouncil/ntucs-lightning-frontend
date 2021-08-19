@@ -33,7 +33,7 @@
 
     <br />
     <div class="notMember text-center" v-on:click="notMember()">
-      還沒有 TheChanger 帳號？按此註冊。
+      還沒有臺大資工系學會帳號？按此註冊。
     </div>
   </div>
 </template>

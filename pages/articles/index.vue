@@ -55,7 +55,7 @@ import featuredSwiper from '@/components/articles/index/featuredSwiper'
 export default {
   name: 'articlesPage',
   metaInfo: {
-    title: 'The Changer 改變者',
+    title: 'NTU CSIE Council 臺大資工系學會',
     titleTemplate: null
   },
   data () {

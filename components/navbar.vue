@@ -2,14 +2,14 @@
   <div>
     <no-ssr>
       <div>
-        <d-navbar type="light" class="shadow-sm navbar-expand" fixed="top" id="navbar-thechanger">
+        <d-navbar type="light" class="shadow-sm navbar-expand" fixed="top" id="navbar-ntucs-council">
           <div class="container">
             <d-navbar-brand
               href="/articles/"
             >
               <img
                 src="/logoV3.png"
-                alt="TheChanger Logo"
+                alt="NTUCS Council Logo"
                 width="130px;"
               >
             </d-navbar-brand>
@@ -39,7 +39,7 @@
                 v-b-modal.modalAccountForm
                 v-if="!usersState.isLoggedIn"
               >
-                成為讀者
+                加入系學會
               </d-nav-item>
               <d-nav-item
                 class="d-none d-sm-block"
@@ -109,14 +109,14 @@
                 v-on:click="switchAccountFormType('register')"
                 v-bind:class="{ 'active': navbarState.accountFormType  === 'register' }"
               >
-                成為讀者
+                加入系學會
               </d-button>
               <d-button 
                 outline
                 v-on:click="switchAccountFormType('signin')"
                 v-bind:class="{ 'active': navbarState.accountFormType  === 'signin' }"
               >
-                登入 TheChanger
+                登入資工系學會
               </d-button>
           </b-button-group>
 
@@ -191,7 +191,7 @@ export default {
 
 
 <style>
-#navbar-thechanger {
+#navbar-ntucs-council {
   background: #fff;
   padding: .5rem 1rem;
 }

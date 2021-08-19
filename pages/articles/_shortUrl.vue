@@ -41,7 +41,7 @@ export default {
       meta: [
         { hid: 'description', name: 'description', content: this.articleRaw.intro },
 
-        { hid: 'og-title', property: 'og:title', content: `${this.articleRaw.title} - TheChanger 改變者` },
+        { hid: 'og-title', property: 'og:title', content: `${this.articleRaw.title} - NTU CSIE Council 臺大資工系學會` },
         { hid: 'og-description', property: 'og:description', content: this.articleRaw.intro },
         { hid: 'og-image', property: 'og:image', content: this.articleRaw.coverPhoto },
         { hid: 'og-url', property: 'og:url', content: `https://thechanger.me/articles/${this.articleRaw.shortUrl}/` }
