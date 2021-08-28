@@ -37,7 +37,7 @@ module.exports = {
   meta: {
     mobileAppIOS: true,
     appleStatusBarStyle: 'black-translucent',
-    name: 'NTU CSIE Council 台大資工系學會',
+    name: 'NTU CSIE',
     author: 'Max Chou'
   },
 
@@ -78,7 +78,7 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api/v1' : 'https://api.council.csie.ntu.edu.tw/api/v1'
+    baseURL: process.env.NODE_ENV === 'development' ? 'http://council.csie.ntu.edu.tw:3000/api/v1' : 'https://api.council.csie.ntu.edu.tw/api/v1'
   },
 
   /*

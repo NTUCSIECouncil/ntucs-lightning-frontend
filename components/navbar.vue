@@ -4,7 +4,7 @@
       <div>
         <d-navbar type="light" class="shadow-sm navbar-expand" fixed="top" id="navbar-ntucs-council">
           <div class="container">
-            <d-navbar-brand
+            <!-- <d-navbar-brand
               href="/articles/"
             >
               <img
@@ -12,6 +12,9 @@
                 alt="NTUCS Council Logo"
                 width="130px;"
               >
+            </d-navbar-brand> -->
+            <d-navbar-brand href="/articles/">
+              臺大資工系學會
             </d-navbar-brand>
 
             <d-navbar-nav class="d-none d-sm-block">
@@ -26,7 +29,7 @@
               </d-dropdown>
             </d-navbar-nav>
 
-            <d-navbar-nav class="ml-auto text-nowrap">
+            <!-- <d-navbar-nav class="ml-auto text-nowrap">
               <d-button
                 class="d-none d-sm-block"
                 outline
@@ -88,10 +91,10 @@
                   我的文章
                 </b-dropdown-item>
                 <!-- <b-dropdown-item href="/dashboard/settings/">帳號設定</b-dropdown-item> -->
-                <b-dropdown-divider />
+                <!-- <b-dropdown-divider />
                 <b-dropdown-item v-on:click="userSignout">登出</b-dropdown-item>
               </b-nav-item-dropdown>
-            </d-navbar-nav>
+            </d-navbar-nav> -->
           </div>
         </d-navbar>
       </div>

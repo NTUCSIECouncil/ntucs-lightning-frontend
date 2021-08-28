@@ -1,7 +1,7 @@
 {
-  "name": "tucs-lightning-frontend-v1",
+  "name": "ntucs-lightning-frontend-v1",
   "version": "1.0.0",
-  "description": "tucs-lightning-frontend-v1",
+  "description": "ntucs-lightning-frontend-v1",
   "author": "Max Yi-Hsun Chou",
   "private": true,
   "scripts": {
