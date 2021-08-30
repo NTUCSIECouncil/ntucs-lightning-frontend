@@ -67,4 +67,13 @@ export default {
   }
 }
 </script>
+<style scoped>
+.notMember{
+  cursor: pointer;
+  transition: .3s;
+}
+.notMember:hover{
+  opacity: 0.7;
+}
+</style>
 
