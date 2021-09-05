@@ -50,12 +50,12 @@
 </template>
 
 <script>
-import featuredSwiper from '@/components/articles/index/featuredSwiper'
+import featuredSwiper from '@/components/articles/featuredSwiper'
 
 export default {
   name: 'articlesPage',
   metaInfo: {
-    title: 'NTU CSIE Council 臺大資工系學會',
+    title: '臺大資工系學會',
     titleTemplate: null
   },
   data () {
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     getArticles () {
-      const tag = this.$route.query.tag
+      const tag = this.$route.query.tag || 'uncategory'
       const params = {}
       if (tag) {
         params.tag = tag

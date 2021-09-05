@@ -11,23 +11,23 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'NTU CSIE Council 臺大資工系學會',
-    titleTemplate: '%s - NTU CSIE Council 臺大資工系學會',
+    title: '臺大資工系學會',
+    titleTemplate: '%s - 臺大資工系學會',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover' },
-      { hid: 'description', name: 'description', content: 'NTU CSIE Council Holds fun events, contests, and more to help you get prepared for your academic journey in college!' },
+      { hid: 'description', name: 'description', content: '臺大資工系學會平時會舉辦有趣的聚會、競賽和其他活動，帶你探索大學生活' },
 
-      { hid: 'og-title', property: 'og:title', content: 'NTU CSIE Council 臺大資工系學會' },
+      { hid: 'og-title', property: 'og:title', content: '臺大資工系學會' },
       { hid: 'og-url', property: 'og:url', content: 'https://council.csie.ntu.edu.tw/' },
       { hid: 'og-type', property: 'og:type', content: 'website' },
-      { hid: 'og-site_name', property: 'og:site_name', content: 'NTU CSIE Council 臺大資工系學會' },
-      { hid: 'og-description', property: 'og:description', content: 'NTU CSIE Council Holds fun events, contests, and more to help you get prepared for your academic journey in college!' }
+      { hid: 'og-site_name', property: 'og:site_name', content: '臺大資工系學會' },
+      { hid: 'og-description', property: 'og:description', content: '臺大資工系學會平時會舉辦有趣的聚會、競賽和其他活動，帶你探索大學生活' }
 
     ],
     link: [
-      { rel: 'stylesheet', href: '/cache/bootstrap.min.css' },
-      { rel: 'stylesheet', href: '/cache/shards.min.css' },
+      // { rel: 'stylesheet', href: '/cache/bootstrap.min.css' },
+      // { rel: 'stylesheet', href: '/cache/shards.min.css' },
       { rel: 'stylesheet', href: '/cache/NotoSerifFont.css' },
       { rel: 'stylesheet', href: '/cache/font-awesome/all.min.css' },
       { rel: 'stylesheet', href: '/cache/medium-editor/medium-editor.min.css' },
@@ -37,7 +37,7 @@ module.exports = {
   meta: {
     mobileAppIOS: true,
     appleStatusBarStyle: 'black-translucent',
-    name: 'NTU CSIE',
+    name: '臺大資工',
     author: 'Max Chou'
   },
 
@@ -55,8 +55,8 @@ module.exports = {
   ],
 
   plugins: [
-    { src: '~/plugins/shardsVue', ssr: false },
-    { src: '~/plugins/bootstrap', ssr: true },
+    // { src: '~/plugins/shardsVue', ssr: false },
+    // { src: '~/plugins/bootstrap', ssr: true },
     { src: '~/plugins/vueNotifications', ssr: true },
     { src: '~/plugins/sanitize', ssr: false },
     { src: '~/plugins/mediumEditor', ssr: false },
@@ -88,5 +88,8 @@ module.exports = {
     extractCss: true,
     extend (config, ctx) {
     }
-  }
+  },
+
+  buildModules: ['@nuxtjs/tailwindcss']
+
 }
