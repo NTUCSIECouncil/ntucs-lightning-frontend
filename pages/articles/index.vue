@@ -110,6 +110,7 @@ export default {
   }
   #cardWrap {
     padding-top: 2em;
+    cursor: pointer;
   }
   #cardWrap > .card {
     min-height: 350px;

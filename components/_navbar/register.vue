@@ -86,4 +86,13 @@ export default {
   }
 }
 </script>
+<style scoped>
+.alreadyMember{
+  cursor: pointer;
+  transition: .3s;
+}
+.alreadyMember:hover{
+  opacity: 0.7;
+}
+</style>
 
