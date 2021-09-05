@@ -1,7 +1,7 @@
 {
-  "name": "theChanger-frontend-v1",
+  "name": "ntucs-lightning-frontend-v1",
   "version": "1.0.0",
-  "description": "theChanger-frontend-v1",
+  "description": "ntucs-lightning-frontend-v1",
   "author": "Max Yi-Hsun Chou",
   "private": true,
   "scripts": {
@@ -13,14 +13,11 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^2.6.0",
-    "bootstrap": "^4.1.3",
-    "bootstrap-vue": "^2.0.0-rc.11",
     "cross-env": "^5.2.0",
     "fastify": "^1.13.3",
     "node-fetch": "^2.6.0",
     "nuxt": "latest",
     "nuxt-universal-storage": "^0.2.0",
-    "shards-vue": "^1.0.7",
     "vue-awesome-swiper": "^3.1.3",
     "vue-meta": "latest",
     "vue-notification": "^1.3.16",
@@ -29,6 +26,10 @@
     "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "@nuxtjs/tailwindcss": "^4.2.1",
+    "autoprefixer": "^10.3.4",
+    "nodemon": "^1.18.9",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.9"
   }
 }

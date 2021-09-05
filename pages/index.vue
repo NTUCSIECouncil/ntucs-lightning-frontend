@@ -1,22 +1,11 @@
 <template>
-  <section class="container">
-  </section>
+  <div>交給Johnson了</div>
 </template>
 
 <script>
 
 export default {
-  name: 'index',
-  methods: {
-    redirectToArticlePage () {
-      this.$router.push('/articles')
-    }
-  },
-  created () {
-    this.redirectToArticlePage()
-  },
-  components: {
-  }
+  name: 'landingPage',
 }
 </script>
 

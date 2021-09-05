@@ -63,8 +63,8 @@ export default {
 .swiper-image-wrap {
   min-height: 20rem;
 
-  filter: blur(2px);
-  -webkit-filter: blur(2px);
+  filter: brightness(0.7);
+  -webkit-filter:  brightness(0.7);
 
   background-repeat: no-repeat;
   background-size: cover;

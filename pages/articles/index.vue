@@ -50,12 +50,12 @@
 </template>
 
 <script>
-import featuredSwiper from '@/components/articles/index/featuredSwiper'
+import featuredSwiper from '@/components/articles/featuredSwiper'
 
 export default {
   name: 'articlesPage',
   metaInfo: {
-    title: 'The Changer 改變者',
+    title: '臺大資工系學會',
     titleTemplate: null
   },
   data () {
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     getArticles () {
-      const tag = this.$route.query.tag
+      const tag = this.$route.query.tag || 'uncategory'
       const params = {}
       if (tag) {
         params.tag = tag
@@ -110,6 +110,7 @@ export default {
   }
   #cardWrap {
     padding-top: 2em;
+    cursor: pointer;
   }
   #cardWrap > .card {
     min-height: 350px;

@@ -3,7 +3,7 @@
 const state = () => {
   return {
     accountFormType: 'register',
-    accountFormText: '成為讀者'
+    accountFormText: '加入系學會'
   }
 }
 
@@ -24,10 +24,10 @@ const mutations = {
   },
   setAccountFormText (state, payload) {
     if (payload === 'signin') {
-      state.accountFormText = '登入 TheChanger 改變者'
+      state.accountFormText = '登入臺大資工系學會'
     }
     if (payload === 'register') {
-      state.accountFormText = '成為讀者'
+      state.accountFormText = '加入系學會'
     }
   }
 }
