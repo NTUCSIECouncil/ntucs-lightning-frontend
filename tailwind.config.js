@@ -8,7 +8,13 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        light:  "var(--light)",
+      }
+    },
   },
   variants: {
     extend: {},

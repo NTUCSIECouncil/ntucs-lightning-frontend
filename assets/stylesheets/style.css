@@ -2,14 +2,24 @@ body {
   /* padding-top: 4.3rem;
   padding-bottom: 5rem; */
   padding: 0; 
-  font-family: 'Noto Serif TC', serif !important;
+  font-family: 'Source Han Serif TC', serif !important;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Noto Serif TC', serif !important;
+  font-family: 'Source Han Serif TC', serif !important;
 }
 
 @supports (margin: constant(safe-area-inset-top)) or (margin: env(safe-area-inset-top)) {
   body {
     margin: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #023047;
+  --secondary: #219EBC;
+  --light: #8ECAE6;
 }
