@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="article in articleList.slice((nowPage-1)*10,nowPage*10)" :key="article.articleId">
+        <tr v-for="article in articleList.slice((nowPage-1)*10,nowPage*10)" :key="article.articleId" @click.prevent="showArticle(article)">
           <td class="post-date">{{parseCreateTime(article.createdAt)}}</td>
           <td class="post-title">{{article.title}}</td>
           <td class="post-group">{{article.organization.name}}</td>
@@ -43,6 +43,14 @@
         <div class="page" @click="nextPage()">&#62;</div>
       </div>
     </div>
+    <div class="pop-wrapper" v-if="articleOpen" @click.prevent="articleOpen=false">
+      <div class="pop-card">
+        <h1>{{readingArticle?readingArticle.title:''}}</h1>
+        <article class="pop-content">
+          {{readingArticle?readingArticle.intro:''}}
+        </article>
+      </div>
+    </div>
    </div>
 </template>
 
@@ -54,6 +62,8 @@ export default {
       articleList:[],
       nowPage: 1,
       pageCount: 0,
+      articleOpen: false,
+      readingArticle: undefined
     }
   },
   methods: {
@@ -81,7 +91,10 @@ export default {
     goToPage(page){
       this.nowPage = page;
     },
-
+    showArticle(article){
+      this.readingArticle = article;
+      this.articleOpen = true;
+    }
   },
   computed:{
     lessPageMode(){
@@ -201,5 +214,60 @@ td {
   border-radius: 22.5px;
   border-bottom: none;
 }
-
+.pop-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: rgba(196, 196, 196, .28);
+  backdrop-filter: blur(10px);
+}
+.pop-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1080px;
+  height: 360px;
+  transform: translateX(-50%) translateY(-50%);
+  background: #ffffff;
+  z-index: 3;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 52px 110px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  animation: popup .5s;
+}
+.pop-card *{
+  animation: popup-inward .5s;
+}
+@keyframes popup{
+  from {
+    width: 0px;
+    height: 0px;
+  }
+  to{
+    width: 1080px;
+    height: 360px;
+  }
+}
+@keyframes popup-inward {
+  from {
+    transform: scale(0);
+  }
+  to{
+    transform: scale(1);
+  }
+}
+.pop-content{
+  width: 860px;
+  height: 88px;
+  font-family: Source Han Serif TC;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  color: #000000;
+}
 </style>
