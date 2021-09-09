@@ -1,24 +1,7 @@
 <template>
-  <div>
+  <div class="sticky top-0 z-50">
     <no-ssr>
-      <div class="mt-1">
-        <div class="grid grid-cols-4">
-          <div class="flex justify-center p-3">
-            <div class="border-2 border-black py-1 px-2 hover:text-blue-400">
-              <session />
-            </div>
-          </div>
-          <div class="col-span-2 flex justify-center pr-3">
-            <img
-              src="/logo_default.png"
-              alt="NTU CSIE COUNCIL"
-              width="62px;"
-            >
-          </div>
-          <div class="flex justify-center p-4 hover:text-blue-400 underline">
-            <span>中文</span>
-          </div>
-        </div>
+      <div class="bg-white ">
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
           <div>
             <nav class="flex justify-center py-3 ">
@@ -135,12 +118,11 @@
 import { mapState } from "vuex";
 import departments from './navbar/departments.vue';
 import service from './navbar/service.vue';
-import session from './navbar/session.vue';
 import userManager from './navbar/userManager.vue';
 
 export default {
   name: "navbar",
-  components: { session, departments, service, userManager },
+  components: { departments, service, userManager },
   data() {
     return {
       tagData: [],
@@ -198,15 +180,6 @@ export default {
 
 
 <style>
-li>ul                 { transform: translatex(100%) scale(0) }
-li:hover>ul           { transform: translatex(101%) scale(1) }
-li > button svg       { transform: rotate(-90deg) }
-li:hover > button svg { transform: rotate(-270deg) }
-.group:hover .group-hover\:scale-100 { transform: scale(1) }
-.group:hover .group-hover\:-rotate-180 { transform: rotate(180deg) }
-.scale-0 { transform: scale(0) }
-.min-w-32 { min-width: 8rem }
-
 .navbtn{
   @apply rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 md:mx-1 lg:mx-2;
 }
@@ -214,5 +187,4 @@ li:hover > button svg { transform: rotate(-270deg) }
 .s-navbtn{
   @apply text-white bg-primary  rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 md:mx-1 lg:mx-2;
 }
-
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="group relative z-50">
+  <div class="group relative uncover">
     <span>
       44th
     </span>
@@ -53,4 +53,7 @@ export default {
   .group:hover .group-hover\:-rotate-180 { transform: rotate(180deg) }
   .scale-0 { transform: scale(0) }
   .min-w-32 { min-width: 8rem }
+  .uncover {
+    z-index: 999;
+  }
 </style>
