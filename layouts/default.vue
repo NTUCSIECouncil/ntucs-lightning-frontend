@@ -1,18 +1,21 @@
 <template>
   <div>
-    <navbar />
+    <navbar/>
     <notifications />
-    <nuxt />
+    <nuxt/>
+    <smnavbar />
   </div>
 </template>
 
 <script>
 import navbar from '@/components/navbar'
+import smnavbar from '@/components/smnavbar'
 
 export default {
   name: 'default',
   components: {
-    navbar
+    navbar,
+    smnavbar
   }
 }
 </script>

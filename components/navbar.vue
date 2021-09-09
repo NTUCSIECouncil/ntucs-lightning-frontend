@@ -1,49 +1,73 @@
 <template>
   <div>
     <no-ssr>
-      <div>
-        <d-navbar
-          type="light"
-          class="shadow-sm navbar-expand"
-          fixed="top"
-          id="navbar-ntucs-council"
-        >
-          <div class="container">
-            <input type="button" @click="$router.push('/')" value="首頁" />
-            <input
-              type="button"
-              @click="$router.push('/announcement')"
-              value="公告"
-            />
-            <input
-              type="button"
-              @click="$router.push('/events')"
-              value="活動"
-            />
-            <input
-              type="button"
-              @click="$router.push('/articles')"
-              value="文章"
-            />
-            <span style="flex: 1; text-align: center"
-              >台灣大學資訊工程系系學會</span
+      <div class="mt-1">
+        <div class="grid grid-cols-4">
+          <div class="flex justify-center p-3">
+            <div class="border-2 border-black py-1 px-2 hover:text-blue-400">
+              <session />
+            </div>
+          </div>
+          <div class="col-span-2 flex justify-center pr-3">
+            <img
+              src="/logo_default.png"
+              alt="NTU CSIE COUNCIL"
+              width="62px;"
             >
-
-            <d-navbar-nav class="ml-auto text-nowrap">
-              <select name="" id="">
-                <option>各部會</option>
-              </select>
-              <select name="" id="">
-                <option>服務</option>
-              </select>
-              <img
-                v-if="!usersState.isLoggedIn"
-                src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png?hl=bg"
-                alt="Sign in with Google"
-                @click="tempSignIn"
+          </div>
+          <div class="flex justify-center p-4 hover:text-blue-400 underline">
+            <span>中文</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
+          <div>
+            <nav class="flex justify-center py-3 ">
+              <input 
+                type="button"
+                @click="$router.push('/')" 
+                :class= "[$route.path === '/' ? 's-navbtn' : 'text-black bg-white navbtn']"
+                value="首頁"
               />
+              <input 
+                type="button"
+                @click="$router.push('/announcement')" 
+                :class= "[$route.path === '/announcement' ? 's-navbtn' : 'text-black bg-white navbtn']"
+                value="公告"
+              />
+              <input 
+                type="button"
+                @click="$router.push('/events')" 
+                :class= "[$route.path === '/events' ? 's-navbtn' : 'text-black bg-white navbtn']"
+                value="活動"
+              />
+            </nav>
+          </div>
+          <div class="p-3 text-center text-xl font-semibold hidden sm:col-span-1 sm:block md:text-2xl md:col-span-2">
+            <span>台灣大學資訊工程系學會</span>
+          </div>
+          <div>
+            <nav class="flex justify-center py-3">
+              <span :class="[$route.path === '/academic' ? 's-navbtn' : 'text-black bg-white navbtn'] ">
+                <departments/>
+              </span>
+              <span :class="[$route.path === '/articles' ? 's-navbtn' : 'text-black bg-white navbtn'] ">
+                <service />
+              </span>
+              <input 
+                type="button"
+                @click="tempSignIn"
+                class="navbtn text-white bg-secondary"
+                value="登入"
+                v-if="!usersState.isLoggedIn"
+              />
+              <span class="navbtn text-white bg-secondary" v-else>
+                <userManager/>
+              </span>
+            </nav>
+          </div>
+        </div>
 
-              <b-nav-item-dropdown right v-if="usersState.isLoggedIn">
+              <!-- <b-nav-item-dropdown right v-if="usersState.isLoggedIn">
                 <template slot="button-content">
                   {{ usersState.user.name.last }}
                   {{ usersState.user.name.first }}
@@ -101,10 +125,7 @@
                   >帳號設定</a>
                 <b-dropdown-divider />
                 <a href="#" @click="userSignout">登出</a>
-              </b-nav-item-dropdown>
-            </d-navbar-nav>
-          </div>
-        </d-navbar>
+              </b-nav-item-dropdown --->
       </div>
     </no-ssr>
   </div>
@@ -112,9 +133,14 @@
 
 <script>
 import { mapState } from "vuex";
+import departments from './navbar/departments.vue';
+import service from './navbar/service.vue';
+import session from './navbar/session.vue';
+import userManager from './navbar/userManager.vue';
 
 export default {
   name: "navbar",
+  components: { session, departments, service, userManager },
   data() {
     return {
       tagData: [],
@@ -125,9 +151,14 @@ export default {
       usersState: "users",
       navbarState: "navbar",
     }),
+    route: function() {
+      console.log(this.$router.currentRoute.path)
+      return this.$router.currentRoute.path
+    }
   },
   mounted() {
     this.getTags();
+    console.log(this.$router.currentRoute.path)
   },
   methods: {
     tempSignIn() {
@@ -167,22 +198,21 @@ export default {
 
 
 <style>
-#navbar-ntucs-council {
-  background: #fff;
-  padding: 0.5rem 1rem;
+li>ul                 { transform: translatex(100%) scale(0) }
+li:hover>ul           { transform: translatex(101%) scale(1) }
+li > button svg       { transform: rotate(-90deg) }
+li:hover > button svg { transform: rotate(-270deg) }
+.group:hover .group-hover\:scale-100 { transform: scale(1) }
+.group:hover .group-hover\:-rotate-180 { transform: rotate(180deg) }
+.scale-0 { transform: scale(0) }
+.min-w-32 { min-width: 8rem }
+
+.navbtn{
+  @apply rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 md:mx-1 lg:mx-2;
 }
 
-.btn-group.special {
-  display: flex;
+.s-navbtn{
+  @apply text-white bg-primary  rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 md:mx-1 lg:mx-2;
 }
 
-.special .btn {
-  flex: 1;
-}
-.navbar-nav .dropdown-menu {
-  position: absolute !important;
-}
-.modal-backdrop {
-  opacity: 0.12 !important;
-}
 </style>
