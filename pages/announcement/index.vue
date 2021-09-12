@@ -2,7 +2,7 @@
   <div class="announcement-wrapper">
     <h1 class="leading-10">公告</h1>
     <h1 class="leading-loose">Announcement</h1>
-    <table class="m-12">
+    <table class="m-12 container">
       <thead>
         <tr>
           <td class="post-date table-text text-white">日期</td>
@@ -45,9 +45,9 @@
       </div>
     </div>
     <div class="pop-wrapper top-0 left-0 w-full h-full" v-if="articleOpen" @click.prevent="articleOpen=false">
-      <div class="pop-card">
+      <div class="pop-card container">
         <h1 class="leading-loose">{{readingArticle?readingArticle.title:''}}</h1>
-        <article class="pop-content text-black font-medium">
+        <article class="pop-content text-base text-black">
           {{readingArticle?readingArticle.intro:''}}
         </article>
       </div>
@@ -130,39 +130,34 @@ tbody td {
   border-bottom: 1px solid #000000;
 }
 .table-text {
-  @apply text-xl font-bold leading-4 h-12;
-  margin: 0px 10px;
+  @apply text-xl font-bold leading-4 h-12 whitespace-nowrap px-2.5;
+  margin: 0 .75rem;
 }
 tr {
   transition: .3s;
 }
 .post-date {
-  width: 220px;
+  width: 15%;
 }
 .post-title {
-  width: 730px;
+  width: 70%;
 }
 .post-group {
-  width: 130px;
+  width: 15%;
 }
 .page-select-wrapper {
   margin: 0 auto;
 }
 .page-select-wrapper .page{
-  width: 45px;
-  height: 45px;
-  padding: 4px;
+  @apply w-12 p-1 duration-300;
   color: #0A1629;
-  transition: .3s;
 }
 .page-select-wrapper .split-page{
-  width: 45px;
-  height: 45px;
-  padding: 4px;
+  @apply w-12 p-1;
   color: #0A1629;
 }
 .page-choose {
-  @apply inline-block font-bold text-center text-xl items-center justify-center;
+  @apply inline-block font-bold text-center text-2xl leading-10;
 }
 
 .page-underline {
@@ -171,7 +166,7 @@ tr {
 .page:hover {
   color: #ffffff;
   background-color: #219ebc;
-  border-radius: 22.5px;
+  border-radius: 50%;
   border-bottom: none;
 }
 .pop-wrapper {
@@ -184,13 +179,12 @@ tr {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 1080px;
-  height: 360px;
+  height: 50%;
   transform: translateX(-50%) translateY(-50%);
   background: #ffffff;
   z-index: 3;
-  padding: 52px 110px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 2% 10% 5% 10%;
+  box-shadow: .25rem .25rem .25rem rgba(0, 0, 0, 0.25);
   animation: popup .5s;
 }
 .pop-card *{
@@ -198,12 +192,10 @@ tr {
 }
 @keyframes popup{
   from {
-    width: 0px;
-    height: 0px;
+    transform: scale(0) translateX(-50%) translateY(-50%);
   }
   to{
-    width: 1080px;
-    height: 360px;
+    transform: scale(1) translateX(-50%) translateY(-50%);
   }
 }
 @keyframes popup-inward {
@@ -215,9 +207,7 @@ tr {
   }
 }
 .pop-content{
-  width: 860px;
-  height: 88px;
-  font-size: 16px;
-  line-height: 23px;
+  width: 50%;
+  height: 30%;
 }
 </style>
