@@ -5,6 +5,7 @@
         src="/detian.png"
         alt="DETIAN"
         width="70%"
+        class="my-8"
       />
     </div>
     <div class="w-full bg-primary text-white py-12 px-20">
