@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap overflow-hidden my-8 h-full">
+  <div class="my-8">
     <div
       v-for="(event, index) in events"
       :key="`event-${index}`"
