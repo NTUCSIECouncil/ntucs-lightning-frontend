@@ -1,53 +1,53 @@
 <template>
   <div class="announcement-wrapper">
-    <h1 class="leading-10">公告</h1>
-    <h1 class="leading-loose">Announcement</h1>
-    <table class="m-12 container">
+    <h1 class="text-3xl md:text-5xl leading-10 font-bold text-center">公告</h1>
+    <h1 class="text-3xl md:text-5xl leading-loose font-bold text-center">Announcement</h1>
+    <table class="m-12 container mx-auto">
       <thead>
         <tr>
-          <td class="post-date table-text text-white">日期</td>
-          <td class="post-title table-text text-white">標題</td>
-          <td class="post-group table-text text-white">發布部門</td>
+          <td class="w-1/6 whitespace-nowrap table-text text-white">日期</td>
+          <td class="w-2/3 whitespace-normal table-text text-white">標題</td>
+          <td class="w-1/6 whitespace-nowrap table-text text-white">發布部門</td>
         </tr>
       </thead>
       <tbody>
-        <tr class="hover:bg-light hover:bg-opacity-50" v-for="article in articleList.slice((nowPage-1)*10,nowPage*10)" 
+        <tr class="hover:bg-light hover:bg-opacity-50 cursor-pointer" v-for="article in articleList.slice((nowPage-1)*10,nowPage*10)" 
               :key="article.articleId" @click.prevent="showArticle(article)">
-          <td class="post-date table-text">{{parseCreateTime(article.createdAt)}}</td>
-          <td class="post-title table-text">{{article.title}}</td>
-          <td class="post-group table-text">{{article.organization.name}}</td>
+          <td class="w-1/6 whitespace-nowrap table-text">{{parseCreateTime(article.createdAt)}}</td>
+          <td class="w-2/3 whitespace-normal table-text overflow-ellipsis overflow-hidden max-w-0">{{article.title}}</td>
+          <td class="w-1/6 whitespace-nowrap table-text">{{article.organization.name}}</td>
         </tr>
       </tbody>
     </table>
-    <div class="page-select-wrapper text-center">
+    <div class="text-center my-0 mx-auto">
       <div v-if="lessPageMode">
-        <div class="page page-choose" @click="lastPage()">&#60;</div>
-        <div class="page page-choose" :class="{'page-underline':nowPage==page}" 
+        <div class="page cursor-pointer" @click="lastPage()">&#60;</div>
+        <div class="page cursor-pointer" :class="{'page-underline':nowPage==page}" 
                   v-for="page in pageCount" :key="page" @click="goToPage(page)" >
           {{page}}
         </div>
-        <div class="page page-choose" @click="nextPage()">&#62;</div>
+        <div class="page cursor-pointer" @click="nextPage()">&#62;</div>
       </div>
 
       <div v-else>
-        <div class="page page-choose" @click="lastPage()">&#60;</div>
-        <div class="page page-choose" :class="{'page-underline':nowPage==1}" @click="goToPage(1)" >1</div>
+        <div class="page cursor-pointer" @click="lastPage()">&#60;</div>
+        <div class="page cursor-pointer" :class="{'page-underline':nowPage==1}" @click="goToPage(1)" >1</div>
         
-        <div class='split-page page-choose' v-if="nowPage-1 > 2">...</div>
+        <div class='split-page' v-if="nowPage-1 > 2">...</div>
 
-        <div class="page page-choose" v-if="nowPage-1 > 1" @click="goToPage(nowPage-1)">{{nowPage-1}}</div>
-        <div class="page page-underline page-choose" v-if="nowPage > 1 && nowPage < pageCount" @click="goToPage(nowPage)">{{nowPage}}</div>
-        <div class="page page-choose" v-if="nowPage+1 < pageCount" @click="goToPage(nowPage+1)">{{nowPage+1}}</div>
-        <div class='split-page page-choose' v-if="nowPage+2 < pageCount">...</div>
+        <div class="page cursor-pointer" v-if="nowPage-1 > 1" @click="goToPage(nowPage-1)">{{nowPage-1}}</div>
+        <div class="page page-underline" v-if="nowPage > 1 && nowPage < pageCount" @click="goToPage(nowPage)">{{nowPage}}</div>
+        <div class="page cursor-pointer" v-if="nowPage+1 < pageCount" @click="goToPage(nowPage+1)">{{nowPage+1}}</div>
+        <div class='split-page text-xl' v-if="nowPage+2 < pageCount">...</div>
         
-        <div class="page page-choose" :class="{'page-underline':nowPage==pageCount}" @click="goToPage(pageCount)">{{pageCount}}</div>
-        <div class="page page-choose" @click="nextPage()">&#62;</div>
+        <div class="page cursor-pointer" :class="{'page-underline':nowPage==pageCount}" @click="goToPage(pageCount)">{{pageCount}}</div>
+        <div class="page cursor-pointer" @click="nextPage()">&#62;</div>
       </div>
     </div>
     <div class="pop-wrapper top-0 left-0 w-full h-full" v-if="articleOpen" @click.prevent="articleOpen=false">
-      <div class="pop-card container">
-        <h1 class="leading-loose">{{readingArticle?readingArticle.title:''}}</h1>
-        <article class="pop-content text-base text-black">
+      <div class="pop-card container top-1/2 left-1/2">
+        <h1 class="text-3xl md:text-4xl leading-loose font-bold text-center">{{readingArticle?readingArticle.title:''}}</h1>
+        <article class="text-base text-black break-words overflow-y-auto">
           {{readingArticle?readingArticle.intro:''}}
         </article>
       </div>
@@ -61,8 +61,8 @@ export default {
   data() {
     return {
       articleList:[
-        {articleId:'1', createdAt:'2021-02-12', title:'title', organization:{name:'學術部'}, intro:'hihihihihihihi'},
-        {articleId:'1', createdAt:'2021-02-12', title:'title', organization:{name:'學術部'}},
+        {articleId:'1', createdAt:'2021-02-12', title:'title', organization:{name:'學術部'}, intro:'hihihihihihihihihihihihihihihihihi hihihihihihihihihihihihihihihihihihihihih ihihihihihihihihihihihihihihihi hihihihihihihihihihi'},
+        {articleId:'1', createdAt:'2021-02-12', title:'title0000000000000000000000000000000000000000', organization:{name:'學術部'}},
         {articleId:'1', createdAt:'2021-02-12', title:'title', organization:{name:'學術部'}},
       ],
       nowPage: 1,
@@ -115,13 +115,6 @@ export default {
 * {
   font-family: 'Source Han Serif TC';
 }
-h1{
-  @apply text-5xl font-bold text-center;
-}
-table {
-  margin-left: auto;
-  margin-right: auto;
-}
 thead {
   background-color: #023047;
 }
@@ -130,34 +123,18 @@ tbody td {
   border-bottom: 1px solid #000000;
 }
 .table-text {
-  @apply text-xl font-bold leading-4 h-12 whitespace-nowrap px-2.5;
-  margin: 0 .75rem;
+  @apply font-bold leading-4 h-12 px-2.5  text-base md:text-xl my-0 mx-3;
 }
 tr {
   transition: .3s;
 }
-.post-date {
-  width: 15%;
-}
-.post-title {
-  width: 70%;
-}
-.post-group {
-  width: 15%;
-}
-.page-select-wrapper {
-  margin: 0 auto;
-}
-.page-select-wrapper .page{
-  @apply w-12 p-1 duration-300;
+.page{
+  @apply w-12 h-12 p-1 duration-300 inline-block font-bold text-center leading-10 text-xl md:text-2xl rounded-full;
   color: #0A1629;
 }
-.page-select-wrapper .split-page{
-  @apply w-12 p-1;
+.split-page{
+  @apply w-12 h-12 p-1 inline-block font-bold text-center leading-10 text-xl md:text-2xl rounded-full;
   color: #0A1629;
-}
-.page-choose {
-  @apply inline-block font-bold text-center text-2xl leading-10;
 }
 
 .page-underline {
@@ -166,8 +143,6 @@ tr {
 .page:hover {
   color: #ffffff;
   background-color: #219ebc;
-  border-radius: 50%;
-  border-bottom: none;
 }
 .pop-wrapper {
   position: absolute;
@@ -177,8 +152,6 @@ tr {
 }
 .pop-card {
   position: absolute;
-  top: 50%;
-  left: 50%;
   height: 50%;
   transform: translateX(-50%) translateY(-50%);
   background: #ffffff;
@@ -192,7 +165,7 @@ tr {
 }
 @keyframes popup{
   from {
-    transform: scale(0) translateX(-50%) translateY(-50%);
+    transform: scale(0) translateX(0) translateY(0);
   }
   to{
     transform: scale(1) translateX(-50%) translateY(-50%);
@@ -205,9 +178,5 @@ tr {
   to{
     transform: scale(1);
   }
-}
-.pop-content{
-  width: 50%;
-  height: 30%;
 }
 </style>
