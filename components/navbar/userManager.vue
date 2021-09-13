@@ -1,7 +1,7 @@
 <template>
   <div class="group relative z-50">
     <span>
-      管理
+      {{usersState.user.lastName}}{{usersState.user.firstName}}
     </span>
     <span class="float-right mt-1">
       <svg
