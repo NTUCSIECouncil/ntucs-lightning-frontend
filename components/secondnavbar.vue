@@ -30,12 +30,15 @@
           </div>
           <div>
             <nav class="flex justify-center py-3">
-              <span :class="[$route.path === '/academic' ? 's-navbtn' : 'text-black bg-white navbtn'] ">
+              <span :class="[$route.path.split('/')[1] === 'departments' ? 's-navbtn' : 'text-black bg-white navbtn'] ">
                 <departments/>
               </span>
-              <span :class="[$route.path === '/articles' ? 's-navbtn' : 'text-black bg-white navbtn'] ">
-                <service />
-              </span>
+              <input 
+                type="button"
+                @click="$router.push('/services')" 
+                :class= "[$route.path === '/services' ? 's-navbtn' : 'text-black bg-white navbtn']"
+                value="服務"
+              />
               <input 
                 type="button"
                 @click="tempSignIn"
@@ -115,14 +118,13 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import departments from './navbar/departments.vue';
-import service from './navbar/service.vue';
-import userManager from './navbar/userManager.vue';
+import { mapState } from "vuex"
+import departments from './navbar/departments.vue'
+import userManager from './navbar/userManager.vue'
 
 export default {
-  name: "navbar",
-  components: { departments, service, userManager },
+  name: "secondnavbar",
+  components: { departments, userManager },
   data() {
     return {
       tagData: [],
@@ -140,7 +142,7 @@ export default {
   },
   mounted() {
     this.getTags();
-    console.log(this.$router.currentRoute.path)
+    console.log(this.$route.path.split('/')[1])
   },
   methods: {
     tempSignIn() {
