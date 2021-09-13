@@ -1,11 +1,11 @@
 FROM node:11
 
 # Create app directory
-RUN mkdir -p /usr/src/app/THECHANGER-FRONTEND-V1
-WORKDIR /usr/src/app/THECHANGER-FRONTEND-V1
+RUN mkdir -p /usr/src/app/ntucs-lightning-frontend
+WORKDIR /usr/src/app/ntucs-lightning-frontend
 
 # Install app dependencies
-COPY package.json /usr/src/app/THECHANGER-FRONTEND-V1
+COPY package.json /usr/src/app/ntucs-lightning-frontend
 RUN npm install
 
 # Set environment variables
@@ -14,7 +14,7 @@ ENV NUXT_HOST 0.0.0.0
 ENV PORT 4000
 
 # Bundle app source
-COPY . /usr/src/app/THECHANGER-FRONTEND-V1
+COPY . /usr/src/app/ntucs-lightning-frontend
 RUN npm run build
 
 EXPOSE 4000
