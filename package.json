@@ -15,6 +15,7 @@
     "@nuxtjs/pwa": "^2.6.0",
     "cross-env": "^5.2.0",
     "fastify": "^1.13.3",
+    "marked": "^3.0.3",
     "node-fetch": "^2.6.0",
     "nuxt": "latest",
     "nuxt-universal-storage": "^0.2.0",
