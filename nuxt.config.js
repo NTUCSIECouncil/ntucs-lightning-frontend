@@ -1,4 +1,4 @@
-const pkg = require('./package')
+require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
@@ -60,7 +60,8 @@ module.exports = {
     { src: '~/plugins/vueNotifications', ssr: true },
     { src: '~/plugins/sanitize', ssr: false },
     { src: '~/plugins/mediumEditor', ssr: false },
-    { src: '~/plugins/nuxtSwiper', ssr: false }
+    { src: '~/plugins/nuxtSwiper', ssr: false },
+    { src: '~/plugins/vueGoogleOauth2', ssr: false }
   ],
 
   /*
@@ -69,16 +70,20 @@ module.exports = {
   modules: [
     'nuxt-universal-storage',
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    ['@nuxtjs/dotenv', {
+      filename: '.env'
+    }]
   ],
   // Env
   env: {
+    googleClientId: process.env.GOOGLE_CLIENT_ID || ''
   },
   /*
   ** Axios module configuration
   */
   axios: {
-    baseURL: process.env.NODE_ENV === 'development' ? 'http://council.csie.ntu.edu.tw:3000/api/v1' : 'https://api.council.csie.ntu.edu.tw/api/v1'
+    baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api/v1' : 'https://api.council.csie.ntu.edu.tw/api/v1'
   },
 
   /*
@@ -91,5 +96,4 @@ module.exports = {
   },
 
   buildModules: ['@nuxtjs/tailwindcss']
-
 }

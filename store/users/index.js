@@ -25,8 +25,8 @@ const actions = {
     await dispatch('checkLoginStatus')
   },
   checkLoginStatus ({ commit }) {
-    let accessToken = this.$storage.getUniversal('accessToken') || ''
-    let user = this.$storage.getUniversal('user') || ''
+    const accessToken = this.$storage.getUniversal('accessToken') || ''
+    const user = this.$storage.getUniversal('user') || ''
     if (accessToken && user) {
       commit('setUserAccessToken', accessToken)
       commit('setUserData', user)
@@ -39,26 +39,23 @@ const actions = {
     commit('removeUserAccessToken')
     commit('setLoginStatus', false)
   },
-  userSignin ({ commit }, payload) {
-    this.$axios.post('/auth/signin', { data: payload })
+  userSignin ({ commit, dispatch }, idToken) {
+    this.$axios.post('/auth/google', {
+      idToken
+    })
       .then(i => {
-        let userData = i.data.data
+        const userData = i.data.data
         commit('setUserAccessToken', userData.accessToken)
         delete userData.accessToken
-        commit('setUserData', userData)
+        dispatch('userGetMe')
         commit('setLoginStatus', true)
-      }).catch(error => {
-        commit('userAuthFailed')
       })
   },
-  userRegister ({ commit }, payload) {
-    this.$axios.post('/auth/register', { data: payload })
+  userGetMe ({ commit }) {
+    this.$axios.get('/users/me')
       .then(i => {
-        let userData = i.data.data
-        commit('setUserAccessToken', userData.accessToken)
-        delete userData.accessToken
+        const userData = i.data.data
         commit('setUserData', userData)
-        commit('setLoginStatus', true)
       })
   }
 }
@@ -68,6 +65,7 @@ const mutations = {
   setUserAccessToken (state, payload) {
     this.$storage.setUniversal('accessToken', payload)
     state.accessToken = payload
+    this.$axios.defaults.headers.common.authorization = payload
   },
   setUserData (state, payload) {
     this.$storage.setUniversal('user', payload)
@@ -80,6 +78,7 @@ const mutations = {
     this.$storage.removeUniversal('accessToken')
     this.$storage.removeUniversal('user')
     state.accessToken = ''
+    this.$axios.defaults.headers.common.authorization = undefined
   },
   userAuthFailed (state) {
     state.isAuthFailed = true

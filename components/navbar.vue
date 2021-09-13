@@ -36,18 +36,17 @@
               <select name="" id="">
                 <option>服務</option>
               </select>
-              <img
+              <button
                 v-if="!usersState.isLoggedIn"
-                src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png?hl=bg"
-                alt="Sign in with Google"
-                @click="tempSignIn"
-              />
+                @click="handleClickSignIn"
+              >
+                <i class="fas fa-fingerprint"></i>
+                臺大資工系帳號登入
+              </button>
+
 
               <b-nav-item-dropdown right v-if="usersState.isLoggedIn">
-                <template slot="button-content">
-                  {{ usersState.user.name.last }}
-                  {{ usersState.user.name.first }}
-                </template>
+                <span>{{ usersState.user.lastName }}{{ usersState.user.firstName }}</span>
                 <b-dropdown-item class="text-center">
                   <d-badge
                     outline
@@ -130,12 +129,36 @@ export default {
     this.getTags();
   },
   methods: {
-    tempSignIn() {
-      window.alert("因為我已經把登入表單刪掉了 所以先用window.prompt登入吧");
-      this.$store.dispatch("users/userSignin", {
-        email: window.prompt("email"),
-        password: window.prompt("password"),
-      });
+    async handleClickSignIn() {
+      let googleOauth = this.$gAuth
+      if (googleOauth.isInit) {
+        let loginUser
+        try {
+          loginUser = await googleOauth.signIn()
+        } catch (error) {
+          if (error.error === 'popup_closed_by_user') {
+            alert('請不要關閉視窗。')
+            return
+          }
+          alert('驗證失敗')
+          return
+        }
+        if(!googleOauth.isAuthorized) {
+          alert('驗證失敗')
+          return
+        }
+        const idToken = loginUser.getAuthResponse().id_token
+        if(!loginUser.getBasicProfile().getEmail().endsWith('csie.ntu.edu.tw')) {
+          alert('本平台僅限「國立臺灣大學資訊工程學系」帳號登入。\n無 CSIE Mail/雙主修/輔系同學，請洽 217。')
+          return
+        }
+        try {
+          this.$store.dispatch("users/userSignin", idToken)
+        } catch (error) {
+          alert('驗證失敗')
+          return
+        }
+      }
     },
     switchAccountFormType(type) {
       this.$store.commit("navbar/setAccountFormType", type);
