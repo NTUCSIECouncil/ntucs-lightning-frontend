@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 module.exports = {
+  telemetry: false,
   mode: 'universal',
   server: {
     port: 4000,
@@ -90,10 +91,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    extractCss: true,
     extend (config, ctx) {
     }
-  },
-
-  buildModules: ['@nuxtjs/tailwindcss']
+  }
 }
