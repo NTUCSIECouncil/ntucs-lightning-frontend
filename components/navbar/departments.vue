@@ -23,7 +23,7 @@
         <input 
           type="button"
           class="bg-white"
-          @click="$router.push('/')" 
+          @click="$router.push('/departments/academic')" 
           value="學術部"
         />
       </li>

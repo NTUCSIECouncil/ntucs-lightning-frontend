@@ -61,7 +61,4 @@ export default {
 
 
 <style scoped>
-.main {
-  min-height: 1000px;
-}
 </style>
