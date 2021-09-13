@@ -4,7 +4,7 @@
       <topnavbar />
       <secondnavbar />
       <notifications />
-      <nuxt />
+      <nuxt class="container mx-auto" />
     </div>
     <smnavbar />
   </div>

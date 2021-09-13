@@ -2,8 +2,8 @@
   <div>
     <no-ssr>
       <div class="w-full bg-primary text-white">
-        <div class="w-full h-32">
-          <div class="pl-1 sm:pl-20 py-6 float-left">
+        <div class="w-full h-32 flex container mx-auto">
+          <div class="pl-1 sm:pl-20 py-6">
             <div class="my-2">
               <a href="https://www.facebook.com/NTU.CSIE.Council" class="text-white">
                 <svg class="w-5 h-5 fill-current float-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -29,6 +29,7 @@
               </a>
             </div>
           </div>
+          <div class="flex-grow"></div>
           <div class="pr-1 pt-10 sm:float-right md:pr-12">
             <img
               src="/logo_default.png"

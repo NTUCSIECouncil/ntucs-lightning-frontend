@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div class="relative">
-      <div id="background-words" class="absolute w-full text-white">
-          <p class="text-3xl md:text-4xl text-center mb-2">學術部</p>
-          <p class="text-3xl md:text-4xl text-center ">Academic Department</p>
-      </div>
+    <div class="relative overflow-hidden">
       <div 
-        class="w-full text-white h-0 bg-cover"
+        class="text-white h-0 bg-cover filter blur "
         id="background-img"
         :style="{
           backgroundImage: `url(${require('@/static/academic_cover.png')})`,
         }"
       />
+      <div id="background-words" class="absolute w-full text-white">
+          <p class="text-3xl md:text-4xl text-center mb-2">學術部</p>
+          <p class="text-3xl md:text-4xl text-center ">Academic Department</p>
+      </div>
     </div>
     <div class="w-full bg-primary text-white py-8 px-20 md:py-20">
       <p class="text-3xl md:text-4xl text-center mb-2">介紹</p>
@@ -195,6 +195,8 @@ export default {
 #background-img {
   padding-top: 52.5%;
   background-size: cover;
+  width: calc(100% + 2rem);
+  margin: -1rem;
 }
 
 #background-words {
