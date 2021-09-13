@@ -1,5 +1,6 @@
-<template>
-  <div>交給Johnson了</div>
+<template lang="pug">
+  .container
+    | 交給Johnson了
 </template>
 
 <script>

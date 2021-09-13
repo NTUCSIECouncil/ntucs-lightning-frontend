@@ -1,5 +1,6 @@
-<template>
-    <div>交給我吧</div>
+<template lang="pug">
+  .container
+    | 交給 Leader Froggy ㄌ
 </template>
 
 <script>
