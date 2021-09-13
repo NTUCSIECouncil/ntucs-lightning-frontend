@@ -84,7 +84,7 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    baseURL: process.env.NODE_ENV === 'development' ? 'http://council.csie.ntu.edu.tw:3000/api/v1' : 'https://api.council.csie.ntu.edu.tw/api/v1'
+    baseURL: process.env.NODE_ENV === 'development' ? 'http://council.csie.ntu.edu.tw:3000/api/v1' : 'https://council.csie.ntu.edu.tw/api/v1'
   },
 
   /*
