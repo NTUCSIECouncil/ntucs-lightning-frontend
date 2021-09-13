@@ -3,9 +3,11 @@ module.exports = {
   purge: {
     enabled: true,
     content: [
-      './src/**/*.html',
-      './src/**/*.vue',
-      './src/**/*.jsx'
+      './components/**/*.{vue,js}',
+      './layouts/**/*.vue',
+      './pages/**/*.vue',
+      './plugins/**/*.{js,ts}',
+      './nuxt.config.{js,ts}'
     ]
   },
   darkMode: false, // or 'media' or 'class'
