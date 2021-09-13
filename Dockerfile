@@ -1,4 +1,4 @@
-FROM node:11
+FROM node:14-alpine
 
 # Create app directory
 RUN mkdir -p /usr/src/app/ntucs-lightning-frontend
