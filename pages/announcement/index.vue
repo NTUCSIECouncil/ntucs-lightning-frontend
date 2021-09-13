@@ -44,10 +44,10 @@
         <div class="page cursor-pointer" @click="nextPage()">&#62;</div>
       </div>
     </div>
-    <div class="pop-wrapper top-0 left-0 w-full h-full" v-if="articleOpen" @click.prevent="articleOpen=false">
-      <div class="pop-card container top-1/2 left-1/2">
-        <h1 class="text-3xl md:text-4xl leading-loose font-bold text-center">{{readingArticle?readingArticle.title:''}}</h1>
-        <article class="text-base text-black break-words overflow-y-auto">
+    <div class="pop-wrapper top-0 left-0 w-full h-full" v-if="articleOpen" @click.self="articleOpen=false">
+      <div class="pop-card container top-1/2 left-1/2 overflow-auto overflow-y-scroll pb-6">
+        <h1 class="text-2xl md:text-3xl leading-6 font-bold text-center break-words my-6">{{readingArticle?readingArticle.title:''}}</h1>
+        <article class="text-base text-black break-words pop-content">
           {{readingArticle?readingArticle.intro:''}}
         </article>
       </div>
@@ -61,9 +61,9 @@ export default {
   data() {
     return {
       articleList:[
-        {articleId:'1', createdAt:'2021-02-12', title:'title', organization:{name:'學術部'}, intro:'hihihihihihihihihihihihihihihihihi hihihihihihihihihihihihihihihihihihihihih ihihihihihihihihihihihihihihihi hihihihihihihihihihi'},
-        {articleId:'1', createdAt:'2021-02-12', title:'title0000000000000000000000000000000000000000', organization:{name:'學術部'}},
-        {articleId:'1', createdAt:'2021-02-12', title:'title', organization:{name:'學術部'}},
+        {articleId:'1', createdAt:'2021-02-12', title:'title', organization:{name:'學術部'}, intro:'hihihihihihihihihihihihihihihihihi hihihihihihihihihihihihihihihihihihihihih ihihihihihihihihihihihihihihihi hihihihihihihihihihi'.repeat(50)},
+        {articleId:'2', createdAt:'2021-02-12', title:'title0000000000000000000000000000000000000000', organization:{name:'學術部'}},
+        {articleId:'3', createdAt:'2021-02-12', title:'title', organization:{name:'學術部'}},
       ],
       nowPage: 1,
       pageCount: 10,
@@ -152,7 +152,7 @@ tr {
 }
 .pop-card {
   position: absolute;
-  height: 50%;
+  max-height: 70%;
   transform: translateX(-50%) translateY(-50%);
   background: #ffffff;
   z-index: 3;
@@ -162,6 +162,14 @@ tr {
 }
 .pop-card *{
   animation: popup-inward .5s;
+}
+.pop-card::-webkit-scrollbar {
+  width: 2px;
+  background-color: whitesmoke;
+}
+.pop-card::-webkit-scrollbar-thumb {
+  background-color: #023047;
+  border-radius: 1px;
 }
 @keyframes popup{
   from {
