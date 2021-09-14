@@ -3,7 +3,7 @@
     <no-ssr>
       <div class="bg-white ">
         <div class="grid grid-cols-4">
-          <div class="flex justify-center p-3">
+          <div class="flex justify-center py-3">
             <div class="border-2 border-black py-1 px-2 hover:text-blue-400 ml-6">
               <session />
             </div>
@@ -12,7 +12,7 @@
             <img
               src="/logo_default.png"
               alt="NTU CSIE COUNCIL"
-              width="62px;"
+              width="60px;"
             >
           </div>
           <div class="flex justify-center p-4 hover:text-blue-400 underline">

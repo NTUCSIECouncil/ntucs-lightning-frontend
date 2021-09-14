@@ -193,10 +193,10 @@ export default {
 
 <style>
 .navbtn{
-  @apply rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 md:mx-1 lg:mx-2;
+  @apply rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 mx-1 md:mx-2 lg:mx-3;
 }
 
 .s-navbtn{
-  @apply text-white bg-primary  rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 md:mx-1 lg:mx-2;
+  @apply text-white bg-primary  rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 mx-1 md:mx-2 lg:mx-3;
 }
 </style>

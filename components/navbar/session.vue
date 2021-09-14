@@ -17,7 +17,7 @@
     </span>
     <ul
       class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-    transition duration-150 ease-in-out origin-top"
+      transition duration-150 ease-in-out origin-top"
     >
       <li class="text-black align-center px-3 py-1 hover:text-blue-400">
         <input 
@@ -45,14 +45,6 @@ export default {
 }
 </script>
 <style>
-  li>ul                 { transform: translatex(100%) scale(0) }
-  li:hover>ul           { transform: translatex(101%) scale(1) }
-  li > button svg       { transform: rotate(-90deg) }
-  li:hover > button svg { transform: rotate(-270deg) }
-  .group:hover .group-hover\:scale-100 { transform: scale(1) }
-  .group:hover .group-hover\:-rotate-180 { transform: rotate(180deg) }
-  .scale-0 { transform: scale(0) }
-  .min-w-32 { min-width: 8rem }
   .uncover {
     z-index: 999;
   }
