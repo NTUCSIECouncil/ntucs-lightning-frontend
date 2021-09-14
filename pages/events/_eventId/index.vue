@@ -10,13 +10,13 @@
         </div>
         <h1 class="mx-auto md:text-4xl mt-20 tracking-widest text-dark">{{date}}</h1>
         <h1 class="mx-auto md:text-4xl mt-12 text-dark">{{intro}}</h1>
-        <button class="text-white mx-auto back-dark rounded-lg text-xl md:text-4xl px-3 py-3 font-bold my-12">手刀報名</button>
+        <button class="text-white mx-auto bg-primary rounded-lg text-xl md:text-4xl px-3 py-3 font-bold my-12">手刀報名</button>
         <div class="resources mt-40">
             <h1 class="my-6 text-dark">相關資源</h1>
             <h1 class="my-4 text-dark">Resources</h1>
             <markdown :data="markdown"></markdown>
         </div>
-        <div class="back-dark py-12">
+        <div class="bg-primary py-12">
             <h1 class="text-white my-8">活動回顧</h1>
             <h1 class="text-white my-4">Best Memories</h1>
         </div>
@@ -65,7 +65,7 @@ export default {
             ],
             date:'2020-09-30',
             intro:'精彩表演，隆重展開',
-            markdown:'# Test heading \n a paragraph. \n# second heading\n another paragraph',
+            markdown:`# Header \n It's very easy to make some words **bold** and other words *italic* with Markdown. You can even [link to Google!](http://google.com)`+'\n'+'```pythons = "Python"'+'\n'+'print s```',
             images:[
                 {id:1,src:grid1},
                 {id:2,src:grid2},
@@ -91,45 +91,30 @@ export default {
 h1 {  
   @apply text-xl md:text-5xl px-3 font-bold;
 }
-h1 {
-  font: bold;
-}
 .text-dark {
   color: #0a1629;
 }
-.back-dark {
-    background-color: #023047;
-}
 .card {
-  border: 1px solid #0A1629;
-  box-shadow: .25rem .25rem .25rem rgba(0, 0, 0, 0.25);
+  @apply shadow-md border border-solid border-primary;
 }
-
 .column {
-  flex: 40%;
-  max-width: 40%;
-  padding: 0 .25rem;
+  @apply flex-auto px-1;
+  max-width: 40%; 
 }
 .column.side{
-  flex: 30%;
   max-width: 30%;
-  padding: 0 .25rem;
 }
 
 .column img {
-  margin-top: 8px;
-  vertical-align: middle;
-  width: 100%;
+  @apply mt-2 align-middle w-full;
 }
 
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
   .column {
-    flex: 50%;
     max-width: 50%;
   }
   .column.side {
-    flex: 50%;
     max-width: 50%;
   }
 }
@@ -137,11 +122,9 @@ h1 {
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .column {
-    flex: 100%;
     max-width: 100%;
   }
   .column.side {
-    flex: 100%;
     max-width: 100%;
   }
 }

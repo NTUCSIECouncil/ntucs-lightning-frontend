@@ -1,248 +1,510 @@
 <template>
-    <div class="card break-words container w-3/4 mx-auto mb-12" 
-            v-html="compiledMarkdown">
-    </div>
+  <div
+    class="card break-words container w-3/4 mx-auto mb-12"
+    v-html="compiledMarkdown"
+  ></div>
 </template>
 <script>
+import marked from "marked";
 
-import marked from 'marked'
-
+/*marked.setOptions({
+  renderer: rendererMD,
+  gfm: true, //default:true。 允許 Git Hub標準的markdown.
+  tables: true, //default:true。 允許支援表格語法。該選項要求 gfm 為true。
+  breaks: true, //default:false。 允許回車換行。該選項要求 gfm 為true。
+  pedantic: false, //default:false。 儘可能地相容 markdown.pl的晦澀部分。不糾正原始模型任何的不良行為和錯誤。
+  sanitize: false, //對輸出進行過濾（清理）
+  smartLists: true,
+  smartypants: false, //使用更為時髦的標點，比如在引用語法中加入破折號。
+});*/
 export default {
-    name:'markdown',
-    props:{
-        data:{type:String}
+  name: "markdown",
+  props: {
+    data: { type: String },
+  },
+  computed: {
+    compiledMarkdown() {
+      return marked(this.data);
     },
-    computed: {
-        compiledMarkdown() {
-            return marked(this.data);
-        }
-    }
-}
+  },
+  beforeMount(){
+    marked.setOptions({
+      gfm: true,//預設為true。 允許 Git Hub標準的markdown.
+      tables: true,//預設為true。 允許支援表格語法。該選項要求 gfm 為true。
+      breaks: false,//預設為false。 允許回車換行。該選項要求 gfm 為true。
+      pedantic: false,//預設為false。 儘可能地相容 markdown.pl的晦澀部分。不糾正原始模型任何的不良行為和錯誤。
+      sanitize: false,//對輸出進行過濾（清理）
+      smartLists: true,
+      smartypants: false//使用更為時髦的標點，比如在引用語法中加入破折號。
+    });
+  }
+};
 </script>
 <style scoped>
-@media print {
-  *,
-  *:before,
-  *:after {
-    background: transparent !important;
-    color: #000 !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-
-  a[href^="#"]:after,
-  a[href^="javascript:"]:after {
-    content: "";
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  thead {
-    display: table-header-group;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  img {
-    max-width: 100% !important;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
+::v-deep details {
+  display: block;
 }
 
-html {
+::v-deep summary {
+  display: list-item;
+}
+
+::v-deep a {
+  background-color: initial;
+}
+
+::v-deep a:active,
+::v-deep a:hover {
+  outline-width: 0;
+}
+
+::v-deep strong {
+  font-weight: inherit;
+  font-weight: bolder;
+}
+
+::v-deep h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+::v-deep img {
+  border-style: none;
+}
+
+::v-deep code,
+::v-deep kbd,
+::v-deep pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+::v-deep hr {
+  box-sizing: initial;
+  height: 0;
+  overflow: visible;
+}
+
+::v-deep input {
+  font: inherit;
+  margin: 0;
+}
+
+::v-deep input {
+  overflow: visible;
+}
+
+::v-deep [type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+::v-deep * {
+  box-sizing: border-box;
+}
+
+::v-deep input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+::v-deep a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+::v-deep a:hover {
+  text-decoration: underline;
+}
+
+::v-deep strong {
+  font-weight: 600;
+}
+
+::v-deep hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #dfe2e5;
+}
+
+::v-deep hr:after,
+::v-deep hr:before {
+  display: table;
+  content: "";
+}
+
+::v-deep hr:after {
+  clear: both;
+}
+
+::v-deep table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+::v-deep td,
+::v-deep th {
+  padding: 0;
+}
+
+::v-deep details summary {
+  cursor: pointer;
+}
+
+::v-deep kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #d1d5da;
+}
+
+::v-deep h1,
+::v-deep h2,
+::v-deep h3,
+::v-deep h4,
+::v-deep h5,
+::v-deep h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+::v-deep h1 {
+  font-size: 32px;
+}
+
+::v-deep h1,
+::v-deep h2 {
+  font-weight: 600;
+}
+
+::v-deep h2 {
+  font-size: 24px;
+}
+
+::v-deep h3 {
+  font-size: 20px;
+}
+
+::v-deep h3,
+::v-deep h4 {
+  font-weight: 600;
+}
+
+::v-deep h4 {
+  font-size: 16px;
+}
+
+::v-deep h5 {
+  font-size: 14px;
+}
+
+::v-deep h5,
+::v-deep h6 {
+  font-weight: 600;
+}
+
+::v-deep h6 {
   font-size: 12px;
 }
 
-@media screen and (min-width: 32rem) and (max-width: 48rem) {
-  html {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 48rem) {
-  html {
-    font-size: 16px;
-  }
-}
-
-body {
-  line-height: 1.85;
-}
-
-p,
-.splendor-p {
-  font-size: 1rem;
-  margin-bottom: 1.3rem;
-}
-
-h1,
-.splendor-h1,
-h2,
-.splendor-h2,
-h3,
-.splendor-h3,
-h4,
-.splendor-h4 {
-  margin: 1.414rem 0 .5rem;
-  font-weight: inherit;
-  line-height: 1.42;
-}
-
-h1,
-.splendor-h1 {
+::v-deep p {
   margin-top: 0;
-  font-size: 3.998rem;
+  margin-bottom: 10px;
 }
 
-h2,
-.splendor-h2 {
-  font-size: 2.827rem;
-}
-
-h3,
-.splendor-h3 {
-  font-size: 1.999rem;
-}
-
-h4,
-.splendor-h4 {
-  font-size: 1.414rem;
-}
-
-h5,
-.splendor-h5 {
-  font-size: 1.121rem;
-}
-
-h6,
-.splendor-h6 {
-  font-size: .88rem;
-}
-
-small,
-.splendor-small {
-  font-size: .707em;
-}
-
-/* https://github.com/mrmrs/fluidity */
-
-img,
-canvas,
-iframe,
-video,
-svg,
-select,
-textarea {
-  max-width: 100%;
-}
-
-@import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
-
-html {
-  font-size: 18px;
-  max-width: 100%;
-}
-
-body {
-  color: #444;
-  font-family: 'Merriweather', Georgia, serif;
+::v-deep blockquote {
   margin: 0;
-  max-width: 100%;
 }
 
-/* === A bit of a gross hack so we can have bleeding divs/blockquotes. */
-
-p,
-*:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
-  margin: 1rem auto 1rem;
-  max-width: 36rem;
-  padding: .25rem;
+::v-deep ol,
+::v-deep ul {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-div {
-  width: 100%;
+::v-deep ol ol,
+::v-deep ul ol {
+  list-style-type: lower-roman;
 }
 
-div img {
-  width: 100%;
+::v-deep ol ol ol,
+::v-deep ol ul ol,
+::v-deep ul ol ol,
+::v-deep ul ul ol {
+  list-style-type: lower-alpha;
 }
 
-blockquote p {
-  font-size: 1.5rem;
+::v-deep dd {
+  margin-left: 0;
+}
+
+::v-deep code,
+::v-deep pre {
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  font-size: 12px;
+}
+
+::v-deep pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+::v-deep input::-webkit-inner-spin-button,
+::v-deep input::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+::v-deep hr {
+  border-bottom-color: #eee;
+}
+
+::v-deep kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #d1d5da;
+}
+
+::v-deep:after,
+::v-deep:before {
+  display: table;
+  content: "";
+}
+
+::v-deep:after {
+  clear: both;
+}
+
+::v-deep > :first-child {
+  margin-top: 0 !important;
+}
+
+::v-deep > :last-child {
+  margin-bottom: 0 !important;
+}
+
+::v-deep a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+::v-deep blockquote,
+::v-deep details,
+::v-deep dl,
+::v-deep ol,
+::v-deep p,
+::v-deep pre,
+::v-deep table,
+::v-deep ul {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+::v-deep hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+
+::v-deep blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+}
+
+::v-deep blockquote > :first-child {
+  margin-top: 0;
+}
+
+::v-deep blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+::v-deep h1,
+::v-deep h2,
+::v-deep h3,
+::v-deep h4,
+::v-deep h5,
+::v-deep h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+::v-deep h1 {
+  font-size: 2em;
+}
+
+::v-deep h1,
+::v-deep h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eaecef;
+}
+
+::v-deep h2 {
+  font-size: 1.5em;
+}
+
+::v-deep h3 {
+  font-size: 1.25em;
+}
+
+::v-deep h4 {
+  font-size: 1em;
+}
+
+::v-deep h5 {
+  font-size: 0.875em;
+}
+
+::v-deep h6 {
+  font-size: 0.85em;
+  color: #6a737d;
+}
+
+::v-deep ol,
+::v-deep ul {
+  padding-left: 2em;
+}
+
+::v-deep ol ol,
+::v-deep ol ul,
+::v-deep ul ol,
+::v-deep ul ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+::v-deep li {
+  word-wrap: break-all;
+}
+
+::v-deep li > p {
+  margin-top: 16px;
+}
+
+::v-deep li + li {
+  margin-top: 0.25em;
+}
+
+::v-deep dl {
+  padding: 0;
+}
+
+::v-deep dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
   font-style: italic;
-  margin: 1rem auto 1rem;
-  max-width: 48rem;
+  font-weight: 600;
 }
 
-li {
-  margin-left: 2rem;
+::v-deep dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
 }
 
-/* Counteract the specificity of the gross *:not() chain. */
-
-h1 {
-  padding: 4rem 0 !important;
+::v-deep table {
+  display: block;
+  width: 100%;
+  overflow: auto;
 }
 
-/*  === End gross hack */
+::v-deep table th {
+  font-weight: 600;
+}
 
-p {
-  color: #555;
-  height: auto;
+::v-deep table td,
+::v-deep table th {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+
+::v-deep table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+
+::v-deep table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+
+::v-deep img {
+  max-width: 100%;
+  box-sizing: initial;
+  background-color: #fff;
+}
+
+::v-deep img[align="right"] {
+  padding-left: 20px;
+}
+
+::v-deep img[align="left"] {
+  padding-right: 20px;
+}
+
+::v-deep code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+}
+
+::v-deep pre {
+  word-wrap: normal;
+}
+
+::v-deep pre > code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+::v-deep pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
   line-height: 1.45;
+  background-color: #f6f8fa;
+  border-radius: 3px;
 }
 
-pre,
-code {
-  font-family: Menlo, Monaco, "Courier New", monospace;
-}
-
-pre {
-  background-color: #fafafa;
-  font-size: .8rem;
-  overflow-x: scroll;
-  padding: 1.125em;
-}
-
-a,
-a:visited {
-  color: #3498db;
-}
-
-a:hover,
-a:focus,
-a:active {
-  color: #2980b9;
+::v-deep pre code {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: initial;
+  border: 0;
 }
 </style>
