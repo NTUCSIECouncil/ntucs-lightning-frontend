@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr
-          class="hover:bg-light hover:bg-opacity-50 cursor-pointer"
+          class="hover:bg-z hover:bg-opacity-50 cursor-pointer"
           v-for="article in articleList.slice((nowPage - 1) * 10, nowPage * 10)"
           :key="article.articleId"
           @click.prevent="showArticle(article)"
@@ -205,7 +205,7 @@ tr {
   @apply duration-300;
 }
 .page {
-  @apply w-12 h-12 p-1 duration-300 inline-block font-bold text-center text-primary leading-10 text-xl md:text-2xl rounded-full hover:text-white hover:bg-light hover:bg-opacity-100;
+  @apply w-12 h-12 p-1 duration-300 inline-block font-bold text-center text-primary leading-10 text-xl md:text-2xl rounded-full hover:text-white hover:bg-secondary hover:bg-opacity-100;
 }
 .split-page {
   @apply w-12 h-12 p-1 inline-block font-bold text-center leading-10 text-primary text-xl md:text-2xl rounded-full;
