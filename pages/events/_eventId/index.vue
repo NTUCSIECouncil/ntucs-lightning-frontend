@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper text-center">
-        <div class="img-wrapper relative my-12" 
+        <div class="img-wrapper relative mb-12 overflow-hidden" 
                 v-for="img in titleImages" :key="img.id">
-            <img class="w-full" :src='img.src'>
+            <img class="w-full" :class="{'img-blur': img.blur}" :src='img.src'>
             <div class="title-wrapper" :class="'text-'+img.align">
                 <h1 class="text-white">{{img.zhTitle}}</h1>
                 <h1 v-if="img.enTitle!=''" class="text-white">{{img.enTitle}}</h1>
@@ -59,7 +59,7 @@ export default {
     data(){
         return{
             titleImages:[
-                {id:1,src:image1, zhTitle:'系卡', enTitle:'CSIE Karaoke', align:'center'},
+                {id:1,src:image1, zhTitle:'系卡', enTitle:'CSIE Karaoke', blur: true, align:'center'},
                 {id:2,src:image2, zhTitle:'展現你歌喉的最佳機會', enTitle:'', align:'left'},
                 {id:3,src:image3, zhTitle:'眾星絕倫、精采絕倫', enTitle:'', align:'right'},
             ],
@@ -127,5 +127,11 @@ h1 {
   .column.side {
     max-width: 100%;
   }
+}
+
+.img-blur {
+  width: calc(100% + 2rem);
+  margin: -1rem;
+  @apply max-w-none filter blur;
 }
 </style>
