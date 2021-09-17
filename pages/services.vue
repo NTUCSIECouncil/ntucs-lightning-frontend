@@ -3,7 +3,7 @@
     <div
       v-for="(service, index) in services"
       :key="`service${index}`"
-      class="w-full sm:w-1/2 md:w-1/3 2xl:w-1/4 h-80 px-10 py-6 lg:py-10"
+      class="w-full sm:w-1/2 md:w-1/3 2xl:w-1/4 h-80 px-10 py-6 md:py-10"
     >
       <div
         class="
