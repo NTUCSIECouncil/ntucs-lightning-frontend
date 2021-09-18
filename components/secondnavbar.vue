@@ -1,7 +1,7 @@
 <template>
   <div class="sticky top-0 z-50">
     <no-ssr>
-      <div class="bg-white ">
+      <div class="bg-white shadow-lg">
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
           <div>
             <nav class="flex justify-center py-3 ">

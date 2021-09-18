@@ -40,7 +40,31 @@
           type="button"
           class="bg-white"
           @click="$router.push('/')" 
+          value="活動部"
+        />
+      </li>
+      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+        <input 
+          type="button"
+          class="bg-white"
+          @click="$router.push('/')" 
           value="體育部"
+        />
+      </li>
+      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+        <input 
+          type="button"
+          class="bg-white"
+          @click="$router.push('/')" 
+          value="事務部"
+        />
+      </li>
+      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+        <input 
+          type="button"
+          class="bg-white"
+          @click="$router.push('/')" 
+          value="美宣部"
         />
       </li>
     </ul>
