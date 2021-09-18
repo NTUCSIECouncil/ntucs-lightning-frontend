@@ -7,16 +7,6 @@
 <script>
 import marked from "marked";
 
-/*marked.setOptions({
-  renderer: rendererMD,
-  gfm: true, //default:true。 允許 Git Hub標準的markdown.
-  tables: true, //default:true。 允許支援表格語法。該選項要求 gfm 為true。
-  breaks: true, //default:false。 允許回車換行。該選項要求 gfm 為true。
-  pedantic: false, //default:false。 儘可能地相容 markdown.pl的晦澀部分。不糾正原始模型任何的不良行為和錯誤。
-  sanitize: false, //對輸出進行過濾（清理）
-  smartLists: true,
-  smartypants: false, //使用更為時髦的標點，比如在引用語法中加入破折號。
-});*/
 export default {
   name: "markdown",
   props: {
@@ -27,17 +17,17 @@ export default {
       return marked(this.data);
     },
   },
-  beforeMount(){
+  beforeMount() {
     marked.setOptions({
-      gfm: true,//預設為true。 允許 Git Hub標準的markdown.
-      tables: true,//預設為true。 允許支援表格語法。該選項要求 gfm 為true。
-      breaks: false,//預設為false。 允許回車換行。該選項要求 gfm 為true。
-      pedantic: false,//預設為false。 儘可能地相容 markdown.pl的晦澀部分。不糾正原始模型任何的不良行為和錯誤。
-      sanitize: false,//對輸出進行過濾（清理）
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: false,
       smartLists: true,
-      smartypants: false//使用更為時髦的標點，比如在引用語法中加入破折號。
+      smartypants: false,
     });
-  }
+  },
 };
 </script>
 <style scoped>
