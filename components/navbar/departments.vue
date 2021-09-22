@@ -1,9 +1,9 @@
 <template>
-  <div class="group relative z-50">
-    <span>
+  <div class="group relative z-50 flex justify-between">
+    <span class="sm:pl-0" id="name">
       部會
     </span>
-    <span class="float-right mt-1">
+    <span class="mt-1 -ml-1">
       <svg
         class="fill-current h-4 w-4 transform group-hover:-rotate-180
         transition duration-150 ease-in-out"
@@ -19,7 +19,7 @@
       class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
     transition duration-150 ease-in-out origin-top"
     >
-      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li class="dep">
         <input 
           type="button"
           class="bg-white"
@@ -27,7 +27,7 @@
           value="學術部"
         />
       </li>
-      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li class="dep">
         <input 
           type="button"
           class="bg-white"
@@ -35,7 +35,7 @@
           value="公關部"
         />
       </li>
-      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li class="dep">
         <input 
           type="button"
           class="bg-white"
@@ -43,7 +43,7 @@
           value="活動部"
         />
       </li>
-      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li class="dep">
         <input 
           type="button"
           class="bg-white"
@@ -51,7 +51,7 @@
           value="體育部"
         />
       </li>
-      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li class="dep">
         <input 
           type="button"
           class="bg-white"
@@ -59,7 +59,7 @@
           value="事務部"
         />
       </li>
-      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li class="dep">
         <input 
           type="button"
           class="bg-white"
@@ -76,5 +76,13 @@ export default {
   props: ['title', 'list'],
 }
 </script>
-<style>
+<style scoped>
+@media only screen and (max-width: 640px) {
+  #name{
+    padding-left: 16px;
+  }
+}
+.dep{
+  @apply text-black px-3 py-1 hover:text-blue-400;
+}
 </style>

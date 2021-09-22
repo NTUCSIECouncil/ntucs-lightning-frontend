@@ -1,9 +1,9 @@
 <template>
-  <div class="group relative z-50">
+  <div class="group relative z-40 flex justify-between">
     <span>
       {{usersState.user.lastName}}{{usersState.user.firstName}}
     </span>
-    <span class="float-right mt-1">
+    <span class="mt-1">
       <svg
         class="fill-current h-4 w-4 transform group-hover:-rotate-180
         transition duration-150 ease-in-out"
@@ -19,7 +19,7 @@
       class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
     transition duration-150 ease-in-out origin-top right-1"
     >
-      <li v-if="usersState.user.role === 'admin'" class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li v-if="usersState.user.role === 'admin'" class="selection">
         <input 
           type="button"
           class="bg-white"
@@ -27,7 +27,7 @@
           value="管理介面"
         />
       </li>
-      <li v-if="usersState.user.role !== 'user'" class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li v-if="usersState.user.role !== 'user'" class="selection">
         <input 
           type="button"
           class="bg-white"
@@ -35,7 +35,7 @@
           value="擴寫文章"
         />
       </li>
-      <li v-if="usersState.user.role !== 'user'" class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li v-if="usersState.user.role !== 'user'" class="selection">
         <input 
           type="button"
           class="bg-white"
@@ -43,7 +43,7 @@
           value="我的文章"
         />
       </li>
-      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li class="selection">
         <input 
           type="button"
           class="bg-white"
@@ -51,7 +51,7 @@
           value="帳號設定"
         />
       </li>
-      <li class="text-black align-center px-3 py-1 hover:text-blue-400">
+      <li class="selection">
         <input 
           type="button"
           class="bg-white"
@@ -100,6 +100,9 @@ export default {
   .group:hover .group-hover\:-rotate-180 { transform: rotate(180deg) }
   .scale-0 { transform: scale(0) }
   .min-w-32 { min-width: 8rem }
+  .selection{
+    @apply text-black px-3 py-1 hover:text-blue-400;
+  }
 </style>
 
 <!-- <b-nav-item-dropdown right v-if="usersState.isLoggedIn">

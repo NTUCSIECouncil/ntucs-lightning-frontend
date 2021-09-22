@@ -2,116 +2,72 @@
   <div class="sticky top-0 z-50">
     <no-ssr>
       <div class="bg-white shadow-lg">
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4">
-          <div>
-            <nav class="flex justify-center py-3 ">
-              <input 
-                type="button"
-                @click="$router.push('/')" 
-                :class= "[$route.path === '/' ? 's-navbtn' : 'text-black bg-white navbtn']"
-                value="首頁"
-              />
-              <input 
-                type="button"
-                @click="$router.push('/announcement')" 
-                :class= "[$route.path === '/announcement' ? 's-navbtn' : 'text-black bg-white navbtn']"
-                value="公告"
-              />
-              <input 
-                type="button"
-                @click="$router.push('/events')" 
-                :class= "[$route.path === '/events' ? 's-navbtn' : 'text-black bg-white navbtn']"
-                value="活動"
-              />
-            </nav>
+        <div class="">
+          <div class="py-3 col-span-1 sm:hidden">
+            <div class="text-center font-semibold text-xl md:text-2xl ml-1/2">
+              <button 
+                class="sm:hidden pl-3 float-left"
+                @click="isOpen = !isOpen" 
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <span class="">台灣大學資訊工程系學會</span>
+            </div>
           </div>
-          <div class="p-3 text-center text-xl font-semibold hidden sm:col-span-1 sm:block md:text-2xl md:col-span-2">
-            <span>台灣大學資訊工程系學會</span>
-          </div>
-          <div>
-            <nav class="flex justify-center py-3">
-              <span :class="[$route.path.split('/')[1] === 'departments' ? 's-navbtn' : 'text-black bg-white navbtn'] ">
-                <departments/>
-              </span>
-              <input 
-                type="button"
-                @click="$router.push('/services')" 
-                :class= "[$route.path === '/services' ? 's-navbtn' : 'text-black bg-white navbtn']"
-                value="服務"
-              />
-              <input 
-                type="button"
-                @click="handleClickSignIn"
-                class="navbtn text-white bg-secondary"
-                value="登入"
-                v-if="!usersState.isLoggedIn"
-              />
-              <span class="navbtn text-white bg-secondary" v-else>
-                <userManager/>
-              </span>
-            </nav>
+          <div :class="isOpen? 'py-3':'py-0 sm:py-3'" class="bg-white absolute sm:relative px-1 grid grid-cols-1 sm:grid-cols-3">
+            <div :class="isOpen? 'block':'hidden'" class="sm:block">
+              <nav class="flex flex-col sm:flex-row justify-evenly sm:justify-start">
+                <input 
+                  type="button"
+                  @click="$router.push('/')" 
+                  :class= "[$route.path === '/' ? 's-navbtn' : 'text-black bg-white navbtn']"
+                  value="首頁"
+                />
+                <input 
+                  type="button"
+                  @click="$router.push('/announcement')" 
+                  :class= "[$route.path === '/announcement' ? 's-navbtn' : 'text-black bg-white navbtn']"
+                  value="公告"
+                />
+                <input 
+                  type="button"
+                  @click="$router.push('/events')" 
+                  :class= "[$route.path === '/events' ? 's-navbtn' : 'text-black bg-white navbtn']"
+                  value="活動"
+                />
+              </nav>
+            </div>
+            <div class="font-semibold hidden sm:block text-xl md:text-2xl text-center">
+              <span class="">台灣大學資訊工程系學會</span>
+            </div>
+            <div :class="isOpen? 'block':'hidden'" class="sm:block">
+              <nav class="flex flex-col sm:flex-row justify-evenly sm:justify-end">
+                <input 
+                  type="button"
+                  @click="$router.push('/services')" 
+                  :class= "[$route.path === '/services' ? 's-navbtn' : 'text-black bg-white navbtn']"
+                  class="-mr-1"
+                  value="服務"
+                />
+                <span :class="[$route.path.split('/')[1] === 'departments' ? 's-navbtn' : 'text-black bg-white navbtn']" class="flex-shrink-0">
+                  <departments/>
+                </span>
+                <input 
+                  type="button"
+                  @click="handleClickSignIn"
+                  class="navbtn text-white bg-secondary"
+                  value="登入"
+                  v-if="!usersState.isLoggedIn"
+                />
+                <span class="navbtn text-white bg-secondary" v-else>
+                  <userManager/>
+                </span>
+              </nav>
+            </div>
           </div>
         </div>
-
-              <!-- <b-nav-item-dropdown right v-if="usersState.isLoggedIn">
-                <template slot="button-content">
-                  {{ usersState.user.name.last }}
-                  {{ usersState.user.name.first }}
-                </template>
-                <b-dropdown-item class="text-center">
-                  <d-badge
-                    outline
-                    theme="primary"
-                    v-if="usersState.user.role === 'admin'"
-                  >
-                    管理員
-                  </d-badge>
-                  <d-badge
-                    outline
-                    theme="primary"
-                    v-if="usersState.user.role === 'orgAdmin'"
-                  >
-                    組織管理員
-                  </d-badge>
-                  <d-badge
-                    outline
-                    theme="primary"
-                    v-if="usersState.user.role === 'orgUser'"
-                  >
-                    作者
-                  </d-badge>
-                  <d-badge
-                    outline
-                    theme="primary"
-                    v-if="usersState.user.role === 'user'"
-                  >
-                    讀者
-                  </d-badge>
-                </b-dropdown-item>
-                <d-dropdown-item
-                  class="d-none d-sm-block"
-                  v-if="usersState.user.role === 'admin'"
-                >
-                  管理介面
-                </d-dropdown-item>
-                <a
-                  v-if="usersState.user.role !== 'user'"
-                  @click="addArticle()"
-                  href="#"
-                >
-                  擴寫文章
-                </a>
-                <a
-                  v-if="usersState.user.role !== 'user'"
-                  href="/dashboard/articles/"
-                >
-                  我的文章
-                </a>
-                <a href="/dashboard/settings/"
-                  >帳號設定</a>
-                <b-dropdown-divider />
-                <a href="#" @click="userSignout">登出</a>
-              </b-nav-item-dropdown --->
       </div>
     </no-ssr>
   </div>
@@ -128,6 +84,7 @@ export default {
   data() {
     return {
       tagData: [],
+      isOpen: false
     };
   },
   computed: {
@@ -193,10 +150,10 @@ export default {
 
 <style>
 .navbtn{
-  @apply rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 mx-1 md:mx-2 lg:mx-3;
+  @apply rounded-md py-1 px-1 md:px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 mx-1 md:mx-2 lg:mx-3 ;
 }
 
 .s-navbtn{
-  @apply text-white bg-primary  rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 mx-1 md:mx-2 lg:mx-3;
+  @apply text-white bg-primary rounded-md py-1 px-2 text-base cursor-pointer tracking-wider font-bold hover:text-blue-400 mx-1 md:mx-2 lg:mx-3;
 }
 </style>
