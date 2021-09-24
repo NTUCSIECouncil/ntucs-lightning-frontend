@@ -97,7 +97,7 @@
       placeholder="文章標題"
     ></textarea>
     <textarea
-      :value="input"
+      :value="content"
       @input="update"
       class="
         h-screen
@@ -147,19 +147,19 @@ export default {
   props: ["article"],
   data() {
     return {
-      input: "# hello",
+      content: "# hello",
       file: "",
       mode: "column",
     };
   },
   computed: {
     compiledMarkdown() {
-      return marked(this.input);
+      return marked(this.content);
     },
   },
   methods: {
     update: _.debounce(function (e) {
-      this.input = e.target.value;
+      this.content = e.target.value;
     }, 300),
     handleFileUpload() {
       this.file = this.$refs.file.files[0];
@@ -187,13 +187,6 @@ export default {
     },
     changeMode(e) {
       this.mode = e.target.value;
-    },
-    calcWordCount(length) {
-      const wordCount =
-        length || (this.article.content ? this.article.content.length : 0);
-      this.wordCount = wordCount;
-
-      this.$store.dispatch("articles/calcEstimatedReadingTime", wordCount);
     },
   },
 };

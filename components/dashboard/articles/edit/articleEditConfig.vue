@@ -38,6 +38,13 @@
               "
             />
           </div>
+          <div class="text-l md:text-xl">
+            Tags:
+            <p v-for="tag in tags" :key="tag.text" class="inline-block">
+              <input type="checkbox" :value="tag.value" @change="updateArticle()">
+              <label>{{tag.text}}</label>
+            </p>
+          </div>
           <span>
             <button
               v-on:click.prevent="submitToReview()"
@@ -49,6 +56,7 @@
                 md:text-2xl
                 p-2
                 shadow
+                mt-4
               "
             >
               {{ submitToReviewText || "發佈文章" }}
@@ -65,6 +73,7 @@
               p-2
               shadow
               float-right
+              mt-4
             "
           >
             儲存成草稿
@@ -194,7 +203,7 @@ export default {
       if (type === "direct") {
         doUpdate();
       }
-    },
+    }
   },
   mounted() {
     this.getTags();

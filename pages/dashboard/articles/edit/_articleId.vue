@@ -1,12 +1,11 @@
 <template>
   <div>
-    <div id="readingInfoWrap">
+    <!--<div id="readingInfoWrap">
       {{ articlesState.dashboard.edit.wordCount }} 字 /
       {{ articlesState.dashboard.edit.estimatedReadingTime }} 分鐘閱讀
-    </div>
-    <articleEditEditor v-bind:article="article" /><articleEditConfig
-      v-bind:article="article"
-    />
+    </div>-->
+    <articleEditEditor v-bind:article="article" />
+    <articleEditConfig v-bind:article="article" />
   </div>
 </template>
 
