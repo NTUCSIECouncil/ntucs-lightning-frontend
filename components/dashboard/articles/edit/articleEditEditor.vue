@@ -99,6 +99,7 @@
     <textarea
       :value="content"
       @input="update"
+      @paste='pasteImage'
       class="
         h-screen
         resize-none
@@ -134,8 +135,6 @@
         hidden: mode === 'edit',
       }"
     ></div>
-    <input type="file" name="file" ref="file" @change="handleFileUpload" />
-    <button @click="onSubmit">upload</button>
   </div>
 </template>
 <script>
@@ -148,7 +147,6 @@ export default {
   data() {
     return {
       content: "# hello",
-      file: "",
       mode: "column",
     };
   },
@@ -161,17 +159,14 @@ export default {
     update: _.debounce(function (e) {
       this.content = e.target.value;
     }, 300),
-    handleFileUpload() {
-      this.file = this.$refs.file.files[0];
-    },
-    onSubmit() {
+    onSubmit(file) {
       let data = new FormData();
-      data.append("image", this.file);
+      data.append("image", file);
       const config = {
         method: "post",
         url: "https://api.imgur.com/3/upload/",
         headers: {
-          Authorization: "Client-ID 323acde536fdfa6",
+          Authorization: "Client-ID 14bccf4d421417a",
           "Content-type": "application/json",
         },
         data: data,
@@ -179,8 +174,12 @@ export default {
 
       this.$axios(config)
         .then(function (response) {
-          console.log(JSON.stringify(response.data));
-        })
+          console.log(response.data);
+          console.log(response.data.data.link)
+          //require(response.data.data.link)
+          this.content += `\n![](${response.data.data.link})`
+          this.update()
+        }.bind(this))
         .catch(function (error) {
           console.log(error);
         });
@@ -188,6 +187,21 @@ export default {
     changeMode(e) {
       this.mode = e.target.value;
     },
+    pasteImage(e) {
+      let items = e.clipboardData && e.clipboardData.items;
+      let file = null
+      if(items && items.length){
+        for(var i =0;i<items.length;i++){
+          if(items[i].type.indexOf('image') !== -1){
+            file = items[i].getAsFile()
+            break
+          }
+        }
+      }
+      if(file){
+        this.onSubmit(file)
+      }
+    }
   },
 };
 </script>
@@ -200,6 +214,11 @@ input:checked + span > img {
 /******************/
 /** Markdown CSS **/
 /******************/
+::v-deep p img {
+  width: 100%;
+  height: auto;
+}
+
 ::v-deep details {
   display: block;
 }
