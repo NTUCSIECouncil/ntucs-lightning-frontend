@@ -11,10 +11,10 @@
         <h1 v-if="img.enTitle != ''" class="text-white">{{ img.enTitle }}</h1>
       </div>
     </div>
-    <h1 class="mx-auto md:text-4xl mt-20 tracking-widest text-dark">
+    <h1 class="mx-auto md:text-3xl mt-20 tracking-widest text-dark">
       {{ date }}
     </h1>
-    <h1 class="mx-auto md:text-4xl mt-12 text-dark">{{ intro }}</h1>
+    <h1 class="mx-auto md:text-3xl mt-12 text-dark">{{ intro }}</h1>
     <button
       class="
         text-white
@@ -22,7 +22,7 @@
         bg-primary
         rounded-lg
         text-xl
-        md:text-4xl
+        md:text-3xl
         px-3
         py-3
         font-bold
@@ -40,28 +40,28 @@
       <h1 class="text-white my-8">活動回顧</h1>
       <h1 class="text-white my-4">Best Memories</h1>
     </div>
-    <div class="gap-x-1" :style="{ columnWidth: 400 + 'px' }">
+    <div class="gap-x-1 py-3" :style="{ columnWidth: 400 + 'px' }">
       <img
         class="mb-2 w-full"
         v-for="image in images"
-        :src="image.src"
-        :key="image.id"
+        :src="image.url"
+        :key="image.order"
       />
     </div>
   </div>
 </template>
 
 <script>
-import image1 from "./image1.png";
-import image2 from "./image2.png";
-import image3 from "./image3.png";
-import grid1 from "./grid1.png";
-import grid2 from "./grid2.png";
-import grid3 from "./grid3.png";
-import grid4 from "./grid4.png";
-import grid5 from "./grid5.png";
-import grid6 from "./grid6.png";
-import grid7 from "./grid7.png";
+// import image1 from "./image1.png";
+// import image2 from "./image2.png";
+// import image3 from "./image3.png";
+// import grid1 from "./grid1.png";
+// import grid2 from "./grid2.png";
+// import grid3 from "./grid3.png";
+// import grid4 from "./grid4.png";
+// import grid5 from "./grid5.png";
+// import grid6 from "./grid6.png";
+// import grid7 from "./grid7.png";
 import markdown from "./markdown.vue";
 
 export default {
@@ -71,49 +71,48 @@ export default {
   },
   data() {
     return {
-      titleImages: [
-        {
-          id: 1,
-          src: image1,
-          zhTitle: "系卡",
-          enTitle: "CSIE Karaoke",
-          blur: true,
-          align: "center",
-        },
-        {
-          id: 2,
-          src: image2,
-          zhTitle: "展現你歌喉的最佳機會",
-          enTitle: "",
-          align: "left",
-        },
-        {
-          id: 3,
-          src: image3,
-          zhTitle: "眾星絕倫、精采絕倫",
-          enTitle: "",
-          align: "right",
-        },
-      ],
-      date: "2020-09-30",
-      intro: "精彩表演，隆重展開",
-      markdown:
-        `# Header \n It's very easy to make some words **bold** and other words *italic* with Markdown. You can even [link to Google!](http://google.com)` +
-        "\n" +
-        '```pythons = "Python"' +
-        "\n" +
-        "print s```",
-      images: [
-        { id: 1, src: grid1 },
-        { id: 2, src: grid2 },
-        { id: 3, src: grid3 },
-        { id: 4, src: grid4 },
-        { id: 5, src: grid5 },
-        { id: 6, src: grid6 },
-        { id: 7, src: grid7 },
-      ],
+      titleImages: [],
+      date: "",
+      intro: "",
+      markdown: "",
+      images: [],
     };
   },
+  methods:{
+    getEvent(){
+      const eventId = this.$route.params.eventId
+      this.$axios.get(`/events/id/${eventId}`)
+        .then(i => {
+          let data = i.data.data
+          this.titleImages = [
+          {
+            order: -1,
+            src: data.coverPhoto,
+            zhTitle: data.nameZh,
+            enTitle: data.nameEn,
+            blur: true,
+            align: "center",
+          }, 
+          ...data.promotions.map((e) => (
+            {
+              order: e.order,
+              src: e.url,
+              zhTitle: e.feature,
+              enTitle: "",
+              align: "center",
+            }
+          ))]
+          this.images = data.reviewPhotos
+          this.markdown = data.markdown
+          this.intro = data.description
+          // only show date(year-month-day)
+          this.date = data.date.split('T')[0]
+      })
+    } 
+  },
+  mounted() {
+    this.getEvent()
+  }
 };
 </script>
 

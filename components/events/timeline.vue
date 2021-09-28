@@ -63,20 +63,22 @@
         <input
           v-if="new Date(event.date) > new Date()"
           type="button"
-          class="mt-1 p-1 text-white bg-primary rounded"
+          class="mt-1 p-1 text-white bg-primary rounded cursor-pointer"
           value="馬上報名"
           :class="{
             'sm:float-right': index % 2 == 1,
           }"
+          @click="$router.push(`/events/${event.eventId}`)" 
         />
         <input
           v-else
           type="button"
-          class="mt-1 p-1 text-white bg-primary rounded"
+          class="mt-1 p-1 text-white bg-primary rounded cursor-pointer"
           value="活動連結"
           :class="{
             'sm:float-right': index % 2 == 1,
           }"
+          @click="$router.push(`/events/${event.eventId}`)" 
         />
       </div>
     </div>
