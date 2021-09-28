@@ -1,50 +1,50 @@
 <template lang="pug">
   .announcement-wrapper
-  h1.text-3xl.leading-10.font-bold.text-center(class='md:text-5xl') &#x516C;&#x544A;
-  h1.text-3xl.leading-loose.font-bold.text-center(class='md:text-5xl')
-    | Announcement
-  table.m-12.container.mx-auto
-    thead
-      tr
-        td.whitespace-nowrap.table-text.text-white(class='w-1/6') &#x65E5;&#x671F;
-        td.whitespace-normal.table-text.text-white(class='w-2/3') &#x6A19;&#x984C;
-        td.whitespace-nowrap.table-text.text-white(class='w-1/6')
-          | &#x767C;&#x5E03;&#x90E8;&#x9580;
-    tbody
-      tr.cursor-pointer(class='hover:bg-z hover:bg-opacity-50' v-for='article in articleList.slice((nowPage - 1) * 10, nowPage * 10)' :key='article.articleId' @click.prevent='showArticle(article)')
-        td.whitespace-nowrap.table-text(class='w-1/6')
-          | {{ parseCreateTime(article.createdAt) }}
-        td.whitespace-normal.table-text.overflow-ellipsis.overflow-hidden.max-w-0(class='w-2/3')
-          | {{ article.title }}
-        td.whitespace-nowrap.table-text(class='w-1/6')
-          | {{ article.organization.name }}
-  .text-center.my-0.mx-auto
-    div(v-if='lessPageMode')
-      .page.cursor-pointer(@click='lastPage()') &lt;
-      .page.cursor-pointer(:class="{ 'page-underline': nowPage === page }" v-for='page in pageCount' :key='page' @click='goToPage(page)')
-        | {{ page }}
-      .page.cursor-pointer(@click='nextPage()') &gt;
-    div(v-else='')
-      .page.cursor-pointer(@click='lastPage()') &lt;
-      .page.cursor-pointer(:class="{ 'page-underline': nowPage === 1 }" @click='goToPage(1)')
-        | 1
-      .split-page(v-if='nowPage - 1 > 2') ...
-      .page.cursor-pointer(v-if='nowPage - 1 > 1' @click='goToPage(nowPage - 1)')
-        | {{ nowPage - 1 }}
-      .page.page-underline(v-if='nowPage > 1 && nowPage < pageCount' @click='goToPage(nowPage)')
-        | {{ nowPage }}
-      .page.cursor-pointer(v-if='nowPage + 1 < pageCount' @click='goToPage(nowPage + 1)')
-        | {{ nowPage + 1 }}
-      .split-page.text-xl(v-if='nowPage + 2 < pageCount') ...
-      .page.cursor-pointer(:class="{ 'page-underline': nowPage === pageCount }" @click='goToPage(pageCount)')
-        | {{ pageCount }}
-      .page.cursor-pointer(@click='nextPage()') &gt;
-  .pop-wrapper.top-0.left-0.w-full.h-full(v-if='articleOpen' @click.self='articleOpen = false')
-    .pop-card.container.overflow-auto.overflow-y-scroll.pb-6(class='top-1/2 left-1/2')
-      h1.text-2xl.leading-6.font-bold.text-center.break-words.my-6(class='md:text-3xl')
-        | {{ readingArticle ? readingArticle.title : &quot;&quot; }}
-      article.text-base.text-black.break-words.pop-content
-        | {{ readingArticle ? readingArticle.intro : &quot;&quot; }}
+    h1.text-3xl.leading-10.font-bold.text-center(class='md:text-5xl') &#x516C;&#x544A;
+    h1.text-3xl.leading-loose.font-bold.text-center(class='md:text-5xl')
+      | Announcement
+    table.m-12.container.mx-auto
+      thead
+        tr
+          td.whitespace-nowrap.table-text.text-white(class='w-1/6') &#x65E5;&#x671F;
+          td.whitespace-normal.table-text.text-white(class='w-2/3') &#x6A19;&#x984C;
+          td.whitespace-nowrap.table-text.text-white(class='w-1/6')
+            | &#x767C;&#x5E03;&#x90E8;&#x9580;
+      tbody
+        tr.cursor-pointer(class='hover:bg-z hover:bg-opacity-50' v-for='article in articleList.slice((nowPage - 1) * 10, nowPage * 10)' :key='article.articleId' @click.prevent='showArticle(article)')
+          td.whitespace-nowrap.table-text(class='w-1/6')
+            | {{ parseCreateTime(article.createdAt) }}
+          td.whitespace-normal.table-text.overflow-ellipsis.overflow-hidden.max-w-0(class='w-2/3')
+            | {{ article.title }}
+          td.whitespace-nowrap.table-text(class='w-1/6')
+            | {{ article.organization.name }}
+    .text-center.my-0.mx-auto
+      div(v-if='lessPageMode')
+        .page.cursor-pointer(@click='lastPage()') &lt;
+        .page.cursor-pointer(:class="{ 'page-underline': nowPage === page }" v-for='page in pageCount' :key='page' @click='goToPage(page)')
+          | {{ page }}
+        .page.cursor-pointer(@click='nextPage()') &gt;
+      div(v-else='')
+        .page.cursor-pointer(@click='lastPage()') &lt;
+        .page.cursor-pointer(:class="{ 'page-underline': nowPage === 1 }" @click='goToPage(1)')
+          | 1
+        .split-page(v-if='nowPage - 1 > 2') ...
+        .page.cursor-pointer(v-if='nowPage - 1 > 1' @click='goToPage(nowPage - 1)')
+          | {{ nowPage - 1 }}
+        .page.page-underline(v-if='nowPage > 1 && nowPage < pageCount' @click='goToPage(nowPage)')
+          | {{ nowPage }}
+        .page.cursor-pointer(v-if='nowPage + 1 < pageCount' @click='goToPage(nowPage + 1)')
+          | {{ nowPage + 1 }}
+        .split-page.text-xl(v-if='nowPage + 2 < pageCount') ...
+        .page.cursor-pointer(:class="{ 'page-underline': nowPage === pageCount }" @click='goToPage(pageCount)')
+          | {{ pageCount }}
+        .page.cursor-pointer(@click='nextPage()') &gt;
+    .pop-wrapper.top-0.left-0.w-full.h-full(v-if='articleOpen' @click.self='articleOpen = false')
+      .pop-card.container.overflow-auto.overflow-y-scroll.pb-6(class='top-1/2 left-1/2')
+        h1.text-2xl.leading-6.font-bold.text-center.break-words.my-6(class='md:text-3xl')
+          | {{ readingArticle ? readingArticle.title : &quot;&quot; }}
+        article.text-base.text-black.break-words.pop-content
+          | {{ readingArticle ? readingArticle.intro : &quot;&quot; }}
 </template>
 
 <script>
