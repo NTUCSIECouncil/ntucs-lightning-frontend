@@ -17,7 +17,7 @@
     </span>
     <ul
       class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-    transition duration-150 ease-in-out origin-top right-1"
+    transition duration-150 ease-in-out origin-top"
     >
       <li v-if="usersState.user.role === 'admin'" class="selection">
         <input 
