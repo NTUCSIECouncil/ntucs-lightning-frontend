@@ -71,7 +71,7 @@ export default {
       }
     },
     getArticles() {
-      this.$axios.get(`/articles/all`, { params: {} }).then((i) => {
+      this.$axios.get(`/articles/all?tag=announcement`, { params: {} }).then((i) => {
         let articleList = i.data.data;
         this.articleList = articleList;
         this.pageCount = Math.floor((this.articleList.length + 9) / 10);

@@ -102,9 +102,13 @@ export default {
               align: "center",
             }
           ))]
+          // sort promotions by its order
+          this.titleImages.sort((a, b) => a.order-b.order)
           this.images = data.reviewPhotos
+          // sort images by its order
+          this.images.sort((a, b) => a.order-b.order)
           this.markdown = data.markdown
-          this.intro = data.description
+          this.intro = data.slogan
           // only show date(year-month-day)
           this.date = data.date.split('T')[0]
       })
