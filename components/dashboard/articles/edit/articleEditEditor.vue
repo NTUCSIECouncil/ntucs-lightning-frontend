@@ -1,7 +1,7 @@
 <template>
-  <div id="h-2/3 m-0">
-    <div class="btn-group">
-      <label class="inline-block m-0">
+  <div class="h-2/3 mx-0 mt-24">
+    <div class="btn-group w-full bg-primary text-center">
+      <label class="inline-block mx-0 my-auto">
         <input
           class="hidden"
           type="radio"
@@ -14,18 +14,17 @@
           ><img
             class="
               btn-mode
-              bg-gray-100
-              rounded-tl-lg
+              bg-white
               hover:bg-gray-200
               duration-300
-              w-6
-              h-6
+              w-8
+              h-8
               p-2
             "
             src="./pen.png"
         /></span>
       </label>
-      <label class="inline-block m-0">
+      <label class="inline-block mx-0 my-auto">
         <input
           class="hidden"
           type="radio"
@@ -39,17 +38,17 @@
           ><img
             class="
               btn-mode
-              bg-gray-100
+              bg-white
               hover:bg-gray-200
               duration-300
-              w-6
-              h-6
+              w-8
+              h-8
               p-2
             "
             src="./col.png"
         /></span>
       </label>
-      <label class="inline-block m-0">
+      <label class="inline-block mx-0 my-auto">
         <input
           class="hidden"
           type="radio"
@@ -62,40 +61,17 @@
           ><img
             class="
               btn-mode
-              bg-gray-100
-              rounded-tr-lg
+              bg-white
               hover:bg-gray-200
               duration-300
-              w-6
-              h-6
+              w-8
+              h-8
               p-2
             "
             src="./view.png"
         /></span>
       </label>
     </div>
-    <textarea
-      id="title"
-      value="title"
-      cols="1"
-      class="
-        text-xl
-        md:text-3xl
-        resize-none
-        px-6
-        py-2
-        h-14
-        outline-none
-        w-full
-        bg-gray-50
-        overflow-hidden
-        whitespace-nowrap
-        border-b border-solid
-        align-top
-      "
-      @keydown.enter.prevent
-      placeholder="文章標題"
-    ></textarea>
     <textarea
       :value="content"
       @input="update"
@@ -105,8 +81,12 @@
         resize-none
         outline-none
         px-6
-        py-2
+        py-4
         text-l
+        md:text-xl
+        text-white
+        bg-gray-900
+        font-bold
         float-left
         bg-gray-50
         align-top
@@ -122,7 +102,7 @@
         markdown-wrap
         h-screen
         px-6
-        py-0
+        py-4
         overflow-hidden
         float-left
         shadow
@@ -208,7 +188,7 @@ export default {
 <style scoped>
 input:checked + span,
 input:checked + span > img {
-  background-color: #6a737d;
+  @apply bg-primary;
 }
 
 /******************/
