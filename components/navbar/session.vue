@@ -1,5 +1,5 @@
 <template>
-  <div class="group relative uncover">
+  <div class="group relative z-10">
     <span>
       44th
     </span>
@@ -45,7 +45,5 @@ export default {
 }
 </script>
 <style>
-  .uncover {
-    z-index: 999;
-  }
+
 </style>

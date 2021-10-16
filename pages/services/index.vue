@@ -17,7 +17,7 @@
           p-2
           h-full
         "
-        @click="this.$router.push(service.path)"
+        @click="$router.push(service.url)"
       >
         <img :src="service.icon" class="h-8" />
         <h3 class="text-2xl font-bold mt-4">{{ service.name }}</h3>
@@ -40,6 +40,7 @@ export default {
           name: "專題訪談",
           description: "了解自己專題的走向",
           icon: "/svg/fa-chalkboard-teacher.svg",
+          url: "/services/interview"
         },
 
         {
