@@ -15,6 +15,9 @@
           text-xl
           md:text-2xl
           font-bold
+          translate-x-vh
+          my-12
+          mx-auto
           p-2
           rounded-lg
           text-white
@@ -23,30 +26,31 @@
       >
         儲存草稿
       </button>
+      <button
+        v-on:click.prevent="submitToReview()"
+        v-if="!articlesState.dashboard.edit.isUpdatedError"
+        class="
+          inline-block
+          float-right
+          text-xl
+          md:text-2xl
+          font-bold
+          -translate-x-vh
+          my-12
+          mx-auto
+          p-2
+          rounded-lg
+          text-white
+          bg-primary
+        "
+      >
+        {{ submitToReviewText || "送出" }}
+      </button>
       <h3 class="text-center">
         <p theme="danger" v-if="articlesState.dashboard.edit.isUpdatedError">
           儲存失敗
         </p>
       </h3>
-      <span class="mt-12">
-        <button
-          v-on:click.prevent="submitToReview()"
-          v-if="!articlesState.dashboard.edit.isUpdatedError"
-          class="
-          float-right
-            inline-block
-            text-xl
-            md:text-2xl
-            font-bold
-            p-2
-            rounded-lg
-            text-white
-            bg-primary
-          "
-        >
-          {{ submitToReviewText || "送出" }}
-        </button>
-      </span>
     </div>
   </div>
 </template>
