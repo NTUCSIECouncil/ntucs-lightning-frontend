@@ -80,8 +80,8 @@
               p-2
             "
           >
-            <input type="file" class="hidden" />
-            選擇檔案
+            <input type="file" class="hidden" ref="uploadImageRef" accept="image/png, image/jpeg" @change="updateAritle()"/>
+            {{this.uploadImgName || "選擇檔案"}}
           </label>
         </div>
         <p class="inline-block text-l md:text-xl font-bold mt-6">Short Url</p>
@@ -172,6 +172,7 @@ export default {
       intro: this.article.intro || "",
       selectedTag: this.article.tagId || "",
       tags: [],
+      uploadImgName : ''
     };
   },
   computed: {
@@ -225,6 +226,7 @@ export default {
     updateArticle(type) {
       // SET Typing Status to True, to hide saved badge.
       this.$store.commit("articles/setTypingStatus", true);
+      this.uploadImgName = this.$refs.uploadImageRef.name;
 
       const articleId = this.$route.params.articleId;
       const updateArticleData = {
