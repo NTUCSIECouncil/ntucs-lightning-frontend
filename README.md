@@ -1,3 +1,5 @@
+> This project was abandoned after evaluating its costs and benefits.
+
 # ntucs-lightning-frontend
 
 ## Build Setup
